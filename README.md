@@ -28,31 +28,35 @@ On behalf of landscape group from Rails Girls CPH meet up,  we came up with an i
   * QR Code
   * Stickers
 
+
+
 ## Mentor Group Notes
-	We discussed from a mentor's point of view what they would want in order to join the platform.
+We discussed from a mentor's point of view what they would want in order to join the platform.
 
-####Why does one want to be a mentor?
-		To contribute to the community.
-		Something a mentor would like to make sure that the mentee is motivated.
+### Why does one want to be a mentor?
+To contribute to the community.
+Something a mentor would like to make sure that the mentee is motivated.
 
+### Things Montors could offer/help with and how they plan to offer their help.
+*	Helping with job interviews, salary negotiations, motivation/encouragement.
+* Code reviews on Git
+*	How do they want to work with coding challenges for example-- reviewing pull requests, and code review
+*	Telling how much time they have to offer-- for example as 1 hour / week. And/or for how long of a time period they would like to be a mentor-- for example for the period of 3 months or 6 months...
 
-	Things Montors could offer/help with:
-	-	Helping with job interviews, salary negotiations, motivation/encouragement.
-	-	Telling how much time they have to offer-- for example as 1 hour / week,
-	-	And/or for how long of a time period they would like to be a mentor-- for example for the period of 3 months or 6 months...
+### Somethings mentors might like on the platform:
+*	As a mentor, your might also want to invite other mentors.
+*	As a mentor you can search for what a mentee is looking for.
+*	As a mentor, can a mentee choose you or make a request to choose you?
+* Or does a mentor pick a mentee through the platform.
+*	As a mentor, have the ability to set a maximum amont of mentees
 
-	-	How do they want to work with coding challenges for example-- reviewing pull requests, and code review
+### A way to help keep a mentor motivated could be through some type of gamification with badges.
 
-	-	As a mentor, your might also want to invite other mentors.
-	-	As a mentor you can search for what a mentee is looking for.
-	-	As a mentor, can a mentee choose you or make a request to choose you?
-	-	As a mentor, have the ability to set a maximum amont of mentees
-
-	We just started to talk about what a Mentor's profile could include
-	1. Name
-	2. Company
-	3. Languages they work with and will help with
-	4. Available time.
+###### We just started to talk about what a Mentor's profile could include
+1. Name
+2. Company
+3. Languages they work with and will help with
+4. Available time.
 
 
 
