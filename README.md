@@ -12,7 +12,6 @@ On behalf of landscape group from Rails Girls CPH meet up,  we came up with an i
 * What do you want to offer?
 * Would you like to mentor more than one mentee at once?
 
-
 2. Mentees
 * In which coding language do you need help
 * What are your expectation?
@@ -27,4 +26,21 @@ On behalf of landscape group from Rails Girls CPH meet up,  we came up with an i
   * Hack Your Future Slack
   * QR Code
   * Stickers
+
+## Mentees Group Notes
+
+We discussed from a mentee's point of view what they would want in order to join the platform.
+
+ ### Why does one want to be a mentee?
+Two types of needs:
+1. Code Advice
+2. Career Advice
+The first type is language-speciffic and the second sin't neccesarily.
+Suggestion for helping the mentee find the right person: tags for mentors. Tags could include 'code advoce', 'JavaScript', 'career advice', helping the mentee find her match.
+
+ ### Taking care of welcoming total beginners
+*	Total beginners might not know what language to specialize in, so a way to welcome them could be to have the option of not having to specify that when you first ask to be a mentee.
+
+### A Mentee can also be a Mentor
+* Broad consensus in the group that this should be a feature.
 
