@@ -19,9 +19,9 @@ On behalf of landscape group from Rails Girls CPH meet up,  we came up with an i
 * What kind of resources do are you looking for?
 * Are you completely new or have some experience in programming?
 
-**We decided to distribute the questionaires through some of the platforms below:**
+**We decided to distribute the questionnaires through some of the platforms below:**
 * Lightning talks in meetups
-* Share the questionaires in
+* Share the questionnaires in
   * Railsgirls Slack
   * Hack Your Future Slack
   * QR Code
@@ -34,7 +34,7 @@ We discussed from a mentor's point of view what they would want in order to join
 To contribute to the community.
 Something a mentor would like to make sure that the mentee is motivated.
 
-### Things Montors could offer/help with and how they plan to offer their help.
+### Things Mentors could offer/help with and how they plan to offer their help.
 *	Helping with job interviews, salary negotiations, motivation/encouragement.
 * Code reviews on Git
 *	How do they want to work with coding challenges for example-- reviewing pull requests, and code review
@@ -45,7 +45,7 @@ Something a mentor would like to make sure that the mentee is motivated.
 *	As a mentor you can search for what a mentee is looking for.
 *	As a mentor, can a mentee choose you or make a request to choose you?
 * Or does a mentor pick a mentee through the platform.
-*	As a mentor, have the ability to set a maximum amont of mentees
+*	As a mentor, have the ability to set a maximum amount of mentees
 
 ### A way to help keep a mentor motivated could be through some type of gamification with badges.
 
@@ -60,14 +60,14 @@ Something a mentor would like to make sure that the mentee is motivated.
 
 We discussed from a mentee's point of view what they would want in order to join the platform.
 
- ### Why does one want to be a mentee?
+### Why does one want to be a mentee?
 Two types of needs:
 1. Code Advice
 2. Career Advice
-The first type is language-speciffic and the second sin't neccesarily.
-Suggestion for helping the mentee find the right person: tags for mentors. Tags could include 'code advoce', 'JavaScript', 'career advice', helping the mentee find her match.
+The first type is language-specific and the second sin't necessarily.
+Suggestion for helping the mentee find the right person: tags for mentors. Tags could include 'code advice', 'JavaScript', 'career advice', helping the mentee find her match.
 
- ### Taking care of welcoming total beginners
+### Taking care of welcoming total beginners
 *	Total beginners might not know what language to specialize in, so a way to welcome them could be to have the option of not having to specify that when you first ask to be a mentee.
 
 ### A Mentee can also be a Mentor
