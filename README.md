@@ -1,5 +1,6 @@
-# Landscape Design - Idea Validation phase
-On behalf of landscape group from Rails Girls CPH meet up,  we came up with an idea of creating a google form to test the number of people who will be interested of being a mentor or mentee. Later, we will collect all the questions from mentors and mentee group and then create a questionaire form. Here are the summary from today's meetup.
+
+# Landscape Design - Idea Validation phase I
+On behalf of landscape group from Rails Girls CPH meet up,  we came up with an idea of creating a google form to test the number of people who will be interested of being a mentor or mentee. Later, we will collect all the questions from mentors and mentee group and then create a questionaire form. Here are the summary from today's meetup. 
 
 **Are you interested in Mentoring or Finding a mentor?**
 1. Mentors
@@ -72,3 +73,37 @@ Suggestion for helping the mentee find the right person: tags for mentors. Tags 
 
 ### A Mentee can also be a Mentor
 * Broad consensus in the group that this should be a feature.
+
+# Idea Phase II
+
+On our second meeting, we continued talking about what the user should be able to do with our app. 
+
+## Users, One or Many Types?
+
+The big discussion of the evening was about how many kinds of users we want to support.
+
+  * One group liked the idea of having one user login with tags defining mentor or mentee role.
+  * One group wants to have two kinds of users with separate logins: mentors and mentees.
+Solution? Voting in slack!
+
+### Tags
+
+Agreement (no matter how many kionds of users) to implement a system with tags.
+Tags could come from a questionaire the user fills out in the beginning.
+
+### Tag Categories
+
+We would like to differetiate between different aims the user may have: wanting to receive or give help. Which kind of help: Soft skills vs technical skills.
+It was discussed how the user can both be mentor and mentee, and many in the group prefer that the user has a custommized experince based on which they pick.
+
+### Scope
+
+We again discussed that we don't want to build another tsack overflow: the aim should be to make this a space for more career inspiration.
+
+### MVP
+
+It's complicated having two kinds of users! For the Minimally Viable Product, we might want to go with only one user.
+
+### Search
+Agreement that we want a search function where you can look for both skills and people.
+
