@@ -98,7 +98,7 @@ It was discussed how the user can both be mentor and mentee, and many in the gro
 
 ### Scope
 
-We again discussed that we don't want to build another tsack overflow: the aim should be to make this a space for more career inspiration.
+We again discussed that we don't want to build another stack overflow: the aim should be to make this a space for more career inspiration.
 
 ### MVP
 
