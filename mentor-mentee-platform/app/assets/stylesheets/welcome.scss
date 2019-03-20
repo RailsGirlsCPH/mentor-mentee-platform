@@ -1,0 +1,84 @@
+//base css 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+body
+{
+  box-sizing: border-box;
+}
+html{
+  font-size: 62.5%; 
+  font-family: Arial, Helvetica, sans-serif;
+}
+// base css ends here
+
+//color variables 
+$color-primary: #DC143C;
+$color-ligt-grey: #eeeeee;
+$color-black: #0000;
+$color-white: #ffffff;
+$color-btn-gradient-dark: #ec008c;
+$color-btn-gradient-light: #fc6767;
+//color variables end here
+
+//welcome page css starts here
+h1{
+  letter-spacing: 0.1em;
+  font-size: 3.5rem;
+  margin: 5rem 0;
+  color: $color-primary;
+  text-shadow: 0 0.2rem 0.8rem $color-ligt-grey; 
+}
+
+.homeContainer{
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.btn {
+  &,
+  &:link,
+  &:visited{
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 15px 40px;    
+    font-size: 2rem;
+    cursor: pointer;    
+    text-shadow: 0 0.1rem 0.2rem $color-ligt-grey;
+    letter-spacing: 0.2rem;
+    transition: all 0.2s;
+  }
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba($color-black, 0.2);
+    &:after {
+      transform: scaleX(1.4) scaleY(1.6);
+      opacity: 0;
+    }
+  }
+  &:active,
+  &:focus
+   {
+    outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba($color-black, 0.2);
+  }
+  &__signup{
+    font-size: 2rem;
+    background: #ec008c; /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, $color-btn-gradient-dark, $color-btn-gradient-light);
+    background: linear-gradient(to right, $color-btn-gradient-dark, $color-btn-gradient-light);
+    border-radius: 100px;
+    color: $color-white;
+  }
+}
+
+.avatar{
+  margin: 4rem 0;
+  max-width: 100%;
+  max-height: 100%;
+}
