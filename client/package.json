@@ -7,7 +7,8 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
-    "format": "node_modules/.bin/prettier --write \"**/*.{js,vue}\""
+    "format": "node_modules/.bin/prettier --write \"**/*.{js,vue}\"",
+    "storybook": "start-storybook"
   },
   "dependencies": {
     "core-js": "^2.6.5",
