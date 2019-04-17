@@ -1,24 +1,57 @@
-# README
+# Rails App for Mentor and Mentee Platform 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple web app looking for mentor who shares knowledge and skills to help mentees get better at coding 
 
-Things you may want to cover:
+## Getting Started
 
-* Ruby version
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-* System dependencies
+### Prerequisites
 
-* Configuration
+In order to install this app it is necessary to have - Ruby Version 2.6.2 and Rails 5.2
 
-* Database creation
+To intall ruby you can use  a ruby version manager called Rbenv here is the link on how to setup a version manager in terminal
+- https://devhints.io/rbenv
 
-* Database initialization
+After installing version manager check the versions of both rbenv and ruby 
 
-* How to run the test suite
+```
+rbenv -v
+ruby -v
+```
 
-* Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
 
-* ...
+### Installing
+
+```
+$ gem install bundler
+$ gem install rails
+$ rbenv rehash 
+$ rails -v
+$ bundle exec rails server
+
+```
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+## Deployment
+
+
+## Built With
+
+* [ruby on rails](https://rubyonrails.org/) - The web framework used
+
+
+## Contributing
+
+Please read for details on our code of conduct, and the process for submitting pull requests to us.
+
+## Versioning
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
