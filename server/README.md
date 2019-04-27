@@ -81,6 +81,14 @@ $bundle exec rails server
 ```
 The output from the last command launches a local web page you can interact with. The address is given in the output. 
 
+## Keeping uptodate: Dependabot
+
+Depandabot has been installed on the Server directory https://dependabot.com/#how-it-works 
+
+This bot reviews the Gem's listed in our Gemfile as well as additional depencies listed in packages.json. If there are out of date or insecure dependencies Dependabot will create a pull request to update each individual dependency. Dependabot provides a backward compatibility score with each proposed update. 
+
+At the moment there is a limit to how many updates the Dependabot will recommend a day, so that we don't get spammed with pull requests. We need to incorporate some kind of testing to this update process. Dependabot just makes us aware the updates are available, we need to test to make sure the update is compatible with our codebase. Please see below. 
+
 ## Running the tests
 
 Explain how to run the automated tests for this system
