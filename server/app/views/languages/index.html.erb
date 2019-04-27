@@ -1,0 +1,19 @@
+
+<h1>Listing Languages</h1>
+ 
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+  </tr>
+ 
+  <% @languages.each do |language| %>
+    <tr>
+      <td><%= language.language %></td>
+      <td><%= link_to 'Show', language_path(language) %></td>
+    </tr>
+  <% end %>
+</table>
+
+
+<%= link_to 'Add language', new_language_path %>

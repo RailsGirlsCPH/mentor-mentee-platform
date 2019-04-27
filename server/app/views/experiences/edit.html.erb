@@ -1,0 +1,24 @@
+
+<h1>Edit experiences</h1>
+ 
+<%= form_with(model: @experience, local: true) do |form| %>
+
+  <p>
+    <%= form.label :field_of_interest %><br>
+    <%= form.text_field :field_of_interest %>
+  </p>
+    <p>
+    <%= form.label :time_spent %><br>
+    <%= form.text_field :time_spent %>
+  </p>
+    <p>
+  <%= form.label :language_id %><br />
+  <%= form.collection_select :language_id, Language.all, :id, :language, :prompt => "Select a prospect" %>
+</p>
+  <p>
+    <%= form.submit %>
+  </p>
+ 
+<% end %>
+ 
+<%= link_to 'Back', experiences_path %>

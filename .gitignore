@@ -8,14 +8,12 @@
 /.bundle
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.sqlite3-journal
-mentor-mentee-platform/db/development.sqlite3 
-mentor-mentee-platform/db/*.sqlite3 
+*.sqlite3
+*.sqlite3-journal
 
 # Ignore all logfiles and tempfiles.
-mentor-mentee-platform/log/*
-mentor-mentee-platform/tmp/*
+server/log/*
+server/tmp/*
 !/log/.keep
 !/tmp/.keep
 
@@ -23,3 +21,6 @@ mentor-mentee-platform/tmp/*
 /yarn-error.log
 
 .byebug_history
+
+# Ignore emacs temporary files
+.#*
