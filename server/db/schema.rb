@@ -10,20 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_04_27_203024) do
+ActiveRecord::Schema.define(version: 5) do
 
   create_table "experiences", force: :cascade do |t|
     t.text "field_of_interest"
     t.string "time_spent"
     t.integer "user_id"
+    t.integer "programminglanguage_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "language_id"
-    t.index ["language_id"], name: "index_experiences_on_language_id"
+    t.index ["programminglanguage_id"], name: "index_experiences_on_programminglanguage_id"
     t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
-  create_table "languages", force: :cascade do |t|
+  create_table "meetingfreqs", force: :cascade do |t|
+    t.string "interval"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "programminglanguages", force: :cascade do |t|
     t.string "language"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -38,6 +44,21 @@ ActiveRecord::Schema.define(version: 2019_04_27_203024) do
     t.boolean "mentee"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "wishes", force: :cascade do |t|
+    t.integer "availability"
+    t.boolean "available_offline"
+    t.boolean "available_online"
+    t.string "goal"
+    t.integer "user_id"
+    t.integer "programminglanguage_id"
+    t.integer "meetingfreq_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["meetingfreq_id"], name: "index_wishes_on_meetingfreq_id"
+    t.index ["programminglanguage_id"], name: "index_wishes_on_programminglanguage_id"
+    t.index ["user_id"], name: "index_wishes_on_user_id"
   end
 
 end

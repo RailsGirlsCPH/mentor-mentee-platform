@@ -3,15 +3,13 @@ Rails.application.routes.draw do
 
   resources :users do
     resources :experiences
+    resources :wishes
   end
-  resources :experiences 
-  resources :languages
-  #I think final state would be
-  #resources :users do
-  # resources :wishes
-  # resoures :exp
-  # resources :prog_lang
-  # resources :meet_freq
+  resources :experiences
+  resources :wishes 
+  resources :programminglanguages
+  resources :meetingfreqs
+
   root 'welcome#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

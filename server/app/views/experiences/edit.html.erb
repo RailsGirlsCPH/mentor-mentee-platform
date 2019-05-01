@@ -12,8 +12,8 @@
     <%= form.text_field :time_spent %>
   </p>
     <p>
-  <%= form.label :language_id %><br />
-  <%= form.collection_select :language_id, Language.all, :id, :language, :prompt => "Select a prospect" %>
+  <%= form.label :programminglanguage_id %><br />
+  <%= form.collection_select :programminglanguage_id, Programminglanguage.all, :id, :language, :prompt => "Select a prospect" %>
 </p>
   <p>
     <%= form.submit %>

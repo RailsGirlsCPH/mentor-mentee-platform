@@ -35,6 +35,6 @@ class ExperiencesController < ApplicationController
 
   private
   def experience_params
-    params.require(:experience).permit(:field_of_interest, :time_spent, :language_id)
+    params.require(:experience).permit(:field_of_interest, :time_spent, :programminglanguage_id) 
   end
 end
