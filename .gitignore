@@ -18,6 +18,3 @@
 !/server/tmp/.keep
 
 .byebug_history
-
-# Ignore emacs temporary files
-.#*
