@@ -1,0 +1,136 @@
+<p>
+  <strong>First Name:</strong>
+  <%= @user.first_name %>
+</p>
+ 
+<p>
+  <strong>Last Name:</strong>
+  <%= @user.last_name %>
+</p>
+<p>
+  <strong>Email:</strong>
+  <%= @user.email %>
+</p>
+<p>
+  <strong>City:</strong>
+  <%= @user.city %>
+</p>
+<p>
+  <strong>Mentor:</strong>
+  <%= @user.mentor %>
+</p>
+<p>
+  <strong>Mentee:</strong>
+  <%= @user.mentee %>
+</p>
+
+
+<h2>Experience</h2>
+<% @user.experiences.each do |experience| %>
+
+ 
+  <p>
+    <strong>Field of Interest:</strong>
+    <%= experience.field_of_interest %>
+  </p>
+    <p>
+    <strong>Time Spent:</strong>
+    <%= experience.time_spent %>
+  </p>
+       <p>
+    <strong>Programing Language:</strong>
+    <%= experience.programminglanguage&.language %>
+  </p>
+ 
+<% end %>
+
+<h2>Wish</h2>
+<% @user.wishes.each do |wish| %>
+    <p>
+        <strong>Availability:</strong>
+        <%= wish.availability %>
+    </p>
+    <p>
+        <strong>Available Offline:</strong>
+        <%= wish.available_offline %>
+    </p>
+    <p>
+        <strong>Available Online:</strong>
+        <%= wish.available_online %>
+    </p>
+    <p>
+        <strong>Goal:</strong>
+        <%= wish.goal %>
+    </p>
+
+    <p>
+        <strong>Programming Language:</strong>
+        <%= wish.programminglanguage&.language %>
+    </p>
+    <p>
+        <strong>Meeting Frequency:</strong>
+        <%= wish.meetingfreq&.interval %>
+    </p>
+    
+    
+<% end %>
+
+<h2>Add Experience:</h2>
+<%= form_with(model: [ @user, @user.experiences.build ], local: true) do |form| %>
+
+  <p>
+    <%= form.label :field_of_interest %><br>
+    <%= form.text_area :field_of_interest %>
+  </p>
+   <p>
+   <%= form.label :time_spent %><br>
+   <%= form.text_area :time_spent %>
+  </p>
+  <p>
+      <p>
+          <%= form.label :programminglanguage_id %><br />
+          <%= form.collection_select :programminglanguage_id, Programminglanguage.all, :id, :language, :prompt => "Select a prospect" %>
+      </p>
+  <p>
+      <%= form.submit %>
+  </p>
+<% end %>
+
+<h2>Add Wish:</h2>
+<%= form_with(model: [ @user, @user.wishes.build ], local: true) do |form| %>
+
+    <p>
+        <%= form.label :availability %><br>
+        <%= form.text_area :availability %>
+    </p>
+    <p>
+        <%= form.label :available_offline %><br>
+        <%= form.check_box :available_offline %>
+    </p>
+    <p>
+        <%= form.label :available_online %><br>
+        <%= form.check_box :available_online %>
+    </p>
+    <p>
+        <%= form.label :goal %><br>
+        <%= form.text_area :goal %>
+    </p>
+    <p>
+        <p>
+            <%= form.label :programminglanguage_id %><br />
+            <%= form.collection_select :programminglanguage_id, Programminglanguage.all, :id, :language, :prompt => "Select a prospect" %> 
+        </p>
+     <p>
+     <p>
+        <p>
+          <%= form.label :meetingfreq_id %><br />
+          <%= form.collection_select :meetingfreq_id, Meetingfreq.all, :id, :interval, :prompt => "Select a prospect" %>
+                </p>
+                <p>
+            <%= form.submit %>
+        </p>
+<% end %>
+
+<%= link_to 'New', new_user_path(@user) %> |
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>

@@ -1,0 +1,33 @@
+
+<h1>Listing Wishes</h1>
+
+<table>
+    <tr>
+        <th>Availability</th>
+        <th>Available Offline</th>
+        <th>Available Online</th>
+        <th>Goal</th>
+        <th></th>
+    </tr>
+    
+
+    <% @wishes.each do |wish|%>
+
+
+        <tr>
+            <td><%= wish.programminglanguage&.language %></td>
+            <td><%= wish.meetingfreq&.interval %></td>
+            <td><%= wish.availability %></td>
+            <td><%= wish.available_offline %></td>
+            <td><%= wish.available_online %></td>
+            <td><%= wish.goal %></td>
+            <td><%= wish.user.first_name %></td>
+            <td><%= wish.user.last_name %></td>
+            <td><%= link_to 'Show', wish_path(wish) %></td>
+            <td><%= link_to 'Edit', edit_wish_path(wish) %></td>
+            <td><%= link_to 'Destroy', wish_path(wish),
+                 method: :delete,
+                 data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+    <% end%>
+</table>

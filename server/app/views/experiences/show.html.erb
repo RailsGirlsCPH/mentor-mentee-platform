@@ -1,0 +1,22 @@
+
+<p>
+  <strong>Field of Interest:</strong>
+  <%= @experience.field_of_interest%>
+</p>
+<p>
+  <strong>Time Spent:</strong>
+  <%= @experience.time_spent %>
+</p>
+<p>
+  <strong>User:</strong>
+  <%= @experience.user.first_name %>
+</p>
+<p>
+  <strong>Programming Language:</strong>
+  <%= @experience.programminglanguage.language %>
+</p>
+
+
+ 
+<%= link_to 'Edit', edit_experience_path(@experience) %> 
+<%= link_to 'Back', experiences_path %>

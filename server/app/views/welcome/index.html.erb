@@ -1,5 +1,10 @@
 <div class="homeContainer">
-  <h1>Welcome to Mentor Mentee Platform</h1>
+    <%= link_to 'Users', controller: 'users' %>
+    <%= link_to 'Languages provided', controller: 'programminglanguages' %>
+    <%= link_to 'Meeting Frequency', controller: 'meetingfreqs' %>
+    <%= link_to 'Experiences', controller: 'experiences' %>
+    <%= link_to 'Wishes', controller: 'wishes' %>
+    <h1>Welcome to Mentor Mentee Platform</h1>
   <button type="button" class="btn btn__signup">Sign Up</button>
   <%= image_tag("group.png", :alt => "group avatar", :class => "avatar") %>  
 </div>

@@ -1,0 +1,10 @@
+<p>
+    <strong>Title:</strong>
+    <%= @meetingfreq.interval %>
+</p>
+
+<%= link_to 'Back', meetingfreqs_path() %>
+<%= link_to 'Destroy', meetingfreq_path(),
+ method: :delete,
+ data: { confirm: 'Are you sure?' } %>
+
