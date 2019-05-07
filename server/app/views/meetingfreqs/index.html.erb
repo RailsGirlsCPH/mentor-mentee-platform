@@ -1,0 +1,19 @@
+
+<h1>Listing Meeting</h1>
+
+<table>
+    <tr>
+        <th>Title</th>
+        <th></th>
+    </tr>
+    
+    <% @meetingfreqs.each do |interval| %>
+        <tr>
+            <td><%= interval.interval %></td>
+            <td><%= link_to 'Show', meetingfreq_path(interval) %></td>
+        </tr>
+    <% end %>
+</table>
+
+
+<%= link_to 'Add Meeting Freq', new_meetingfreq_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  prog_lang: MyString
+  field_of_interest: MyText
+  time_spent: MyString
+  user: one
+
+two:
+  prog_lang: MyString
+  field_of_interest: MyText
+  time_spent: MyString
+  user: two
