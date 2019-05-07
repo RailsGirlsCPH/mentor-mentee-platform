@@ -1,6 +1,7 @@
 class MeetingfreqsController < ApplicationController
   def index
     @meetingfreqs = Meetingfreq.all
+    respond_to :html, :json
   end
   def show
     @meetingfreq = Meetingfreq.find(params[:id])

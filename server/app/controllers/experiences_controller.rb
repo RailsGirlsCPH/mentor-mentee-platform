@@ -1,6 +1,7 @@
 class ExperiencesController < ApplicationController
   def index
     @experiences = Experience.all
+    respond_to :html, :json
   end
 
   def show

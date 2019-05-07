@@ -8,6 +8,11 @@ Rails.application.routes.draw do
   resources :experiences
   resources :wishes 
   resources :programminglanguages
+  namespace :api do
+    namespace :v1 do
+      resources :programminglanguages
+    end
+  end
   resources :meetingfreqs
 
   root 'welcome#index'

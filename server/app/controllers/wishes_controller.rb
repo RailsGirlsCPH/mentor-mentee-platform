@@ -1,6 +1,7 @@
 class WishesController < ApplicationController
   def index
     @wishes = Wish.all
+    respond_to :html, :json
   end
 
   def show
