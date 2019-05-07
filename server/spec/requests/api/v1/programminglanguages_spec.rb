@@ -13,8 +13,8 @@ RSpec.describe Api::V1::ProgramminglanguagesController do
     expect(response).to be_success
 
 
-    post "http://localhost:3000/api/v1/programminglanguages/"
-            {"language": "MADE UP"}
+    post "http://localhost:3000/api/v1/programminglanguages/10"
+    {"language": "MADE UP"}
     # check to make sure the right amount of messages are returned
     #expect(json['messages'].length).to eq(10)
   end
