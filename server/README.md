@@ -64,6 +64,7 @@ Now you can install rails and bundler.
 gem install bundler 
 gem install rails
 ```
+
 ### Project codebase.
 
 Download the mentor-mentee-platform code held in the GitHub Repository. 
@@ -81,7 +82,20 @@ $bundle exec rails server
 ```
 The output from the last command launches a local web page you can interact with. The address is given in the output. 
 
-## Keeping uptodate: Dependabot
+###PostgresSQL
+
+A local SQLite database is provided as standard. However instead of individual local databases we plan to use a shared PostgreSQL database on a server. 
+
+Please note that the PostgreSQL 'pg' gem which has been added to the Gemfile will cause your bundler to error unless you have installed PostgreSQL on your machine. On Mac OS this is done by simply entering the following command.  
+
+```
+brew update
+brew install postgresql
+```
+
+Once you do this you should be able to `bundle install` without any issues. 
+
+## Keeping up-to-date: Dependabot
 
 Depandabot has been installed on the Server directory https://dependabot.com/#how-it-works 
 
