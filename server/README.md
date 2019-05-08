@@ -82,7 +82,7 @@ $bundle exec rails server
 ```
 The output from the last command launches a local web page you can interact with. The address is given in the output. 
 
-###PostgresSQL
+### PostgresSQL
 
 A local SQLite database is provided as standard. However instead of individual local databases we plan to use a shared PostgreSQL database on a server. 
 
