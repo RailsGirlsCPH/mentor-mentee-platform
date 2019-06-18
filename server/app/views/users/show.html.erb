@@ -1,0 +1,29 @@
+<p>
+    <strong>First Name:</strong>
+    <%= @user.first_name %>
+</p>
+
+<p>
+    <strong>Last Name:</strong>
+    <%= @user.last_name %>
+</p>
+<p>
+    <strong>Email:</strong>
+    <%= @user.email %>
+</p>
+<p>
+    <strong>City:</strong>
+    <%= @user.city %>
+</p>
+<p>
+    <strong>Mentor:</strong>
+    <%= @user.mentor %>
+</p>
+<p>
+    <strong>Mentee:</strong>
+    <%= @user.mentee %>
+</p>
+
+<%= link_to 'New', new_user_path(@user) %> |
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
