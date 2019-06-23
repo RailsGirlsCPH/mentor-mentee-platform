@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :users do
   end
+  resources :api_users do
+    #you can add related resources. 
+  end
   namespace :api do
     namespace :v1 do
       resources :users
