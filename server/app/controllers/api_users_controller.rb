@@ -7,7 +7,7 @@ class ApiUsersController < ApplicationController
     json_response(@api_users)
   end
 
-  # POST /api_users
+  # Post /api_users
   def create
     @api_user = ApiUser.create!(api_user_params)
     json_response(@api_user, :created)
@@ -35,5 +35,9 @@ class ApiUsersController < ApplicationController
   def api_user_params
     #whitelist params
     params.permit(:email, :password_digest)
+  end
+
+  def set_api_user
+    @api_user = ApiUser.find(params[:id])
   end
 end
