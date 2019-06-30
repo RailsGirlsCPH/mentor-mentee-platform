@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API # used to say    'Base'
+class ApplicationController < ActionController::API 
   #protect_from_forgery with: :exception
   include Response
   include ExceptionHandler
