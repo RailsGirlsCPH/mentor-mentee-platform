@@ -11,18 +11,26 @@ module ExceptionHandler
     rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
     rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
     rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
-
+    rescue_from ActiveRecord::RecordNotFound, with: :four_o_four
+    rescue_from ActionController::ParameterMissing, with: :four_two_two
     rescue_from ActiveRecord::RecordInvalid do |e|
-      json_response({ message: e.message}, :unprocessable_entity)
+      print(json_response({ message: e.message}, :unprocessable_entity))
     end
   end
 
   private
-
+  def four_o_four(e)
+    json_response({message: e.message}, :not_found)
+  end
+  def four_two_two(e)
+    json_response({message: e.message}, :unprocessable_entity)
+  end
   # JSON response with message; Status code 422 - unprocessable entity
   def four_twenty_two(e)
-    json_response({ message: e.message }, :unprocessable_entity)
+    json_response({ message: e.message}, :unprocessable_entity)
   end
+
+
 
   # JSON response with message; Status code 401 - Unauthorized
   def unauthorized_request(e)

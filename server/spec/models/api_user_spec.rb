@@ -11,5 +11,6 @@ RSpec.describe ApiUser, type: :model do
 
   it {should validate_presence_of(:email)}
   it {should validate_presence_of(:password_digest)}
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  pending "At some stage add more contraints and invoke more resource relationships in this file #{__FILE__}"
 end

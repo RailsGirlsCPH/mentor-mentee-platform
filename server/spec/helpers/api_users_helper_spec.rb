@@ -11,5 +11,5 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe ApiUsersHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+  pending "Have not used this helper file function yet #{__FILE__}"
 end
