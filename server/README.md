@@ -105,7 +105,23 @@ At the moment there is a limit to how many updates the Dependabot will recommend
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+You can write tests, to be run using RSpec, which test the behaviour of APIs for various resources. 
+You can check the output of these tests on your machine by running the following command. 
+
+```
+bundle exec rspec spec
+```
+
+The command above runs all of the tests created in the spec files of your current directory. If you only want to review the tests of one spec file you can run. 
+
+```
+bundle exec rspec spec/requests/api/version/name_of_resource_spec.rb
+```
+
+More information can be found here https://rspec.info 
+
+It is possible to set up an automated system so that when someone makes a pull request, or tries to merge to a branch, all tests are run automatically. A tool like Travis-CI can be used to do this. This has not been set up yet. 
+
 
 ## Deployment
 
