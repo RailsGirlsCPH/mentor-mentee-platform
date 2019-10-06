@@ -57,7 +57,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
       { 'email': 'Test_email@email.com', 'password_digest': 'password1'}.to_json
 
       context 'when request is valid' do
-        before { post "/api/v1/api_users",  params: valid_attributes}
+        before { post '/api/v1/api_users',  params: valid_attributes}
 
         it 'returns status code 201' do
           expect(response).to have_http_status(201)
@@ -71,7 +71,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
 
     context 'when the request is invalid as no params' do
       let(:invalid_attributes) { { api_user: { email: nil } }.to_json }
-      before { post "/api/v1/api_users", params: invalid_attributes }
+      before { post '/api/v1/api_users', params: invalid_attributes }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -85,7 +85,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
 
     context 'when the request is invalid as only some requird params' do
       let(:invalid_attributes) { { 'api_user': { 'email': 'email@email.com' } }.to_json }
-      before { post "/api/v1/api_users", params: invalid_attributes }
+      before { post '/api/v1/api_users', params: invalid_attributes }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
