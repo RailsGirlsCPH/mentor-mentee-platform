@@ -1,4 +1,3 @@
-
 # Be sure to restart your server when you modify this file.
 
 # Define an application-wide content security policy
@@ -14,7 +13,7 @@
 #   policy.style_src   :self, :https
 
 #   # Specify URI for violation reports
-#   # policy.report_uri '/csp-violation-report-endpoint'
+#   # policy.report_uri "/csp-violation-report-endpoint"
 # end
 
 # If you are using UJS then enable automatic nonce generation

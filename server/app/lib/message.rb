@@ -1,6 +1,6 @@
 class Message
   def self.not_found(record = 'record')
-    'Sorry, #{record} not found.'
+    "Sorry, #{record} not found."
   end
 
   def self.invalid_credentials
