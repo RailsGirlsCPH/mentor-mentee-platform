@@ -122,14 +122,15 @@ More information can be found here https://rspec.info
 
 It is possible to set up an automated system so that when someone makes a pull request, or tries to merge to a branch, all tests are run automatically. A tool like Travis-CI can be used to do this. This has not been set up yet. 
 
+## Coding Style
 
-## Quote Style
+### Quote Style
 
 .JSON files use Double Quotes. 
 
-.rb files (ruby fies) use Single Quotes, except in the case that you would like to use string interpolation. 
+.rb files (ruby files) use Single Quotes, except in the case that you would like to use string interpolation. 
 
-This is when you would like to sub some information into a string. 
+This is when you would like to substitute some information into a string. 
 
 ```
 "/api/v1/api_users/#{api_user_id}/"
@@ -141,7 +142,9 @@ is not equivalent to
 '/api/v1/api_users/#{api_user_id}/'
 ```
 
-The substitution of #{api_user_id} will only work with doulble quotes in ruby files. 
+The substitution of #{api_user_id} will only work with double quotes in ruby files. 
+
+Further information can be found at: http://ruby-for-beginners.rubymonstas.org/bonus/string_interpolation.html
 
 ## Deployment
 
