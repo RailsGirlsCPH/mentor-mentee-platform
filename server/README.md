@@ -84,9 +84,35 @@ The output from the last command launches a local web page you can interact with
 
 ### PostgresSQL
 
-A local SQLite database is provided as standard. However instead of individual local databases we plan to use a shared PostgreSQL database on a server. 
+A local SQLite database is provided as standard. However we plan to use PostgreSQL instead. 
 
-Please note that the PostgreSQL 'pg' gem which has been added to the Gemfile will cause your bundler to error unless you have installed PostgreSQL on your machine. On Mac OS this is done by simply entering the following command.  
+Unlike SQLite, which can run within the Rails app, PostgreSQL runs as a server which the rails app needs to connect to. 
+
+Below are instructions to set up a local version of a POSTGRESQL server on your own machine. This server can be stopped and started and can be queried by the Rails app once it has been started. 
+
+<details>
+<summary>Install PostgreSQL</summary>
+<br>
+To do 
+</details>
+
+<details>
+<summary>Create Database</summary>
+<br>
+To do
+</details>
+
+<details>
+<summary>Create User</summary>
+<br>
+To do
+</details>
+
+<details>
+<summary>PostgreSQL Gem</summary>
+<br>
+
+The PostgreSQL 'pg' gem which has been added to the Gemfile will cause your bundler to error unless you have installed PostgreSQL on your machine. On Mac OS this is done by simply entering the following command.  
 
 ```
 brew update
@@ -94,6 +120,20 @@ brew install postgresql
 ```
 
 Once you do this you should be able to `bundle install` without any issues. 
+
+</details>
+
+<details>
+<summary>Setting up Rails Database</summary>
+<br>
+To do
+</details>
+
+<details>
+<summary>Checking Functionality</summary>
+<br>
+To do
+</details>
 
 ## Keeping up-to-date: Dependabot
 
