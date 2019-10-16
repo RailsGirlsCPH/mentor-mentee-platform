@@ -84,11 +84,21 @@ The output from the last command launches a local web page you can interact with
 
 ### PostgresSQL
 
+!!Do not follow this setion until review complete!!
+
 A local SQLite database is provided as standard. However we plan to use PostgreSQL instead. 
 
 Unlike SQLite, which can run within the Rails app, PostgreSQL runs as a server which the rails app needs to connect to. 
 
 Below are instructions to set up a local version of a POSTGRESQL server on your own machine. This server can be stopped and started and can be queried by the Rails app once it has been started. 
+
+Links used to create guide: 
+https://www.robinwieruch.de/postgres-sql-macos-setup
+https://medium.com/@noordean/setting-up-postgresql-with-rails-application-357fe5e9c28
+https://github.com/bkeepers/dotenv
+https://www.digitalocean.com/community/tutorials/how-to-set-up-ruby-on-rails-with-postgres
+https://www.postgresql.org/docs
+
 
 <details>
 <summary>Install PostgreSQL</summary>
@@ -126,11 +136,44 @@ Once you do this you should be able to `bundle install` without any issues.
 <details>
 <summary>Setting up Rails Database</summary>
 <br>
-To do
+Now that you have a PostgreSQL server set up we need to update your rails app so that it queries this database, and has the credentials needed to create databases, and read and write to the database. 
+  
+This article has useful information regarding setting up a rails https://medium.com/@noordean/setting-up-postgresql-with-rails-application-357fe5e9c28
+
+One change we now have is that you will need to create a .env file in the server folder which contains the information that the rails server will need in order to access the PostgreSQL database. 
+
+```
+POSTGRES_USER=''
+POSTGRES_PASSWORD=''
+POSTGRES_HOST='localhost'
+POSTGRES_DB='your_database_name'
+POSTGRES_TEST_DB='your_database_name_test'
+```
+
+Note that this file should not pushed to the server as it will contain the password to your local PostgreSQL database. 
+
+Therefore we have created a version of the .env file called .env.template which is a copy of the .env file without any actual passwords or database names. This can be pushed to the remote repository instead. 
+
+We also included the /server/.env file in the .gitignore file held on the root directory of the project. If you have this version of .gitignore in your working directory then when you use 
+
+```
+git add . 
+```
+
+ the .env file will be ignored. 
+
+Once the .env file is in place and the PostgreSQL server has been started then the command 
+
+```
+rake db:setup
+```
+
+will lead to the new databases being created. 
+
 </details>
 
 <details>
-<summary>Checking Functionality</summary>
+<summary>Running Servers & Checking Functionality</summary>
 <br>
 To do
 </details>
