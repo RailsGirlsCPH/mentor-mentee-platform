@@ -84,7 +84,7 @@ The output from the last command launches a local web page you can interact with
 
 ### PostgresSQL
 
-!!Do not follow this setion until review complete!!
+!!Do not follow this section until review complete!!
 
 A local SQLite database is provided as standard. However we plan to use PostgreSQL instead. 
 
@@ -92,55 +92,70 @@ Unlike SQLite, which can run within the Rails app, PostgreSQL runs as a server w
 
 Below are instructions to set up a local version of a POSTGRESQL server on your own machine. This server can be stopped and started and can be queried by the Rails app once it has been started. 
 
-Links used to create guide: 
-https://www.robinwieruch.de/postgres-sql-macos-setup
-https://medium.com/@noordean/setting-up-postgresql-with-rails-application-357fe5e9c28
-https://github.com/bkeepers/dotenv
-https://www.digitalocean.com/community/tutorials/how-to-set-up-ruby-on-rails-with-postgres
-https://www.postgresql.org/docs
-
+Link to PostgreSQL Docs: https://www.postgresql.org/docs
 
 <details>
 <summary>Install PostgreSQL</summary>
 <br>
-To do 
-</details>
 
-<details>
-<summary>Create Database</summary>
-<br>
-To do
-</details>
+There are many apps which you can use to handle PostgreSQL, examples are Postgres.app, Postico or pgAdmin. 
+I installed it via the command line but we may change this page if we feel it is easier to control via an app. 
 
-<details>
-<summary>Create User</summary>
-<br>
-To do
-</details>
+#Installation via command line (Mac OS):
 
-<details>
-<summary>PostgreSQL Gem</summary>
-<br>
-
-The PostgreSQL 'pg' gem which has been added to the Gemfile will cause your bundler to error unless you have installed PostgreSQL on your machine. On Mac OS this is done by simply entering the following command.  
+Entering the following command:  
 
 ```
 brew update
 brew install postgresql
 ```
 
-Once you do this you should be able to `bundle install` without any issues. 
+It is possible to initiate the database via the following command. 
+
+```
+initdb /usr/local/var/postgres
+```
+
+I found this link useful, https://www.robinwieruch.de/postgres-sql-macos-setup. 
+Note that we do not want to set up the database as shown in the link, we would like the rails server to set up the database the first time we run the rake db:setup command. 
+
+</details>
+
+<details>
+<summary>The PSQL Command Line</summary>
+<br>
+To do 
+</details>
+
+<details>
+<summary>Create User</summary>
+<br>
+Although we will not create a database from the psql command line we would like to set up a user with a password. 
+We can store the username and password in the rails app so that it can use these credentials to access the server. 
+
+https://www.digitalocean.com/community/tutorials/how-to-set-up-ruby-on-rails-with-postgres
+  ...continue.....
+</details>
+
+<details>
+<summary>PostgreSQL Gem</summary>
+<br>
+
+The PostgreSQL 'pg' gem has been added to the Gemfile.  
 
 </details>
 
 <details>
 <summary>Setting up Rails Database</summary>
 <br>
-Now that you have a PostgreSQL server set up we need to update your rails app so that it queries this database, and has the credentials needed to create databases, and read and write to the database. 
   
-This article has useful information regarding setting up a rails https://medium.com/@noordean/setting-up-postgresql-with-rails-application-357fe5e9c28
+Now that you have a PostgreSQL server set up we need to update your rails app so that it queries this database, and has the credentials needed to create databases, and read and write to the database. 
 
-One change we now have is that you will need to create a .env file in the server folder which contains the information that the rails server will need in order to access the PostgreSQL database. 
+This article has useful information regarding setting up a rails with PostgreSQL: https://medium.com/@noordean/setting-up-postgresql-with-rails-application-357fe5e9c28
+  
+The first step should be removing the SQLite databases (/server/db/\*.sqlite) from your working directory. This will not happen automatically.   
+
+You will need to create a .env file in the server folder which contains the information that the rails server will need in order to access the PostgreSQL database. 
 
 ```
 POSTGRES_USER=''
@@ -150,11 +165,23 @@ POSTGRES_DB='your_database_name'
 POSTGRES_TEST_DB='your_database_name_test'
 ```
 
-Note that this file should not pushed to the server as it will contain the password to your local PostgreSQL database. 
+The hidden files of a directory can be viewed in BASH using 
 
-Therefore we have created a version of the .env file called .env.template which is a copy of the .env file without any actual passwords or database names. This can be pushed to the remote repository instead. 
+```
+ls -a
+```
 
-We also included the /server/.env file in the .gitignore file held on the root directory of the project. If you have this version of .gitignore in your working directory then when you use 
+Note that this .env file should not pushed to the server as it will contain the password to your local PostgreSQL database. 
+
+Therefore we have created a version of the .env file called .env.template which is a copy of the .env file without any actual passwords or database names. 
+
+```
+dotenv -t .env
+```
+
+This can be pushed to the remote repository instead. This file has already been created and is part of the master branch. 
+
+We also included the .env file in the .gitignore file held on the root directory of the project. If you have this version of .gitignore in your working directory then when you use. More information about dotenv can be found here: https://github.com/bkeepers/dotenv 
 
 ```
 git add . 
