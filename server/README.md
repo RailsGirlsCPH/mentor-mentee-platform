@@ -86,11 +86,11 @@ The output from the last command launches a local web page you can interact with
 
 !!Do not follow this section until review complete!!
 
-A local SQLite database is provided as standard. However we plan to use PostgreSQL instead. 
+A local SQLite database is provided as standard when you set up a Ruby on Rails app. However we plan to use PostgreSQL as our database instead. 
 
-Unlike SQLite, which can run within the Rails app, PostgreSQL runs as a server which the rails app needs to connect to. 
+Unlike SQLite, which can run within the Rails app, PostgreSQL runs as a server which the Rails app must to connect to. 
 
-Below are instructions to set up a local version of a POSTGRESQL server on your own machine. This server can be stopped and started and can be queried by the Rails app once it has been started. 
+Below are instructions to set up a local version of a PostgreSQL server on your own machine. Once this server has been started it can be queried by the Rails app. 
 
 Link to PostgreSQL Docs: https://www.postgresql.org/docs
 
@@ -98,8 +98,8 @@ Link to PostgreSQL Docs: https://www.postgresql.org/docs
 <summary>Install PostgreSQL</summary>
 <br>
 
-There are many apps which you can use to handle PostgreSQL, examples are Postgres.app, Postico or pgAdmin. 
-I installed it via the command line but we may change this page if we feel it is easier to control via an app. 
+There are many apps which you can use to install and handle PostgreSQL.  Examples are Postgres.app, Postico and pgAdmin. 
+I installed PostgreSQL via the command line but we may change this section if people find it easier to to use an app. 
 
 #Installation via command line (Mac OS):
 
@@ -117,14 +117,23 @@ initdb /usr/local/var/postgres
 ```
 
 I found this link useful, https://www.robinwieruch.de/postgres-sql-macos-setup. 
-Note that we do not want to set up the database as shown in the link, we would like the rails server to set up the database the first time we run the rake db:setup command. 
+Note that we do not want to set up the database as shown in this link, instead we would like the rails server to set up the database the first time we run the rake db:setup command. 
 
 </details>
 
 <details>
 <summary>The PSQL Command Line</summary>
 <br>
-To do 
+  
+Commands used to stop and start the PostgrSQL server.  
+```
+pg_ctl -D /usr/local/var/postgres start -l logfile
+
+pg_ctl -D /usr/local/var/postgres stop
+```
+Adding the logging flag means that wherever folder you start the server in, a log file will be created. 
+For this reason it is easiest to start the server within your project's working directory, otherwise you will create log files all over your machine which you will need to clean up. 
+
 </details>
 
 <details>
