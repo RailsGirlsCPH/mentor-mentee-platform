@@ -241,6 +241,20 @@ More information can be found here https://rspec.info
 
 It is possible to set up an automated system so that when someone makes a pull request, or tries to merge to a branch, all tests are run automatically. A tool like Travis-CI can be used to do this. This has not been set up yet. 
 
+If you have been making changes to your database, and find that the tests are producing errors which suggests the database in your test environment does not reflect what you have in development you can inspect the database by 
+
+```
+sqlite3 db/test.sqlite3
+```
+
+If the contents of the database is not correct you can remove the test database and create it again by running the database migrations stored in server/db. 
+
+```
+rm db/test.sqlite3
+bundle exec rake db:create db:migrate RAILS_ENV=test
+bundle exec rspec spec
+```
+
 ## Coding Style
 
 ### Quote Style
