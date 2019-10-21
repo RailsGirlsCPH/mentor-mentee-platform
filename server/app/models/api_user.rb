@@ -4,8 +4,7 @@ class ApiUser < ApplicationRecord
 
 
   # Can write model association here for example
-  #h has_many :***, dependent: :destroy
-
+  has_many :wishes, dependent: :destroy
   # validation
   validates_presence_of :email, :password_digest
 end
