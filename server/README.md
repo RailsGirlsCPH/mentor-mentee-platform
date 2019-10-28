@@ -254,6 +254,43 @@ rm db/test.sqlite3
 bundle exec rake db:create db:migrate RAILS_ENV=test
 bundle exec rspec spec
 ```
+<details>
+<summary>Inspect Faker</summary>
+<br>
+
+When running your spec tests you will use data created for the tests using the Faker Library.
+
+Link: https://github.com/faker-ruby 
+
+You may wish to inspect the test data which is being created by your spec files.
+
+To do this interactively you can run Faker create commands in the rails console. 
+
+On the command line: 
+```
+rails console
+```
+
+Within the interactive rails console run the following commands so you can use the same syntax as you do in the *_spec.rb* files
+
+```
+require 'factory_bot'
+require 'faker'
+FactoryBot.find_definitions
+include FactoryBot::Syntax::Methods
+```
+
+Then you can create some data. Two examples are shown below:
+
+```
+user_list = create_list(:api_user, 5)
+wish1=create(:wish, api_user_id: users_list.first.id)
+user_list.first.wishes.first
+```
+
+Note if you make changes to your files you need to reload the rails console for them to take effect. 
+
+</details>
 
 ## Coding Style
 
