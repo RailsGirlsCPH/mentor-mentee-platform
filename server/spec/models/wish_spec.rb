@@ -6,5 +6,7 @@ RSpec.describe Wish, type: :model do
   it { should belong_to(:api_user) }
 
   # Validation test
+  it { should validate_presence_of(:goal) }
+
   # ensure column name is present before saving
 end

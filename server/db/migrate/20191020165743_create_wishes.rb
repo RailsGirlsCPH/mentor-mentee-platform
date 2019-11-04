@@ -4,7 +4,7 @@ class CreateWishes < ActiveRecord::Migration[6.0]
       t.boolean :available_offline
       t.boolean :available_online
       t.string :goal
-      t.belongs_to :api_user, index: { unique: true }, foreign_key: true
+      t.belongs_to :api_user, foreign_key: true #, index: { unique: true }
       t.references :programminglanguage
       t.references :meetinginterval
       t.timestamps

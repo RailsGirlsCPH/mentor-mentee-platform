@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 2019_10_20_165743) do
     t.integer "meetinginterval_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["api_user_id"], name: "index_wishes_on_api_user_id", unique: true
+    t.index ["api_user_id"], name: "index_wishes_on_api_user_id"
     t.index ["meetinginterval_id"], name: "index_wishes_on_meetinginterval_id"
     t.index ["programminglanguage_id"], name: "index_wishes_on_programminglanguage_id"
   end

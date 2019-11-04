@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ApiUsersController, type: :request do
-#RSpec.describe 'api_users API', type: :request do
+
 
   # initialize test data
   let!(:api_users){create_list(:api_user, 10)}
   let(:api_user_id) {api_users.first.id}
-
+ 
   # Test suite for GET  /api/v1/api_users
   describe 'GET /api/v1/api_users' do
     before {get "/api/v1/api_users"}
