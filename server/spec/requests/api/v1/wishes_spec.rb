@@ -7,11 +7,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
   let!(:wishes){create_list(:wish,5,api_user_id: api_user.id)}
   let(:api_user_id){api_user.id}
   let(:id){wishes.first.id}
-  # let!(:api_users){create_list(:api_user, 10)}
-  # let(:api_user_id) {api_users.first.id}
-  # let(:wish1){create(:wish, api_user_id: api_users.first.id)}
-  # let(:wish2){create(:wish, api_user_id: api_users.first.id)}
-  # let(:wish3){create(:wish, api_user_id: api_users.second.id)}
+
 
   # Test suite for GET  /api/v1/api_users/api_user_id/wishes
   describe 'GET /api/v1/api_users/api_users_id/wishes}' do
@@ -141,10 +137,10 @@ RSpec.describe Api::V1::WishesController, type: :request do
           expect(response).to have_http_status(404)
         end
 
-        #Not included as the eror message does not seem to work
-        #it 'returns message informing no wish with that id' do
-        #  expect(json['message']).to match(/Couldn't find Wish with 'id'=#{id}/)
-        #end
+        # #Not included as the eror message does not seem to work
+        # it 'returns message informing no wish with that id' do
+        #   expect(json['message']).to match(/Couldn't find Wish with 'id'=#{id}/)
+        # end
     end
 end
 

@@ -1,10 +1,11 @@
 class Api::V1::ApiUsersController < ApplicationController
   before_action :set_api_user, only: [:show, :update, :destroy]
-
+  before_action :set_default_response_format
   #GET /api_users
   def index
-    @api_users = ApiUser.all
-    json_response(@api_users)
+    @api_users = ApiUser.includes(:wishes).all
+    @api_users = @api_users.where(mentor: true) if params[:mentor] == 'true'
+    @api_users = @api_users.where(mentee: true) if params[:mentee] == 'true'
   end
 
   # Post /api_users
@@ -41,4 +42,5 @@ class Api::V1::ApiUsersController < ApplicationController
   def set_api_user
     @api_user = ApiUser.find(params[:id])
   end
+
 end
