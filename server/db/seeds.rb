@@ -9,8 +9,7 @@ users = ApiUser.create([
                ])
 Meetinginterval.create([{interval: 'weekly'}, {interval: 'daily'}])
 Programminglanguage.create([{language: 'python'},{language: 'SCALA'}])
-p "#{users.second.id}"
-p "#{users.first.id}"
+
 users.first.wishes.create([{available_offline: false, available_online: true, goal: 'Code real good'}])
 users.second.wishes.create([{available_offline: true, available_online: true, goal: 'Get smarter'}])
 users.first.wishes.create([{available_offline: false, available_online: true, goal: 'Code really well in Python'}])
@@ -19,5 +18,4 @@ p "Created #{ApiUser.count} api_user entries"
 p "Created #{Meetinginterval.count} meeting interval entries"
 p "Created #{Programminglanguage.count} programming language entries"
 p "Created #{Wish.count} wish entries"
-#p "#{wishes.first.api_user_id, wishes.first.goal}"
 

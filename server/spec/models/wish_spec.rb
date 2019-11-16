@@ -8,5 +8,9 @@ RSpec.describe Wish, type: :model do
   # Validation test
   it { should validate_presence_of(:goal) }
 
-  # ensure column name is present before saving
+
+  it "both online and offline should not be false" do
+    example_a = build(:wish, available_offline: false, available_online: false)
+    expect(example_a).to_not_be_valid
+ end
 end

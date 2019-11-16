@@ -24,7 +24,8 @@ class Api::V1::WishesController < ApplicationController
   # PUT /wishes/:id
   def update
     @wish.update(wish_params)
-    head :no_content
+    #head :no_content
+    json_response(@api_user.wishes.find_by(id: params[:id]))
   end
 
   # DELETE /wishes/:id
@@ -35,7 +36,7 @@ class Api::V1::WishesController < ApplicationController
   private
 
   def wish_params
-    params.permit(:available_offline, :available_online, :goal)
+    params.permit(:available_offline, :available_online, :goal, :api_user_id, :id)
   end
 
   def set_api_user

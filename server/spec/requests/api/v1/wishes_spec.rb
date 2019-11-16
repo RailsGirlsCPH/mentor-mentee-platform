@@ -66,6 +66,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
     # Test suite for PUT /api_users/:api_user_id/wishes
     describe 'POST /api/v1/api_users/#{api_user_id}/wishes' do
       let(:valid_attributes) { { available_offline: false, available_online: true, goal: 'Learn Postgresql'} }
+      let(:not_available_attributes) { { available_offline: false, available_online: false, goal: 'Learn GraphSQL'} }
 
       context 'when request attributes are valid' do
         before { post "/api/v1/api_users/#{api_user_id}/wishes", params: valid_attributes }
@@ -84,6 +85,18 @@ RSpec.describe Api::V1::WishesController, type: :request do
 
         it 'returns a failure message' do
           expect(response.body).to match(/Validation failed: Goal can't be blank/)
+        end
+      end
+
+      context 'when user is never available' do
+        before { post "/api/v1/api_users/#{api_user_id}/wishes", params: not_available_attributes}
+
+        it 'returns status code 422' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'returns a failure message' do
+          expect(response.body).to match(/"Validation failed: Api user must be available either online or offline to complete wish"/)
         end
       end
     end
@@ -105,6 +118,19 @@ RSpec.describe Api::V1::WishesController, type: :request do
           expect(updated_wish.goal).to match(/Improve Mysql/)
         end
       end
+
+      # context 'when wish exists but the user is not available' do
+      # before { put "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: not_available_attributes }
+      #I am not sure why but validation does not pick up this error so we
+      #
+      #   it 'returns status code 204' do
+      #     expect(response).to have_http_status(422)
+      #   end
+
+      #   it 'returns a failure message' do
+      #     expect(response.body).to match(/"Validation failed: Api user must be available either online or offline to complete wish"/)
+      #   end
+      # end
 
       context 'when the wish does not exist' do
         let(:id) { 0 }
