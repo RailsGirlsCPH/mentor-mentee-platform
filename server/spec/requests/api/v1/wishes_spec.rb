@@ -105,6 +105,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
     # Test suite for PUT /api_users/:api_user_id/wishes/:id
     describe 'PUT /api/v1/api_users/:api_user_id/wishes/:id' do
       let(:valid_attributes) { { goal: 'Improve Mysql' } }
+      let(:not_available_attributes) { { available_offline: false, available_online: false, goal: 'Learn GraphSQL'} }
 
       before { put "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: valid_attributes }
 
@@ -119,18 +120,17 @@ RSpec.describe Api::V1::WishesController, type: :request do
         end
       end
 
-      # context 'when wish exists but the user is not available' do
-      # before { put "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: not_available_attributes }
-      #I am not sure why but validation does not pick up this error so we
-      #
-      #   it 'returns status code 204' do
-      #     expect(response).to have_http_status(422)
-      #   end
+      context 'when wish exists but the user is not available' do
+      before { put "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: not_available_attributes }
 
-      #   it 'returns a failure message' do
-      #     expect(response.body).to match(/"Validation failed: Api user must be available either online or offline to complete wish"/)
-      #   end
-      # end
+        it 'returns status code 422' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'returns a failure message' do
+          expect(response.body).to match(/"Validation failed: Api user must be available either online or offline to complete wish"/)
+        end
+      end
 
       context 'when the wish does not exist' do
         let(:id) { 0 }

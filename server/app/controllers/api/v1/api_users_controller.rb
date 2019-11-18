@@ -1,6 +1,7 @@
 class Api::V1::ApiUsersController < ApplicationController
   before_action :set_api_user, only: [:show, :update, :destroy]
-  before_action :set_default_response_format
+  #xbefore_action :set_default_response_format
+  
   #GET /api_users
   def index
     @api_users = ApiUser.includes(:wishes).all

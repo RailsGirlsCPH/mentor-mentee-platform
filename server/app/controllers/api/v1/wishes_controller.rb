@@ -1,7 +1,5 @@
 class Api::V1::WishesController < ApplicationController
   before_action :set_api_user
-  # before_action :set_programminglanguage
-  # before_action :set_meetinginterval
   before_action :set_api_user_wish, only: [:show, :update, :destroy]
 
 
@@ -23,14 +21,13 @@ class Api::V1::WishesController < ApplicationController
 
   # PUT /wishes/:id
   def update
-    @wish.update(wish_params)
-    #head :no_content
-    json_response(@api_user.wishes.find_by(id: params[:id]))
+    @wish.update!(wish_params) 
+    head :no_content
   end
 
   # DELETE /wishes/:id
   def destroy
-    @wish.destroy
+    @wish.destroy!
     head :no_content
   end
   private

@@ -11,6 +11,6 @@ RSpec.describe Wish, type: :model do
 
   it "both online and offline should not be false" do
     example_a = build(:wish, available_offline: false, available_online: false)
-    expect(example_a).to_not_be_valid
+    expect(example_a).to_not be_valid
  end
 end

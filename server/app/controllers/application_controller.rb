@@ -3,8 +3,9 @@ class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
 
-  def set_default_response_format
+  def set_default_request_format
     request.format = :json
   end
+  before_action :set_default_request_format
 end
 
