@@ -2,26 +2,53 @@
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
 #
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
+# This file is the source Rails uses to define your schema when running `rails
+# db:schema:load`. When creating a new database, `rails db:schema:load` tends to
+# be faster and is potentially less error prone than running all of your
+# migrations from scratch. Old migrations may fail to apply correctly if those
+# migrations use external dependencies or application code.
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_23_093635) do
+ActiveRecord::Schema.define(version: 2019_10_20_165743) do
 
-  create_table 'api_users', force: :cascade do |t|
-    t.string 'first_name'
-    t.string 'last_name'
-    t.string 'city'
-    t.string 'email'
-    t.string 'password_digest'
-    t.boolean 'mentor'
-    t.boolean 'mentee'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "api_users", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "city"
+    t.string "email"
+    t.string "password_digest"
+    t.boolean "mentor"
+    t.boolean "mentee"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
+  create_table "meetingintervals", force: :cascade do |t|
+    t.string "interval"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "programminglanguages", force: :cascade do |t|
+    t.string "language"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "wishes", force: :cascade do |t|
+    t.boolean "available_offline"
+    t.boolean "available_online"
+    t.string "goal"
+    t.integer "api_user_id"
+    t.integer "programminglanguage_id"
+    t.integer "meetinginterval_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["api_user_id"], name: "index_wishes_on_api_user_id"
+    t.index ["meetinginterval_id"], name: "index_wishes_on_meetinginterval_id"
+    t.index ["programminglanguage_id"], name: "index_wishes_on_programminglanguage_id"
+  end
+
+  add_foreign_key "wishes", "api_users"
 end

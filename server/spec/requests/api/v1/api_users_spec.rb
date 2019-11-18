@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Api::V1::ApiUsersController, type: :request do
-#RSpec.describe 'api_users API', type: :request do
+
 
   # initialize test data
   let!(:api_users){create_list(:api_user, 10)}
