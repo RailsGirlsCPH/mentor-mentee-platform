@@ -1,12 +1,14 @@
 class Api::V1::ApiUsersController < ApplicationController
   before_action :set_api_user, only: [:show, :update, :destroy]
-  #xbefore_action :set_default_response_format
+
   
   #GET /api_users
   def index
-    @api_users = ApiUser.includes(:wishes).all
+    @api_users = ApiUser.includes(:wishes).includes(wishes: :programminglanguage).includes(wishes: :meetinginterval).all
+    #Explanation regarding includes: not necessary to link programming languages and meeting interval to ApiUser, but it means there is only one call to the database during which it pulls all the information linked  by foreign keys in case it needs it in the future. 
     @api_users = @api_users.where(mentor: true) if params[:mentor] == 'true'
     @api_users = @api_users.where(mentee: true) if params[:mentee] == 'true'
+    # @api_user = @api_user.wishes.where(available_online: true) if params[available_online] == 'true'
   end
 
   # Post /api_users

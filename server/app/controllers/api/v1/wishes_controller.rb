@@ -2,10 +2,12 @@ class Api::V1::WishesController < ApplicationController
   before_action :set_api_user
   before_action :set_api_user_wish, only: [:show, :update, :destroy]
 
-
   #GET /api_users/:api_user_id/wishes
   def index
-    json_response(@api_user.wishes)
+    @wishes = @api_user.wishes.includes(:programminglanguage).includes(:meetinginterval)
+    @wishes = @wishes.where(available_offline: true) if params[:available_offline] == 'true'
+    @wishes = @wishes.where(available_online: true) if params[:available_online] == 'true'
+    #Explanation regarding includes: not necessary to link programming languages and meeting interval to Wishes, but it means there is only one call to the database during which it pulls all the information linked  by foreign keys in case it needs it in the future. 
   end
 
   # Post /api_users/:api_user_id/wishes
@@ -33,7 +35,7 @@ class Api::V1::WishesController < ApplicationController
   private
 
   def wish_params
-    params.permit(:available_offline, :available_online, :goal, :api_user_id, :id, :programminglanguage_id, :meetinginterval_id)
+    params.permit(:available_offline, :available_online, :goal, :api_user_id, :id, :programminglanguage_id, :meetinginterval_id)#, :programminglanguage, :meetinginterval)
   end
 
   def set_api_user
@@ -44,7 +46,4 @@ class Api::V1::WishesController < ApplicationController
     @wish = @api_user.wishes.find_by!(id: params[:id]) if @api_user
   end
 
-  # def set_programminglanguage
-  #   @programminglanguage = Programminglanguage.find(params[:programminglanguage_id])
-  # end
 end
