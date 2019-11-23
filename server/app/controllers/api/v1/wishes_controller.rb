@@ -35,7 +35,7 @@ class Api::V1::WishesController < ApplicationController
   private
 
   def wish_params
-    params.permit(:available_offline, :available_online, :goal, :api_user_id, :id, :programminglanguage_id, :meetinginterval_id)#, :programminglanguage, :meetinginterval)
+    params.permit(:available_offline, :available_online, :goal, :api_user_id, :id, :programminglanguage_id, :meetinginterval_id)
   end
 
   def set_api_user
