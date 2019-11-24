@@ -87,7 +87,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
 
     context 'when the request is invalid as email already in use' do
       let(:invalid_email) do
-        { 'email': 'Test_email@email.com', 'password_digest': 'password2', 'username': 'user12' } .to_json 
+        { 'email': 'Test_email@email.com', 'password_digest': 'password2', 'username': 'user12' } .to_json
       before { post '/api/v1/api_users', params: invalid_email }
 
       it 'returns status code 422' do
@@ -154,7 +154,6 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
           it 'returns same params as entered' do
             expect(json['first_name'],json['last_name'],json['city'], json['email'], json['password_digest'],json['mentor'],json['mentee']).to eq('Bobby', 'Dylan','Mexico', 'Test_email@email.com','password1', True, False)
           end
-
         end
 
 

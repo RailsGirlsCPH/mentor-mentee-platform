@@ -8,6 +8,6 @@ class ApiUser < ApplicationRecord
   # validation
   validates_presence_of :email, :password_digest, :username
   validates :email, uniqueness: true, on: :create and :update
-  validates :username, uniqueness: true, on: :create and :update
+  validates :username, uniqueness: true, on: [:create, :update]
 end
 
