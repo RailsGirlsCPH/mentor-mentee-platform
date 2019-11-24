@@ -18,7 +18,7 @@ class Api::V1::ApiUsersController < ApplicationController
 
   # GET /api_users/:id
   def show
-    json_response(@api_user), 
+    json_response(@api_user)
   end
 
   # PUT /api_users/:id
@@ -37,7 +37,7 @@ class Api::V1::ApiUsersController < ApplicationController
 
   def api_user_params
 
-    params.require(:api_user).permit(:first_name, :last_name, :city, :email, :password_digest, :mentor, :mentee)
+    params.require(:api_user).permit(:first_name, :last_name, :city, :email, :password_digest, :username, :mentor, :mentee)
   end
 
   def set_api_user

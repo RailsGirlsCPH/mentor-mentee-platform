@@ -21,7 +21,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
     end
   end
 
-  # Test suite for GET /api/v1/api_userss/:id
+  # Test suite for GET /api/v1/api_users/:id
   describe 'GET  /api/v1/api_users/:id' do
     before { get "/api/v1/api_users/#{api_user_id}/" }
 
@@ -54,7 +54,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
   describe 'POST /api/v1/api_users' do
     let(:valid_attributes) do
       # send json payload
-      { 'email': 'Test_email@email.com', 'password_digest': 'password1'}.to_json
+      { 'email': 'Test_email@email.com', 'password_digest': 'password1', 'username': 'user11'}.to_json
 
       context 'when request is valid' do
         before { post '/api/v1/api_users',  params: valid_attributes}
@@ -64,7 +64,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
         end
 
         it 'returns same params as entered' do
-          expect(json['email'], json['password_digest']).to eq('Test_email@email.com','password1')
+          expect(json['email'], json['password_digest']).to eq('Test_email@email.com','password1', 'user11')
         end
       end
     end
@@ -87,7 +87,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
 
     context 'when the request is invalid as email already in use' do
       let(:invalid_email) do
-        { 'email': 'Test_email@email.com', 'password_digest': 'password2' } .to_json 
+        { 'email': 'Test_email@email.com', 'password_digest': 'password2', 'username': 'user12' } .to_json 
       before { post '/api/v1/api_users', params: invalid_email }
 
       it 'returns status code 422' do
@@ -99,7 +99,23 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
           .to match(/Validation failed: Email has already been taken/)
       end
       end
-   end
+    end
+
+    context 'when the request is invalid as username already in use' do
+      let(:invalid_username) do
+        { 'email': 'Test_email_1@email.com', 'password_digest': 'password2', 'username': 'user11' } .to_json 
+        before { post '/api/v1/api_users', params: invalid_username }
+
+        it 'returns status code 422' do
+          expect(response).to have_http_status(422)
+        end
+
+        it 'returns a validation failure message' do
+          expect(json['message'])
+            .to match(/Validation failed: Username has already been taken/)
+        end
+      end
+    end
 
     context 'when the request is invalid as only some requird params' do
       let(:invalid_attributes) { { 'api_user': { 'email': 'email@email.com' } }.to_json }
@@ -160,6 +176,22 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
           end
         end
 
+        context 'when username already in use' do
+          let(:api_user_id) {api_users.first.id}
+          let(:invalid_username_update) do
+            # send json payload
+            { 'username': 'user11'}.to_json
+            before { patch "/api/v1/api_users/#{api_user_id}/", params: invalid_username_updates}
+
+            it 'returns status code 422' do
+              expect(response).to have_http_status(422)
+            end
+
+            it 'returns message informing no user with that id' do
+              expect(json['message']).to match(/Validation failed: Username has already been taken/)
+            end
+          end
+        end
 
 
 

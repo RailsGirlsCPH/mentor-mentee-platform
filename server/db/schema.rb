@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2019_10_20_165743) do
   create_table "api_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
+    t.string "username"
     t.string "city"
     t.string "email"
     t.string "password_digest"
