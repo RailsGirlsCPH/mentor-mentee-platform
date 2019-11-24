@@ -82,18 +82,6 @@ $bundle exec rails server
 ```
 The output from the last command launches a local web page you can interact with. The address is given in the output. 
 
-### PostgresSQL
-
-A local SQLite database is provided as standard. However instead of individual local databases we plan to use a shared PostgreSQL database on a server. 
-
-Please note that the PostgreSQL 'pg' gem which has been added to the Gemfile will cause your bundler to error unless you have installed PostgreSQL on your machine. On Mac OS this is done by simply entering the following command.  
-
-```
-brew update
-brew install postgresql
-```
-
-Once you do this you should be able to `bundle install` without any issues. 
 
 ## Keeping up-to-date: Dependabot
 
@@ -121,6 +109,57 @@ bundle exec rspec spec/requests/api/version/name_of_resource_spec.rb
 More information can be found here https://rspec.info 
 
 It is possible to set up an automated system so that when someone makes a pull request, or tries to merge to a branch, all tests are run automatically. A tool like Travis-CI can be used to do this. This has not been set up yet. 
+
+If you have been making changes to your database, and find that the tests are producing errors which suggests the database in your test environment does not reflect what you have in development you can inspect the database by 
+
+```
+sqlite3 db/test.sqlite3
+```
+
+If the contents of the database is not correct you can remove the test database and create it again by running the database migrations stored in server/db. 
+
+```
+rm db/test.sqlite3
+bundle exec rake db:create db:migrate RAILS_ENV=test
+bundle exec rspec spec
+```
+<details>
+<summary>Inspect Faker</summary>
+<br>
+
+When running your spec tests you will use data created for the tests using the Faker Library.
+
+Link: https://github.com/faker-ruby 
+
+You may wish to inspect the test data which is being created by your spec files.
+
+To do this interactively you can run Faker create commands in the rails console. 
+
+On the command line: 
+```
+rails console
+```
+
+Within the interactive rails console run the following commands so you can use the same syntax as you do in the *_spec.rb* files
+
+```
+require 'factory_bot'
+require 'faker'
+FactoryBot.find_definitions
+include FactoryBot::Syntax::Methods
+```
+
+Then you can create some data. Two examples are shown below:
+
+```
+user_list = create_list(:api_user, 5)
+wish1=create(:wish, api_user_id: users_list.first.id)
+user_list.first.wishes.first
+```
+
+Note if you make changes to your files you need to reload the rails console for them to take effect. 
+
+</details>
 
 ## Coding Style
 
