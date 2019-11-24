@@ -18,12 +18,12 @@ class Api::V1::ApiUsersController < ApplicationController
 
   # GET /api_users/:id
   def show
-    json_response(@api_user)
+    json_response(@api_user), 
   end
 
   # PUT /api_users/:id
   def update
-    @api_user.update(api_user_params)
+    @api_user.update!(api_user_params)
     head :no_content
   end
 

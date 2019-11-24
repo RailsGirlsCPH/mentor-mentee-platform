@@ -4,7 +4,9 @@ RSpec.describe Api::V1::WishesController, type: :request do
 
   # initialize test data
   let!(:api_user){create(:api_user)}
-  let!(:wishes){create_list(:wish,5,api_user_id: api_user.id)}
+  let!(:programminglanguage){create(:programminglanguage)}
+  let!(:meetinginterval){create(:meetinginterval)}
+  let!(:wishes){create_list(:wish,5,api_user_id: api_user.id, programminglanguage_id: programminglanguage.id, meetinginterval_id: meetinginterval.id)}
   let(:api_user_id){api_user.id}
   let(:id){wishes.first.id}
 
@@ -65,8 +67,8 @@ RSpec.describe Api::V1::WishesController, type: :request do
 
     # Test suite for PUT /api_users/:api_user_id/wishes
     describe 'POST /api/v1/api_users/#{api_user_id}/wishes' do
-      let(:valid_attributes) { { available_offline: false, available_online: true, goal: 'Learn Postgresql'} }
-      let(:not_available_attributes) { { available_offline: false, available_online: false, goal: 'Learn GraphSQL'} }
+      let(:valid_attributes) { { available_offline: false, available_online: true, goal: 'Learn Postgresql', programminglanguage_id: programminglanguage.id, meetinginterval_id: meetinginterval.id} }
+      let(:not_available_attributes) { { available_offline: false, available_online: false, goal: 'Learn GraphSQL',  programminglanguage_id: programminglanguage.id, meetinginterval_id: meetinginterval.id} }
 
       context 'when request attributes are valid' do
         before { post "/api/v1/api_users/#{api_user_id}/wishes", params: valid_attributes }
@@ -84,7 +86,8 @@ RSpec.describe Api::V1::WishesController, type: :request do
         end
 
         it 'returns a failure message' do
-          expect(response.body).to match(/Validation failed: Goal can't be blank/)
+          # expect(response.body).to match(/Validation failed: Goal can't be blank/)
+          expect(response.body).to match(/Validation failed: Programminglanguage must exist, Meetinginterval must exist, Goal can't be blank/)
         end
       end
 
@@ -103,11 +106,11 @@ RSpec.describe Api::V1::WishesController, type: :request do
 
 
     # Test suite for PUT /api_users/:api_user_id/wishes/:id
-    describe 'PUT /api/v1/api_users/:api_user_id/wishes/:id' do
+    describe 'PATCH /api/v1/api_users/:api_user_id/wishes/:id' do
       let(:valid_attributes) { { goal: 'Improve Mysql' } }
       let(:not_available_attributes) { { available_offline: false, available_online: false, goal: 'Learn GraphSQL'} }
 
-      before { put "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: valid_attributes }
+      before { patch "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: valid_attributes }
 
       context 'when wish exists' do
         it 'returns status code 204' do
@@ -121,7 +124,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
       end
 
       context 'when wish exists but the user is not available' do
-      before { put "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: not_available_attributes }
+      before { patch "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: not_available_attributes }
 
         it 'returns status code 422' do
           expect(response).to have_http_status(422)

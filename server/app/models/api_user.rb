@@ -7,5 +7,6 @@ class ApiUser < ApplicationRecord
   has_many :wishes, dependent: :destroy
   # validation
   validates_presence_of :email, :password_digest
+  validates :email, uniqueness: true, on: :create and :update
 end
 

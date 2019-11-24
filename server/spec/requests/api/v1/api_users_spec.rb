@@ -70,7 +70,8 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
     end
 
     context 'when the request is invalid as no params' do
-      let(:invalid_attributes) { { api_user: { email: nil } }.to_json }
+      let(:invalid_attributes) do 
+        { email: nil } .to_json 
       before { post '/api/v1/api_users', params: invalid_attributes }
 
       it 'returns status code 422' do
@@ -81,7 +82,24 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
         expect(json['message'])
           .to match(/param is missing or the value is empty: api_user/)
       end
+      end
     end
+
+    context 'when the request is invalid as email already in use' do
+      let(:invalid_email) do
+        { 'email': 'Test_email@email.com', 'password_digest': 'password2' } .to_json 
+      before { post '/api/v1/api_users', params: invalid_email }
+
+      it 'returns status code 422' do
+        expect(response).to have_http_status(422)
+      end
+
+      it 'returns a validation failure message' do
+        expect(json['message'])
+          .to match(/Validation failed: Email has already been taken/)
+      end
+      end
+   end
 
     context 'when the request is invalid as only some requird params' do
       let(:invalid_attributes) { { 'api_user': { 'email': 'email@email.com' } }.to_json }
@@ -122,6 +140,28 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
           end
 
         end
+
+
+
+        context 'when email already in use' do
+          let(:api_user_id) {api_users.first.id}
+          let(:invalid_email_update) do
+            # send json payload
+            { 'email': 'Test_email@email.com'}.to_json
+            before { patch "/api/v1/api_users/#{api_user_id}/", params: invalid_email_updates}
+
+            it 'returns status code 422' do
+              expect(response).to have_http_status(422)
+            end
+
+            it 'returns message informing no user with that id' do
+              expect(json['message']).to match(/Validation failed: Email has already been taken/)
+            end
+          end
+        end
+
+
+
 
         context 'when api_user does not exist' do
           let(:api_user_id) {0}
