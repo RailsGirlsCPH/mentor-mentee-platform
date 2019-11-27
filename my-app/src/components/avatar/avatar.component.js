@@ -1,9 +1,12 @@
 import React from 'react';
 import './avatar.css';
+import avatarPhoto from  './avatar.jpg';
 
 const Avatar = () => {
     return (
-        <h1>avatar</h1>
+        <div>
+            <img src={avatarPhoto} alt="avatar" />
+        </div>
     )
 }
 
