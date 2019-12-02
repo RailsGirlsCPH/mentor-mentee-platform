@@ -8,7 +8,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
   let(:api_user_id){api_user.id}
   let(:id){wishes.first.id}
 
-
+  
   # Test suite for GET  /api/v1/api_users/api_user_id/wishes
   describe 'GET /api/v1/api_users/api_users_id/wishes}' do
     before {get "/api/v1/api_users/#{api_user_id}/wishes/"}
