@@ -54,7 +54,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
   describe 'POST /api/v1/api_users' do
     let(:valid_attributes) do
       # send json payload
-      { 'email': 'Test_email@email.com', 'password_digest': 'password1', 'username': 'user11'}.to_json
+      { 'email': 'Test_email@email.com', 'password_digest': 'password1', 'username': 'user11', 'mentee': 'true'}.to_json
 
       context 'when request is valid' do
         before { post '/api/v1/api_users',  params: valid_attributes}
@@ -64,7 +64,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
         end
 
         it 'returns same params as entered' do
-          expect(json['email'], json['password_digest']).to eq('Test_email@email.com','password1', 'user11')
+          expect(json['email'], json['password_digest'], json['username'], json['mentee']).to eq('Test_email@email.com','password1', 'user11', 'true')
         end
       end
     end
@@ -136,7 +136,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
   describe 'PATCH /api/v1/api_users/:id' do
         let(:valid_attributes) do
           # send json payload
-          { 'first_name': 'Bobby','last_name': 'Dylan', 'city': 'Mexico', 'email': 'Test_email@email.com', 'password_digest': 'password1', 'mentor': True, 'mentee': False}.to_json
+          { 'first_name': 'Bobby','last_name': 'Dylan', 'city': 'Mexico', 'email': 'Test_email@email.com', 'password_digest': 'password1', 'mentor': true, 'mentee': true}.to_json
           let(:api_user_id) {api_users.first.id}
 
           context 'when request is valid' do
@@ -152,7 +152,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
           end
 
           it 'returns same params as entered' do
-            expect(json['first_name'],json['last_name'],json['city'], json['email'], json['password_digest'],json['mentor'],json['mentee']).to eq('Bobby', 'Dylan','Mexico', 'Test_email@email.com','password1', True, False)
+            expect(json['first_name'],json['last_name'],json['city'], json['email'], json['password_digest'],json['mentor'],json['mentee']).to eq('Bobby', 'Dylan','Mexico', 'Test_email@email.com','password1', true, true)
           end
         end
 

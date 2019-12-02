@@ -6,3 +6,4 @@ json.wishes api_user.wishes do |wish|
   json.call(wish, :id, :goal, :available_online, :available_offline, :language, :interval)
 end
 
+
