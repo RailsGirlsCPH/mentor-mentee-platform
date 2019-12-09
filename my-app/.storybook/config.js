@@ -1,3 +1,7 @@
-import { configure } from '@storybook/react';
+import { configure } from "@storybook/react";
 
-configure(require.context('../src', true, /\.stories\.js$/), module);
+function loadStories() {
+  require("../src/stories/stories.js");
+}
+
+configure(loadStories, module);
