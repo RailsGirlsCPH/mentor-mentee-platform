@@ -43,6 +43,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.29'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.9'
 end
