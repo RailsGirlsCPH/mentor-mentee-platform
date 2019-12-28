@@ -8,8 +8,8 @@ class CreateApiUsers < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :password_digest
 
-      t.boolean :mentor
-      t.boolean :mentee
+      t.boolean :mentor, null: false
+      t.boolean :mentee, null: false
       t.timestamps
     end
   end

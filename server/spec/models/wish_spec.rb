@@ -1,23 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe Wish, type: :model do
-  #Association test
-  #ensure an item record belongs to a single todo record
-  # let!(:api_user){create(:api_user)}
-  # let!(:programminglanguage){create(:programminglanguage)}
-  # let!(:meetinginterval){create(:meetinginterval)}
-  # let!(:wish){create(:wish, api_user_id: api_user.id, programminglanguage_id: programminglanguage.id, meetinginterval_id: meetinginterval.id)}
-  # subject {:wish}
 
-    # Validation test
+  let!(:api_user){
+    #puts "hi"
+    create(:api_user, mentee: true)}
+  let!(:prog){create(:programminglanguage)}
+  let!(:meet){create(:meetinginterval)}
 
-  it { should validate_presence_of(:goal) }
-  it { should validate_presence_of(:api_user_id)}
+  describe 'validations' do
+    subject {create(:wish, api_user_id: api_user.id, programminglanguage_id: prog.id, meetinginterval_id: meet.id)}
+    it {should validate_presence_of(:goal)}
+    it {should validate_presence_of(:api_user_id)}
+    it {should belong_to(:api_user)}
+    it {should belong_to(:programminglanguage)}
+    it {should belong_to(:meetinginterval)}
+    it {should delegate_method(:language).to(:programminglanguage)}
+    it {should delegate_method(:interval).to(:meetinginterval)}
+    it "validations custom 1" do
+      wish1 = Wish.new(api_user_id: api_user.id, programminglanguage_id: prog.id, meetinginterval_id: meet.id, available_offline: false, available_online: :false)
+      expect(wish1).to be_invalid
+      expect(wish1.errors.full_messages).to include('Api user must be available either online or offline to complete wish')
+    end
+    it "validations custom 2" do
+      wish2 = Wish.new(api_user_id: api_user.id, programminglanguage_id: prog.id, meetinginterval_id: meet.id, available_offline: false, available_online: :false)
+      wish2.api_user.mentee = false
+      expect(wish2).to be_invalid
+      expect(wish2.errors.full_messages).to include('Api user if you are creating a wish you must be a mentee')
+    end
+  end
 
-  it { should belong_to(:api_user) }
-
- #  it "both online and offline should not be false" do
- #    example_a = build(:wish, available_offline: false, available_online: false)
- #    expect(example_a).to_not be_valid
- # end
 end
+
+

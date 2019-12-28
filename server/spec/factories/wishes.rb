@@ -1,4 +1,5 @@
 FactoryBot.define do
+
   factory :wish do
     available_offline {Faker::Boolean.boolean(true_ratio: 1)}
     available_online {Faker::Boolean.boolean(true_ratio: 1)}
