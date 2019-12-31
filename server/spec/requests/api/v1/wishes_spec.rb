@@ -151,7 +151,6 @@ RSpec.describe Api::V1::WishesController, type: :request do
     # Test suite for DELETE api_users/:api_user_id/wishes/:id
     describe 'DELETE /wishes/:id' do
       context 'when request made to delete a wish' do
-        #let(:api_user_id) {api_users.first.id}
         before { delete "/api/v1/api_users/#{api_user_id}/wishes/#{id}" }
         it 'returns status code 204' do
           expect(response).to have_http_status(204)
@@ -161,14 +160,14 @@ RSpec.describe Api::V1::WishesController, type: :request do
       context 'when wish does not exist' do
         let(:id) {0}
         before { delete "/api/v1/api_users/#{api_user_id}/wishes/#{id}" }
-        
         it 'returns status code 404' do
           expect(response).to have_http_status(404)
         end
 
         # #Not included as the eror message does not seem to work
         # it 'returns message informing no wish with that id' do
-        #   expect(json['message']).to match(/Couldn't find Wish with 'id'=#{id}/)
+        #   #binding.pry
+        #   expect(json["message"]).to match(/Couldn't find Wish with 'id'=#{id}/)
         # end
     end
 end
