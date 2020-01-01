@@ -4,7 +4,7 @@ class Api::V1::ApiUsersController < ApplicationController
   
   #GET /api_users
   def index
-    @api_users = ApiUser.includes(:wishes).all
+    @api_users = ApiUser.includes(:wishes).includes(wishes: :programminglanguage).includes(wishes: :meetinginterval).all
     @api_users = @api_users.where(mentor: true) if params[:mentor] == 'true'
     @api_users = @api_users.where(mentee: true) if params[:mentee] == 'true'
   end
@@ -22,7 +22,7 @@ class Api::V1::ApiUsersController < ApplicationController
 
   # PUT /api_users/:id
   def update
-    @api_user.update(api_user_params)
+    @api_user.update!(api_user_params)
     head :no_content
   end
 
@@ -36,7 +36,7 @@ class Api::V1::ApiUsersController < ApplicationController
 
   def api_user_params
 
-    params.require(:api_user).permit(:first_name, :last_name, :city, :email, :password_digest, :mentor, :mentee)
+    params.require(:api_user).permit(:first_name, :last_name, :city, :email, :password_digest, :username, :mentor, :mentee)
   end
 
   def set_api_user
