@@ -17,7 +17,7 @@ Contributors have formed three separate groups:
 So far, the groups have laid out a lot of the groundwork, have created a fair amount of issues and set up a very elaborate wiki in our repo. This is a beginner(junior)-friendly project with a established community of contributors and mentors.
 
 ### Contribute
-We're always happy to invite new contributors, particularly people new to progamming and who belongs to a group that is not already so well-represented in tech. Check out our issues to see which tasks we have ahead. Feel free to join our [Rails Girls cph slack channel](https://join.slack.com/t/railsgirlscopenhagen/shared_invite/enQtMzczNDA3NzMwMDA3LWI3YjVkMDE0MjU1NzllOGIxNGE3YTUyZmIxOWEzNTFlMTg2ZDE2YzUwMDE1YjZjMTQ4ZTYwNTc2MWRkMTNmMmM) for a social space to talk about the project and raise any questions you may have.
+We're always happy to invite new contributors, particularly people new to progamming and who belongs to a group that is not already so well-represented in tech. We also very enthusiastically welcome more seasoned folks who wants to mentor and help our beginner-contributors out. Check out our issues to see which tasks we have ahead. Feel free to join our [Rails Girls cph slack channel](https://join.slack.com/t/railsgirlscopenhagen/shared_invite/enQtMzczNDA3NzMwMDA3LWI3YjVkMDE0MjU1NzllOGIxNGE3YTUyZmIxOWEzNTFlMTg2ZDE2YzUwMDE1YjZjMTQ4ZTYwNTc2MWRkMTNmMmM) for a social space to talk about the project and raise any questions you may have.
 
 ```Server``` will take you to the backend repository.                           
 ```my-app``` will take you to the frontend repository.    
