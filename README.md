@@ -2,8 +2,8 @@
  
 Find a mentor-platform: A matchmaking platform where people entering the tech workspace can find mentors already established in the field.
   
-This project has been started in the [Rails Girls Copenhagen learners group](https://www.meetup.com/Rails-Girls-Copenhagen/)
-In 2019 got together as a group and spent some time talking about what members of the community need and what problem they would like to solve together with this project. The result was the Mentor-Mentee App! 
+This project has been started in the [Rails Girls Copenhagen learners group](https://www.meetup.com/Rails-Girls-Copenhagen/).
+In 2019 we got together as a group and spent some time talking about what members of the community need and what problem they would like to solve together with this project. The result was the Mentor-Mentee App! 
 
 ### Project Goals                                                    
  1. To build a service connecting newcomers to the field with mentors that can help them grow technically and professionally.
