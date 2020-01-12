@@ -147,8 +147,6 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
       end
     end
 
-    # context 'when email already in use' do
-    # let(:api_users.first
 
     context 'invalid email' do
       before { patch "/api/v1/api_users/#{api_user_id}/", params: {email: api_users.second.email} , as: :json}
