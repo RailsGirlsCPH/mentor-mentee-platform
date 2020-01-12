@@ -1,6 +1,6 @@
 # spec/integration/meetinginterval_spec.rb
 require 'swagger_helper'
-
+require 'rails_helper'
 describe 'Meetingintervals API' do
 
   path '/api/v1/meetingintervals/' do
@@ -22,7 +22,7 @@ describe 'Meetingintervals API' do
       end
 
       response '422', 'invalid request' do
-        let(:meetinginterval) { { interval: true} }
+        let(:meetinginterval) { { } }
         run_test!
       end
     end
@@ -65,18 +65,12 @@ describe 'Meetingintervals API' do
 
     delete 'Deletes a meeting interval' do
       tags 'Delete Meeting Interval'
-      
+
       consumes 'application/json'
       parameter name: :id,  :in => :path, :type => :string
 
       response '204', 'meeting interval deleted' do
-        schema type: :object,
-               properties: {
-                 interval: {type: :string }
-               },
-               required: [ 'interval' ]
-
-        let(:id) { Meetinginterval.create(interval: 'example_weekly').id }
+        let(:id) { Meetinginterval.create(interval: 'exampleweekly').id }
         run_test!
       end
 
@@ -102,12 +96,6 @@ describe 'Meetingintervals API' do
                 }
 
       response '204', 'meeting interval updated' do
-        schema type: :object,
-               properties: {
-                 interval: {type: :string }
-               },
-               required: [ 'interval' ]
-
         let(:id) { Meetinginterval.create(interval: 'weekly').id }
         let(:meetinginterval) { { interval: 'weekly update' } }
         run_test!
@@ -115,6 +103,7 @@ describe 'Meetingintervals API' do
 
       response '404', 'interval not found' do
         let(:id) { 'invalid' }
+        let(:meetinginterval) { { interval: 'weekly update' } }
         run_test!
       end
 

@@ -1,161 +1,179 @@
+require 'swagger_helper'
 require 'rails_helper'
-
 RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
 
   # initialize test data
   let!(:programminglanguages){create_list(:programminglanguage, 10)}
   let(:programminglanguage_id) {programminglanguages.first.id}
 
-  # Test suite for GET  /api/v1/programminglanguages
-  describe 'GET /api/v1/programminglanguages' do
-    before {get "/api/v1/programminglanguages"}
+  describe 'Programming languages API', capture_examples: true do
 
-    it 'returns programminglanguages' do
-      expect(json).not_to be_empty
-      expect(json.size).to eq(10)
-    end
+    path '/api/v1/programminglanguages/' do
 
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
-    end
-  end
+      get 'Displays all Programming Languages' do
+        tags 'List all programming languages'
 
-  # Test suite for GET /api/v1/programminglanguages/:id
-  describe 'GET  /api/v1/programminglanguages/:id' do
-    before { get "/api/v1/programminglanguages/#{programminglanguage_id}/" }
-
-    context 'when programminglanguage exists' do
-      it 'returns status code 200' do
-        expect(response).to have_http_status(200)
+        response '200', 'list programming languages' do
+          run_test!
+        end
       end
 
-      it 'returns the item' do
-        expect(json['id']).to eq(programminglanguage_id)
-      end
-    end
+      post 'Creates a programming language' do
+        tags 'Create a  Programming Language'
+        consumes 'application/json'
+        parameter name: :programminglanguage, in: :body, schema: {
+                    type: :object,
+                    properties: {
+                      language: {type: :string }
+                    },
+                    required: [ 'language' ]
+                  }
 
-    context 'when programminglanguage does not exist' do
-      let(:programminglanguage_id) {0}
-      before { get "/api/v1/programminglanguages/#{programminglanguage_id}/" }
-
-      it 'returns status code 404' do
-        expect(response).to have_http_status(404)
-      end
-
-      it 'returns message informing no meeting interval with that id' do
-        expect(json['message']).to match(/Couldn't find Programminglanguage with 'id'=#{programminglanguage_id}/)
-      end
-    end
-
-  end
-
-
-    # Test suite POST /api/v1/api_user
-  describe 'POST /api/v1/programminglanguages' do
-    let(:valid_attributes) do
-      # send json payload
-      { 'language': 'javascript'}.to_json
-
-      context 'when request is valid' do
-        before { post '/api/v1/programminglanguages',  params: valid_attributes}
-
-        it 'returns status code 201' do
-          expect(response).to have_http_status(201)
+        response '201', 'programming language created' do
+          let(:programminglanguage) { { language: 'python' } }
+          run_test!
         end
 
-        it 'returns same params as entered' do
-          expect(json['language']).to eq('javascript')
+        response '201', 'inspect programming lanaguage creation' do
+          let(:programminglanguage) { { language: 'javascript' } }
+          run_test! do
+            expect(json['language']).to eq('javascript')
+          end
+        end
+
+        response '422', 'invalid request' do
+          let(:programminglanguage) { { } }
+          run_test!
+        end
+
+        response '422', 'invalid request' do
+          let(:programminglanguage) { { } }
+          run_test! do
+            expect(json['message']).to match(/Validation failed: Language can't be blank/)
+          end
         end
       end
     end
 
-    context 'when the request is invalid as no params' do
-      let(:invalid_attributes) { { programminglanguage: { language: nil } }.to_json }
-      before { post '/api/v1/programminglanguages', params: invalid_attributes }
+    #Now we test another path;
+    path '/api/v1/programminglanguages/{id}' do
 
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
+
+      get 'Retrieves a programming language' do
+        tags 'Return Programming Language'
+        consumes 'application/json'
+        parameter name: :id,  :in => :path, :type => :string
+
+        response '200', 'programming language found' do
+          schema type: :object,
+                 properties: {
+                   language: {type: :string }
+                 },
+                 required: [ 'language' ]
+
+          let(:id) { Programminglanguage.create(language: 'Ruby').id }
+          run_test!
+        end
+
+
+        response '200', 'programming language found' do
+          schema type: :object,
+                 properties: {
+                   language: {type: :string }
+                 },
+                 required: [ 'language' ]
+
+          let(:id) { Programminglanguage.create(language: 'Ruby').id }
+          run_test! do
+            expect(json['id']).to eq(id)
+          end
+        end
+
+        response '404', 'interval not found' do
+          let(:id) { 'invalid' }
+          run_test!
+        end
+        response '404', 'interval not found' do
+          let(:id) { 'invalid' }
+          run_test! do
+            expect(json['message']).to match(/Couldn't find Programminglanguage with 'id'=#{id}/)
+          end
+        end
       end
 
-      it 'returns a validation failure message' do
-        expect(json['message'])
-          .to match(/Validation failed: Language can't be blank/)
+      delete 'Deletes a programming language' do
+        tags 'Delete Programmimg Language'
+
+        consumes 'application/json'
+        parameter name: :id,  :in => :path, :type => :string
+
+        response '204', 'pogramming language deleted' do
+          let(:id) {Programminglanguage.create(language: 'Rust').id }
+          run_test!
+        end
+
+        response '404', 'language not found' do
+          let(:id) { 'invalid' }
+          run_test!
+        end
+
+        response '404', 'language not found' do
+          let(:id) { 'invalid' }
+          run_test! do
+            expect(json['message']).to match(/Couldn't find Programminglanguage with 'id'=#{id}/)
+          end
+        end
       end
-    end
-  end
 
 
-  # Test suite for Patch /api/v1/programminglanguages/:id
-  describe 'PATCH /api/v1/programminglanguages/:id' do
-        let(:valid_attributes) do
-          # send json payload
-          { 'language': 'ruby'}.to_json
-          let(:programminglanguage_id) {programminglanguages.first.id}
+      patch 'Update a programming language' do
+        tags 'Update Programming Language'
+        description "Note that if successful, you do not recieve the updated content back. You will only recieve a 204"
+        consumes 'application/json'
+        parameter name: :id,  :in => :path, :type => :string
+        parameter name: :programminglanguage, in: :body, schema: {
+                    type: :object,
+                    properties: {
+                      language: {type: :string }
+                    },
+                    required: [ 'language' ]
+                  }
 
-          context 'when request is valid' do
-            before { patch "/api/v1/programminglanguages/#{programminglanguage_id}/",  params: valid_attributes}
-   
-            it 'returns status code 204' do
-              expect(response).to have_http_status(204)
-            end
-          end
+        response '204', 'programming language updated' do
+          let(:id) { Programminglanguage.create(language: 'perl').id }
+          let(:programminglanguage) { { language: 'Perl' } }
+          run_test!
+        end
 
-          context 'check that parameters have updated correctly' do
-            before { get "/api/v1/programminglanguages/#{programminglanguage_id}/",  params: valid_attributes}
-          end
+        context 'Check Update Worked' do
+          #Remember the response does to patch does not give a response. 
+          let(:id) { Programminglanguage.create(language: 'SQL').id }
+          before { patch "/api/v1/programminglanguages/#{id}/", params: {language: "SQLite"}, as: :json }
+          before { get "/api/v1/programminglanguages/#{id}/"}
 
           it 'returns same params as entered' do
-            expect(json['language']).to eq('ruby')
-          end
-
-        end
-
-        context 'when programming language does not exist' do
-          let(:programminglanguage_id) {0}
-          let(:valid_attributes) do
-            # send json payload
-            { 'language': 'ruby on rails'}.to_json
-            before { patch "/api/v1/programminglanguages/#{programminglanguage_id}/", params: valid_attributes}
-
-            it 'returns status code 404' do
-              expect(response).to have_http_status(404)
-            end
-
-            it 'returns message informing no user with that id' do
-              expect(json['message']).to match(/Couldn't find Programminglanguage with 'id'=#{programminglanguage_id}/)
-            end
+            expect(json['language']).to eq('SQLite')
           end
         end
-  end
 
 
+        response '404', 'language not found' do
+          let(:id) { 'invalid' }
+          let(:programminglanguage) { { language: 'Lisp' } }
+          run_test!
+        end
 
-  # Test suite for Delete /api/v1/programminglanguages/:id
-  describe 'DELETE /api/v1/programminglanguages/:id' do
-
-    context 'when request made to delete an interval' do
-      let(:programminglanguage_id) {programminglanguages.first.id}
-      before { delete "/api/v1/programminglanguages/#{programminglanguage_id}/" }
-      it 'returns status code 204' do
-        expect(response).to have_http_status(204)
-      end
-    end
-
-    context 'when programminglanguage does not exist' do
-      let(:programminglanguage_id) {0}
-      before { delete "/api/v1/programminglanguages/#{programminglanguage_id}/" }
-      
-      it 'returns status code 404' do
-        expect(response).to have_http_status(404)
+        response '404', 'language not found' do
+          let(:id) { 'invalid' }
+          let(:programminglanguage) { { language: 'Helm' } }
+          run_test! do 
+            expect(json['message']).to match(/Couldn't find Programminglanguage with 'id'=#{id}/)
+          end
+        end
       end
 
-      it 'returns message informing no user with that id' do
-        expect(json['message']).to match(/Couldn't find Programminglanguage with 'id'=#{programminglanguage_id}/)
-      end
     end
   end
-
-
-
-
 end
+
+
