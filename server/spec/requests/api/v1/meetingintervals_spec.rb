@@ -50,101 +50,66 @@ RSpec.describe Api::V1::MeetingintervalsController, type: :request do
   end
 
 
-    # Test suite POST /api/v1/api_user
+  # Test suite POST /api/v1/api_user
   describe 'POST /api/v1/meetingintervals' do
-    let(:valid_attributes) do
-      # send json payload
-      { 'interval': 'monthlynonsense'}.to_json
-
-      context 'when request is valid' do
-        before { post '/api/v1/meetingintervals',  params: valid_attributes}
-
-        it 'returns status code 201' do
-          expect(response).to have_http_status(201)
-        end
-
-        it 'returns same params as entered' do
-          expect(json['interval']).to eq('monthlynonsense')
-        end
-      end
-    end
-
-    context 'when the request is invalid as no params' do
-      let(:invalid_attributes) { { meetinginterval: { interval: nil } }.to_json }
-      before { post '/api/v1/meetingintervals', params: invalid_attributes }
-
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
+    let(:valid_attributes)  { {interval: 'monthlynonsense'}}
+  
+    context 'when request is valid' do
+      before { post '/api/v1/meetingintervals',  params: valid_attributes, as: :json}
+      it 'returns status code 201' do
+        expect(response).to have_http_status(201)
       end
 
-      it 'returns a validation failure message' do
-        expect(json['message'])
-          .to match(/Validation failed: Interval can't be blank/)
+      it 'returns same params as entered' do
+        expect(json['interval']).to eq('monthlynonsense')
       end
     end
   end
 
+  context 'when the request is invalid as no params' do
+    let(:invalid_attributes) { { meetinginterval: { interval: nil } }.to_json }
+    before { post '/api/v1/meetingintervals', params: invalid_attributes }
+
+    it 'returns status code 422' do
+      expect(response).to have_http_status(422)
+    end
+
+    it 'returns a validation failure message' do
+      expect(json['message'])
+        .to match(/Validation failed: Interval can't be blank/)
+    end
+  end
 
   # Test suite for Patch /api/v1/meetingintervals/:id
   describe 'PATCH /api/v1/meetingintervals/:id' do
-        let(:valid_attributes) do
-          # send json payload
-          { 'interval': 'firstweek'}.to_json
-          let(:meetinginterval_id) {meetingintervals.first.id}
+    let(:valid_attributes) do
+      { 'interval': 'firstweek'}
+    end
+    let(:meetinginterval_id) {meetingintervals.first.id}
 
-          context 'when request is valid' do
-            before { patch "/api/v1/meetingintervals/#{meetinginterval_id}/",  params: valid_attributes}
-   
-            it 'returns status code 204' do
-              expect(response).to have_http_status(204)
-            end
-          end
+    before { patch "/api/v1/meetingintervals/#{meetinginterval_id}/",  params: valid_attributes, as: :json}
 
-          context 'check that parameters have updated correctly' do
-            before { get "/api/v1/meetingintervals/#{meetinginterval_id}/",  params: valid_attributes}
-          end
+    it 'returns status code 204' do
+      expect(response).to have_http_status(204)
+    end
 
-          it 'returns same params as entered' do
-            expect(json['interval']).to eq('firstweek')
-          end
+    context 'check that parameters have updated correctly' do
+      before { get "/api/v1/meetingintervals/#{meetinginterval_id}/",  params: valid_attributes, as: :json}
 
-        end
-
-        context 'when meeting interval does not exist' do
-          let(:meetinginterval_id) {0}
-          let(:valid_attributes) do
-            # send json payload
-            { 'interval': 'secondweek'}.to_json
-            before { patch "/api/v1/meetingintervals/#{meetinginterval_id}/", params: valid_attributes}
-
-            it 'returns status code 404' do
-              expect(response).to have_http_status(404)
-            end
-
-            it 'returns message informing no user with that id' do
-              expect(json['message']).to match(/Couldn't find Meetinginterval with 'id'=#{meetinginterval_id}/)
-            end
-          end
-        end
-  end
-
-
-
-  # Test suite for Delete /api/v1/meetingintervals/:id
-  describe 'DELETE /api/v1/meetingintervals/:id' do
-
-    context 'when request made to delete an interval' do
-      let(:meetinginterval_id) {meetingintervals.first.id}
-      before { delete "/api/v1/meetingintervals/#{meetinginterval_id}/" }
-      it 'returns status code 204' do
-        expect(response).to have_http_status(204)
+      it 'returns same params as entered' do
+        expect(json["interval"]).to eq('firstweek')
       end
     end
 
-    context 'when meetinginterval does not exist' do
+    context 'when meeting interval does not exist' do
       let(:meetinginterval_id) {0}
-      before { delete "/api/v1/meetingintervals/#{meetinginterval_id}/" }
-      
+      let(:valid_attributes) do
+        # send json payload
+        { 'interval': 'secondweek'}.to_json
+      end
+
+      before { patch "/api/v1/meetingintervals/#{meetinginterval_id}/", params: valid_attributes}
+
       it 'returns status code 404' do
         expect(response).to have_http_status(404)
       end
@@ -156,7 +121,30 @@ RSpec.describe Api::V1::MeetingintervalsController, type: :request do
   end
 
 
+    # Test suite for Delete /api/v1/meetingintervals/:id
+    describe 'DELETE /api/v1/meetingintervals/:id' do
+
+      context 'when request made to delete an interval' do
+        let(:meetinginterval_id) {meetingintervals.first.id}
+        before { delete "/api/v1/meetingintervals/#{meetinginterval_id}/" }
+        it 'returns status code 204' do
+          expect(response).to have_http_status(204)
+        end
+      end
+
+      context 'when meetinginterval does not exist' do
+        let(:meetinginterval_id) {0}
+        before { delete "/api/v1/meetingintervals/#{meetinginterval_id}/" }
+
+        it 'returns status code 404' do
+          expect(response).to have_http_status(404)
+        end
+
+        it 'returns message informing no user with that id' do
+          expect(json['message']).to match(/Couldn't find Meetinginterval with 'id'=#{meetinginterval_id}/)
+        end
+      end
+    end
 
 
 end
-

@@ -52,80 +52,71 @@ RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
 
     # Test suite POST /api/v1/api_user
   describe 'POST /api/v1/programminglanguages' do
-    let(:valid_attributes) do
-      # send json payload
-      { 'language': 'javascript'}.to_json
+    let(:valid_attributes)  { { 'language': 'javascript' } }
 
-      context 'when request is valid' do
-        before { post '/api/v1/programminglanguages',  params: valid_attributes}
-
-        it 'returns status code 201' do
-          expect(response).to have_http_status(201)
-        end
-
-        it 'returns same params as entered' do
-          expect(json['language']).to eq('javascript')
-        end
-      end
-    end
-
-    context 'when the request is invalid as no params' do
-      let(:invalid_attributes) { { programminglanguage: { language: nil } }.to_json }
-      before { post '/api/v1/programminglanguages', params: invalid_attributes }
-
-      it 'returns status code 422' do
-        expect(response).to have_http_status(422)
+    context 'when request is valid' do
+      before { post '/api/v1/programminglanguages',  params: valid_attributes, as: :json}
+      it 'returns status code 201' do
+        expect(response).to have_http_status(201)
       end
 
-      it 'returns a validation failure message' do
-        expect(json['message'])
-          .to match(/Validation failed: Language can't be blank/)
+      it 'returns same params as entered' do
+        expect(json['language']).to eq('javascript')
       end
     end
   end
 
+  context 'when the request is invalid as no params' do
+    let(:invalid_attributes) { { programminglanguage: { language: nil } }.to_json }
+    before { post '/api/v1/programminglanguages', params: invalid_attributes }
+
+    it 'returns status code 422' do
+      expect(response).to have_http_status(422)
+    end
+
+    it 'returns a validation failure message' do
+      expect(json['message'])
+        .to match(/Validation failed: Language can't be blank/)
+    end
+  end
 
   # Test suite for Patch /api/v1/programminglanguages/:id
   describe 'PATCH /api/v1/programminglanguages/:id' do
-        let(:valid_attributes) do
-          # send json payload
-          { 'language': 'ruby'}.to_json
-          let(:programminglanguage_id) {programminglanguages.first.id}
+    let(:valid_attributes) do
+      { 'language': 'ruby'}
+    end
+    let(:programminglanguage_id) {programminglanguages.first.id}
 
-          context 'when request is valid' do
-            before { patch "/api/v1/programminglanguages/#{programminglanguage_id}/",  params: valid_attributes}
+    before { patch "/api/v1/programminglanguages/#{programminglanguage_id}/",  params: valid_attributes, as: :json}
    
-            it 'returns status code 204' do
-              expect(response).to have_http_status(204)
-            end
-          end
+    it 'returns status code 204' do
+      expect(response).to have_http_status(204)
+    end
 
-          context 'check that parameters have updated correctly' do
-            before { get "/api/v1/programminglanguages/#{programminglanguage_id}/",  params: valid_attributes}
-          end
+    context 'check that parameters have updated correctly' do
+      before { get "/api/v1/programminglanguages/#{programminglanguage_id}/",  params: valid_attributes, as: :json}
 
-          it 'returns same params as entered' do
-            expect(json['language']).to eq('ruby')
-          end
+      it 'returns same params as entered' do
+        expect(json["language"]).to eq('ruby')
+      end
+    end
 
-        end
-
-        context 'when programming language does not exist' do
-          let(:programminglanguage_id) {0}
-          let(:valid_attributes) do
+    context 'when programming language does not exist' do
+      let(:programminglanguage_id) {0}
+      let(:valid_attributes) do
             # send json payload
-            { 'language': 'ruby on rails'}.to_json
-            before { patch "/api/v1/programminglanguages/#{programminglanguage_id}/", params: valid_attributes}
+        { 'language': 'ruby on rails'}.to_json
+      end
+      before { patch "/api/v1/programminglanguages/#{programminglanguage_id}/", params: valid_attributes}
 
-            it 'returns status code 404' do
-              expect(response).to have_http_status(404)
-            end
+      it 'returns status code 404' do
+        expect(response).to have_http_status(404)
+      end
 
-            it 'returns message informing no user with that id' do
-              expect(json['message']).to match(/Couldn't find Programminglanguage with 'id'=#{programminglanguage_id}/)
-            end
-          end
-        end
+      it 'returns message informing no user with that id' do
+        expect(json['message']).to match(/Couldn't find Programminglanguage with 'id'=#{programminglanguage_id}/)
+      end
+    end
   end
 
 

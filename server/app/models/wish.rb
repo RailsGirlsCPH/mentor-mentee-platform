@@ -1,5 +1,9 @@
 class Wish < ApplicationRecord
   belongs_to :api_user
+  belongs_to :programminglanguage
+  delegate :language, :to => :programminglanguage
+  belongs_to :meetinginterval
+  delegate :interval, :to => :meetinginterval
   # validation
   validates_presence_of :goal
   validate :online_or_offline
