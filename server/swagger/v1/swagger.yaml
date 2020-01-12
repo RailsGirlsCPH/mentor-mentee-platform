@@ -23,11 +23,11 @@ paths:
           - interval
       responses:
         '201':
-          description: meeting interval created
+          description: inspect meeting interval creation
         '422':
           description: invalid request
     get:
-      summary: Displays all meeting intervals
+      summary: Displays all Meeting Intervals
       tags:
       - List all Meeting Intervals
       responses:
@@ -97,14 +97,14 @@ paths:
           - interval
       responses:
         '204':
-          description: meeting interval updated
+          description: programming interval updated
         '404':
           description: interval not found
   "/api/v1/programminglanguages/":
     get:
       summary: Displays all Programming Languages
       tags:
-      - List all programming languages
+      - List all Programming Languages
       responses:
         '200':
           description: list programming languages

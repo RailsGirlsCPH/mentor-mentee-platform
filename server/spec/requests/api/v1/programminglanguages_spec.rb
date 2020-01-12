@@ -11,7 +11,7 @@ RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
     path '/api/v1/programminglanguages/' do
 
       get 'Displays all Programming Languages' do
-        tags 'List all programming languages'
+        tags 'List all Programming Languages'
 
         response '200', 'list programming languages' do
           run_test!
