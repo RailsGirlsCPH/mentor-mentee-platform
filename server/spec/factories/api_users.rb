@@ -6,11 +6,8 @@ FactoryBot.define do
     last_name {Faker::Name.last_name}
     username {Faker::Name.name}
     city {Faker::Address.city}
-
     mentor {Faker::Boolean.boolean(true_ratio: 1)}
     mentee {Faker::Boolean.boolean(true_ratio: 1)}
-
   end
-
 end
 

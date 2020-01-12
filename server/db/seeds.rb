@@ -16,6 +16,7 @@ users.first.wishes.create([{available_offline: false, available_online: true, go
 users.second.wishes.create([{available_offline: true, available_online: true, goal: 'Get smarter', programminglanguage: python_lang, meetinginterval: daily_meet}])
 users.first.wishes.create([{available_offline: false, available_online: true, goal: 'Code really well in Python', programminglanguage: scala_lang, meetinginterval: weekly_meet}])
 
+
 p "Created #{ApiUser.count} api_user entries"
 p "Created #{Meetinginterval.count} meeting interval entries"
 p "Created #{Programminglanguage.count} programming language entries"
