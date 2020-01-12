@@ -10,3 +10,4 @@ FactoryBot.define do
     mentee {Faker::Boolean.boolean(true_ratio: 1)}
   end
 end
+

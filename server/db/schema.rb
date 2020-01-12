@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_20_165743) do
+ActiveRecord::Schema.define(version: 2019_12_28_155500) do
 
   create_table "api_users", force: :cascade do |t|
     t.string "first_name"
@@ -19,10 +19,11 @@ ActiveRecord::Schema.define(version: 2019_10_20_165743) do
     t.string "city"
     t.string "email"
     t.string "password_digest"
-    t.boolean "mentor"
-    t.boolean "mentee"
+    t.boolean "mentor", null: false
+    t.boolean "mentee", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["email", "mentor", "mentee"], name: "index_api_users_on_email_and_mentor_and_mentee"
   end
 
   create_table "meetingintervals", force: :cascade do |t|

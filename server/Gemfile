@@ -45,6 +45,8 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
   gem 'capybara', '~> 3.30'
+  gem 'pry-rescue'
+  gem 'pry-stack_explorer'
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.9'
 end
