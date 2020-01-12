@@ -1,0 +1,116 @@
+---
+swagger: '2.0'
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/meetingintervals/":
+    post:
+      summary: Creates a meeting interval
+      tags:
+      - Create a  Meeting Interval
+      consumes:
+      - application/json
+      parameters:
+      - name: meetinginterval
+        in: body
+        schema:
+          type: object
+          properties:
+            interval:
+              type: string
+          required:
+          - interval
+      responses:
+        '201':
+          description: meeting interval created
+        '422':
+          description: invalid request
+    get:
+      summary: Displays all meeting intervals
+      tags:
+      - List all Meeting Intervals
+      responses:
+        '200':
+          description: list meeting intervals
+  "/api/v1/meetingintervals/{id}":
+    get:
+      summary: Retrieves a meeting interval
+      tags:
+      - Return Meeting Interval
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: meeting interval found
+          schema:
+            type: object
+            properties:
+              interval:
+                type: string
+            required:
+            - interval
+        '404':
+          description: interval not found
+    delete:
+      summary: Deletes a meeting interval
+      tags:
+      - Delete Meeting Interval
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '204':
+          description: meeting interval deleted
+          schema:
+            type: object
+            properties:
+              interval:
+                type: string
+            required:
+            - interval
+        '404':
+          description: interval not found
+    patch:
+      summary: Update a meeting interval
+      tags:
+      - Update Meeting Interval
+      description: Note that if successful, you do not recieve the updated content
+        back. You will only recieve a 204
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      - name: meetinginterval
+        in: body
+        schema:
+          type: object
+          properties:
+            interval:
+              type: string
+          required:
+          - interval
+      responses:
+        '204':
+          description: meeting interval updated
+          schema:
+            type: object
+            properties:
+              interval:
+                type: string
+            required:
+            - interval
+        '404':
+          description: interval not found
