@@ -14,7 +14,7 @@ class ApiUser < ApplicationRecord
 
 
   def mentor_or_mentee
-    unless mentor && mentee
+    unless mentor || mentee
       errors.add(:api_user, "must either want to be a mentor or mentee or both")
     end
   end
