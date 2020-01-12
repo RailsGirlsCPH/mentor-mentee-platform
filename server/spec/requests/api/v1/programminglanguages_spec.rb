@@ -58,7 +58,6 @@ RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
     #Now we test another path;
     path '/api/v1/programminglanguages/{id}' do
 
-
       get 'Retrieves a programming language' do
         tags 'Return Programming Language'
         consumes 'application/json'

@@ -1,6 +1,7 @@
 FactoryBot.define do
+
   factory :wish do
-    available_offline {Faker::Boolean.boolean(true_ratio: 0.5)}
+    available_offline {Faker::Boolean.boolean(true_ratio: 1)}
     available_online {Faker::Boolean.boolean(true_ratio: 1)}
     # it is invalid for available_offline and available_online to both be set to false.
     # therefore when generating test data for spec one value is always set to true.
