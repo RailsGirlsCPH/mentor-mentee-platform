@@ -4,7 +4,113 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/api_users/":
+    get:
+      summary: Displays all Users
+      tags:
+      - List all Users
+      responses:
+        '200':
+          description: list users
+    post:
+      summary: Create a user
+      tags:
+      - Create an API User
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user
+        in: body
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password_digest:
+              type: string
+            username:
+              type: string
+            mentor:
+              type: boolean
+            mentee:
+              type: boolean
+            first_name:
+              type: string
+            last_name:
+              type: string
+            city:
+              type: string
+          required:
+          - email
+          - password_digest
+          - username
+          - mentor
+          - mentee
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: required field, eg. password, can not be blank
+  "/api/v1/api_users/{id}":
+    get:
+      summary: Retrieves a user
+      tags:
+      - Return a User
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: user found
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password_digest:
+                type: string
+              username:
+                type: string
+              mentor:
+                type: boolean
+              mentee:
+                type: boolean
+            required:
+            - email
+            - password_digest
+            - username
+            - mentor
+            - mentee
+        '404':
+          description: interval not found
+    delete:
+      summary: Deletes a user
+      tags:
+      - Delete User
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '204':
+          description: meeting interval deleted
+        '404':
+          description: interval not found
   "/api/v1/meetingintervals/":
+    get:
+      summary: Displays all Meeting Intervals
+      tags:
+      - List all Meeting Intervals
+      responses:
+        '200':
+          description: list meeting intervals
     post:
       summary: Creates a meeting interval
       tags:
@@ -26,13 +132,6 @@ paths:
           description: inspect meeting interval creation
         '422':
           description: invalid request
-    get:
-      summary: Displays all Meeting Intervals
-      tags:
-      - List all Meeting Intervals
-      responses:
-        '200':
-          description: list meeting intervals
   "/api/v1/meetingintervals/{id}":
     get:
       summary: Retrieves a meeting interval
