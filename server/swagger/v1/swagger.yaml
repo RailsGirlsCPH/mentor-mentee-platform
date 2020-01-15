@@ -103,6 +103,48 @@ paths:
           description: meeting interval deleted
         '404':
           description: interval not found
+    patch:
+      summary: Update an API User
+      tags:
+      - Update an APi User
+      description: Note that if successful, you do not recieve the updated content
+        back. You will only recieve a 204
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      - name: api_user
+        in: body
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password_digest:
+              type: string
+            username:
+              type: string
+            mentor:
+              type: boolean
+            mentee:
+              type: boolean
+            first_name:
+              type: string
+            last_name:
+              type: string
+            city:
+              type: string
+          required: []
+      responses:
+        '204':
+          description: programming language updated
+        '404':
+          description: user not found
+        '422':
+          description: proposed username not valid
   "/api/v1/meetingintervals/":
     get:
       summary: Displays all Meeting Intervals
