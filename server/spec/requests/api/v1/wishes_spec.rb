@@ -1,3 +1,4 @@
+require 'swagger_helper'
 require 'rails_helper'
 RSpec.describe Api::V1::WishesController, type: :request do
 
@@ -10,167 +11,162 @@ RSpec.describe Api::V1::WishesController, type: :request do
   let(:api_user_id){api_user.id}
   let(:id){wishes.first.id}
 
-  
-  # Test suite for GET  /api/v1/api_users/api_user_id/wishes
-  describe 'GET /api/v1/api_users/api_users_id/wishes}' do
-    before {get "/api/v1/api_users/#{api_user_id}/wishes/"}
+  describe 'Wishes API', capture_examples: true do
+    path '/api/v1/api_users/{api_user_id}/wishes/' do
 
-    it 'returns api_users.first.wishes' do
-      expect(json).not_to be_empty
-      expect(json.size).to eq(5)
+      get 'Displays all Wishes for a user' do
+        tags 'List all Wishes for a user'
+        consumes 'application/json'
+        parameter name: :api_user_id, :in => :path, :type => :string
+
+        response '200', 'list wishes' do
+          run_test! do
+            expect(json.size).to eq(5)
+          end
+        end
+        response '404', 'interval not found' do
+          let(:api_user_id) { 'invalid' }
+          run_test! do
+            expect(json['message']).to match(/Couldn't find ApiUser with 'id'=#{api_user_id}/)
+          end
+        end
+      end
+
+
+
+      post 'Create a wish' do
+        tags 'Create a wish for an API User'
+        consumes 'application/json'
+        parameter name: :api_user_id,  :in => :path, :type => :string
+        parameter name: :wish, in: :body,schema: {
+                    type: :object,
+                    properties: {
+                      available_online: {type: :boolean},
+                      available_offline: {type: :boolean},
+                      goal: {type: :string},
+                      programminglanguage_id: {type: :integer},
+                      meetinginterval_id: {type: :integer}
+                    },
+                    required: ['goal', 'programminglanguage_id', 'meetinginterval_id']
+                  }
+
+        response '201', 'user created' do
+          let(:wish) {{goal: 'Get better at programming', programminglanguage_id: programminglanguage.id, meetinginterval_id: meetinginterval.id}}
+          run_test! do
+            expect([json["goal"], json["meetinginterval_id"], json["programminglanguage_id"]]).to eq(["Get better at programming",  meetinginterval.id, programminglanguage.id])
+          end
+        end
+
+        response '422', 'invalid request' do
+          let(:wish) {{}}
+          run_test! do
+            expect(json['message']).to match(/Validation failed: Programminglanguage must exist, Meetinginterval must exist, Goal can't be blank/)
+          end
+        end
+
+        response '422', 'required field, eg. password, can not be blank' do
+          let(:wish) {{goal: 'Get better at programming', programminglanguage_id: "0", meetinginterval_id: "0"}}
+          run_test! do
+            expect(json['message']).to match(/Validation failed: Programminglanguage must exist, Meetinginterval must exist/)
+          end
+        end
+      end
     end
+    path '/api/v1/api_users/{api_user_id}/wishes/{id}' do
 
-    it 'returns status code 200' do
-      expect(response).to have_http_status(200)
+      get 'Displays Wish for a user' do
+        tags 'List Wish for a user'
+        consumes 'application/json'
+        parameter name: :api_user_id, :in => :path, :type => :string
+        parameter name: :id, :in => :path, :type => :string
+
+        response '200', 'find a wish belonging to a user' do
+          run_test!
+        end
+      end
+
+      delete 'Deletes  wish from a user' do
+        tags 'Delete wish from a user'
+        consumes 'application/json'
+        parameter name: :api_user_id,  :in => :path, :type => :string
+        parameter name: :id,  :in => :path, :type => :string
+
+        response '204', 'wish deleted' do
+          run_test!
+        end
+
+        context 'Check that wish no longer exists after delete' do
+          let(:id) {Wish.create(goal: 'Get better at programming', programminglanguage_id: programminglanguage.id, meetinginterval_id: meetinginterval.id, api_user_id: api_user_id).id}
+          let(:updateparams){{id: id, api_user_id: api_user_id}}
+          before {delete "/api/v1/api_users/#{api_user_id}/wishes/#{id}/", params: updateparams, as: :json}
+          before {get "/api/v1/api_users/#{api_user_id}/wishes/#{id}/", params: updateparams, as: :json}
+          it 'returns error saying user cannot be found' do
+            #I am not matching error message here as error message strange
+            expect(response.status).to match(404)
+          end
+        end
+
+        response '404', 'wish not found' do
+          #I am not matching error message here as error message strange
+          let(:id) { 'invalid' }
+          run_test!
+        end
+      end
+
+
+      patch 'Update a wish belonging to an API User' do
+        tags 'Update a wish belonging to an APi User'
+        description "Note that if successful, you do not recieve the updated content back. You will only recieve a 204"
+        consumes 'application/json'
+        parameter name: :api_user_id,  :in => :path, :type => :string
+        parameter name: :id,  :in => :path, :type => :string
+        parameter name: :wish, in: :body,schema: {
+                    type: :object,
+                    properties: {
+                      available_online: {type: :boolean},
+                      available_offline: {type: :boolean},
+                      goal: {type: :string},
+                      programminglanguage_id: {type: :integer},
+                      meetinginterval_id: {type: :integer}
+                    },
+                    required: ['goal', 'programminglanguage_id', 'meetinginterval_id']
+                  }
+
+        response '204', 'programming language updated' do
+          let(:wish) {{goal: 'Get mucho mucho better at programming'}}
+          run_test!
+        end
+
+
+        context 'Check that correct updates are made' do
+          let(:id) {Wish.create(goal: 'Get better at programming', programminglanguage_id: programminglanguage.id, meetinginterval_id: meetinginterval.id, api_user_id: api_user_id).id}
+          let(:newlang){create(:programminglanguage)}
+          let(:newinterval){create(:meetinginterval)}
+          let(:updateparams) {{goal: 'Simply the best',  programminglanguage_id: newlang.id, meetinginterval_id: newinterval.id}}
+          before {patch "/api/v1/api_users/#{api_user_id}/wishes/#{id}/", params: updateparams, as: :json}
+          before {get "/api/v1/api_users/#{api_user_id}/wishes/#{id}/", as: :json}
+          it 'returns same params as updated' do
+            expect([json["goal"], json["meetinginterval_id"], json["programminglanguage_id"]]).to eq([ "Simply the best",  newinterval.id, newlang.id])
+          end
+        end
+
+
+        response '404', 'user not found' do
+          let(:id) { 'invalid' }
+          let(:wish) {{goal: 'Get mucho mucho better at programming'}}
+          #I am not matching error message here as error message strange
+          run_test!
+        end
+
+
+        response '404', 'user not found' do
+          let(:api_user_id) { 'invalid' }
+          let(:wish) {{goal: 'Get mucho mucho better at programming'}}
+          run_test! do 
+            expect(json['message']).to match(/Couldn't find ApiUser with 'id'=#{api_user_id}/)
+          end
+        end
+      end
     end
   end
-
-    context 'when api_user does not exist' do
-      let(:api_user_id) {0}
-      before { get "/api/v1/api_users/#{api_user_id}/" }
-
-      it 'returns status code 404' do
-        expect(response).to have_http_status(404)
-      end
-
-      it 'returns message informing no user with that id' do
-        expect(json['message']).to match(/Couldn't find ApiUser with 'id'=#{api_user_id}/)
-      end
-    end
-
-    # Test suite for GET /api_users/:api_user_id/wishes/:id
-    describe 'GET /api/v1/api_users/:api_user_id/wishes/:id' do
-      before { get "/api/v1/api_users/#{api_user_id}/wishes/#{id}" }
-
-      context 'when api_users wish exists' do
-        it 'returns status code 200' do
-          expect(response).to have_http_status(200)
-        end
-
-        it 'returns the wish' do
-          expect(json['id']).to eq(id)
-        end
-      end
-
-      context 'when api_user wish does not exist' do
-        let(:id) { 0 }
-
-        it 'returns status code 404' do
-          expect(response).to have_http_status(404)
-        end
-
-        it 'returns a not found message' do
-          expect(response.body).to match(/Couldn't find Wish/)
-        end
-      end
-    end
-
-    # Test suite for PUT /api_users/:api_user_id/wishes
-    describe 'POST /api/v1/api_users/#{api_user_id}/wishes' do
-      let(:valid_attributes) { { available_offline: false, available_online: true, goal: 'Learn Postgresql', programminglanguage_id: programminglanguage.id, meetinginterval_id: meetinginterval.id} }
-      let(:not_available_attributes) { { available_offline: false, available_online: false, goal: 'Learn GraphSQL',  programminglanguage_id: programminglanguage.id, meetinginterval_id: meetinginterval.id} }
-
-      context 'when request attributes are valid' do
-        before { post "/api/v1/api_users/#{api_user_id}/wishes", params: valid_attributes }
-
-        it 'returns status code 201' do
-          expect(response).to have_http_status(201)
-        end
-      end
-
-      context 'when an invalid request' do
-        before { post "/api/v1/api_users/#{api_user_id}/wishes", params: {} }
-
-        it 'returns status code 422' do
-          expect(response).to have_http_status(422)
-        end
-
-        it 'returns a failure message' do
-          # expect(response.body).to match(/Validation failed: Goal can't be blank/)
-          expect(response.body).to match(/Validation failed: Programminglanguage must exist, Meetinginterval must exist, Goal can't be blank/)
-        end
-      end
-
-      context 'when user is never available' do
-        before { post "/api/v1/api_users/#{api_user_id}/wishes", params: not_available_attributes}
-
-        it 'returns status code 422' do
-          expect(response).to have_http_status(422)
-        end
-
-        it 'returns a failure message' do
-          expect(response.body).to match(/"Validation failed: Api user must be available either online or offline to complete wish"/)
-        end
-      end
-    end
-
-
-    # Test suite for PUT /api_users/:api_user_id/wishes/:id
-    describe 'PATCH /api/v1/api_users/:api_user_id/wishes/:id' do
-      let(:valid_attributes) { { goal: 'Improve Mysql' } }
-      let(:not_available_attributes) { { available_offline: false, available_online: false, goal: 'Learn GraphSQL'} }
-
-      before { patch "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: valid_attributes }
-
-      context 'when wish exists' do
-        it 'returns status code 204' do
-          expect(response).to have_http_status(204)
-        end
-
-        it 'updates the wish' do
-          updated_wish = Wish.find(id)
-          expect(updated_wish.goal).to match(/Improve Mysql/)
-        end
-      end
-
-      context 'when wish exists but the user is not available' do
-      before { patch "/api/v1/api_users/#{api_user_id}/wishes/#{id}", params: not_available_attributes }
-
-        it 'returns status code 422' do
-          expect(response).to have_http_status(422)
-        end
-
-        it 'returns a failure message' do
-          expect(response.body).to match(/"Validation failed: Api user must be available either online or offline to complete wish"/)
-        end
-      end
-
-      context 'when the wish does not exist' do
-        let(:id) { 0 }
-
-        it 'returns status code 404' do
-          expect(response).to have_http_status(404)
-        end
-
-        it 'returns a not found message' do
-          expect(response.body).to match(/Couldn't find Wish/)
-        end
-      end
-    end
-
-    # Test suite for DELETE api_users/:api_user_id/wishes/:id
-    describe 'DELETE /wishes/:id' do
-      context 'when request made to delete a wish' do
-        before { delete "/api/v1/api_users/#{api_user_id}/wishes/#{id}" }
-        it 'returns status code 204' do
-          expect(response).to have_http_status(204)
-        end
-      end
-
-      context 'when wish does not exist' do
-        let(:id) {0}
-        before { delete "/api/v1/api_users/#{api_user_id}/wishes/#{id}" }
-        it 'returns status code 404' do
-          expect(response).to have_http_status(404)
-        end
-
-        # #Not included as the eror message does not seem to work
-        # it 'returns message informing no wish with that id' do
-        #   #binding.pry
-        #   expect(json["message"]).to match(/Couldn't find Wish with 'id'=#{id}/)
-        # end
-    end
 end
-
-end
- 

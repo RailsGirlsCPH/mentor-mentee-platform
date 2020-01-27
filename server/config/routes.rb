@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :programminglanguages
       resources :meetingintervals
+      #resources :wishes
       resources :api_users do
         resources :wishes
     end

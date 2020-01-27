@@ -135,7 +135,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
         description "Note that if successful, you do not recieve the updated content back. You will only recieve a 204"
         consumes 'application/json'
         parameter name: :id,  :in => :path, :type => :string
-        parameter name: :api_user, in: :body,schema: {
+        parameter name: :api_user, in: :body, schema: {
           type: :object,
           properties: {
             email: {type: :string},
@@ -150,13 +150,13 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
           required: [ ]
         }
 
-        response '204', 'programming language updated' do
+        response '204', 'user updated' do
           let(:id) {ApiUser.create(email: 'Test_email@email.com', password_digest: 'pwd1', username: 'user1', mentor: false, mentee: true).id}
           let(:api_user) { { email: 'Test_email2@email.com', first_name: 'Bob' } }
           run_test!
         end
 
-        context 'Check that user no longer exists after delete' do
+        context 'Check that correct updates are made' do
           let(:id) {ApiUser.create(email: 'Test_email@email.com', password_digest: 'pwd1', username: 'user1', mentor: false, mentee: true).id}
           let(:updateparams) {{email: 'Test_email2@email.com', first_name: 'Bob'}}
           before {patch "/api/v1/api_users/#{id}/", params: updateparams, as: :json}
@@ -186,7 +186,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
         end
 
 
-        response '422', 'proposed username not valid' do
+        response '422', 'parameter not unqiue valid' do
           before {ApiUser.create(email: 'Test_email@email.com', password_digest: 'pwd1', username: 'user1', mentor: false, mentee: true).id}
           let(:id) {ApiUser.first.id}
           let(:api_user) { { username: 'user1'} }

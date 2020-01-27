@@ -140,11 +140,11 @@ paths:
           required: []
       responses:
         '204':
-          description: programming language updated
+          description: user updated
         '404':
           description: user not found
         '422':
-          description: proposed username not valid
+          description: parameter not unqiue valid
   "/api/v1/meetingintervals/":
     get:
       summary: Displays all Meeting Intervals
@@ -337,3 +337,135 @@ paths:
           description: programming language updated
         '404':
           description: language not found
+  "/api/v1/api_users/{api_user_id}/wishes/":
+    get:
+      summary: Displays all Wishes for a user
+      tags:
+      - List all Wishes for a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: list wishes
+        '404':
+          description: interval not found
+    post:
+      summary: Create a wish
+      tags:
+      - Create a wish for an API User
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: wish
+        in: body
+        schema:
+          type: object
+          properties:
+            available_online:
+              type: boolean
+            available_offline:
+              type: boolean
+            goal:
+              type: string
+            programminglanguage_id:
+              type: integer
+            meetinginterval_id:
+              type: integer
+          required:
+          - goal
+          - programminglanguage_id
+          - meetinginterval_id
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: required field, eg. password, can not be blank
+  "/api/v1/api_users/{api_user_id}/wishes/{id}":
+    get:
+      summary: Displays Wish for a user
+      tags:
+      - List Wish for a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: find a wish belonging to a user
+    delete:
+      summary: Deletes  wish from a user
+      tags:
+      - Delete wish from a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '204':
+          description: wish deleted
+        '404':
+          description: wish not found
+    patch:
+      summary: Update a wish belonging to an API User
+      tags:
+      - Update a wish belonging to an APi User
+      description: Note that if successful, you do not recieve the updated content
+        back. You will only recieve a 204
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      - name: wish
+        in: body
+        schema:
+          type: object
+          properties:
+            available_online:
+              type: boolean
+            available_offline:
+              type: boolean
+            goal:
+              type: string
+            programminglanguage_id:
+              type: integer
+            meetinginterval_id:
+              type: integer
+          required:
+          - goal
+          - programminglanguage_id
+          - meetinginterval_id
+      responses:
+        '204':
+          description: programming language updated
+        '404':
+          description: user not found
