@@ -145,6 +145,138 @@ paths:
           description: user not found
         '422':
           description: parameter not unqiue valid
+  "/api/v1/api_users/{api_user_id}/experiences/":
+    get:
+      summary: Displays all Experiences for a user
+      tags:
+      - List all Experiencess for a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: list experiences
+        '404':
+          description: interval not found
+    post:
+      summary: Create an experience
+      tags:
+      - Create an experience for an API User
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: experience
+        in: body
+        schema:
+          type: object
+          properties:
+            available_online:
+              type: boolean
+            available_offline:
+              type: boolean
+            qualification:
+              type: string
+            programminglanguage_id:
+              type: integer
+            meetinginterval_id:
+              type: integer
+          required:
+          - qualification
+          - programminglanguage_id
+          - meetinginterval_id
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: required field, eg. password, can not be blank
+  "/api/v1/api_users/{api_user_id}/experiences/{id}":
+    get:
+      summary: Displays Experience for a user
+      tags:
+      - List Experience for a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: find an experience belonging to a user
+    delete:
+      summary: Deletes  experience from a user
+      tags:
+      - Delete experience from a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '204':
+          description: experience deleted
+        '404':
+          description: experience not found
+    patch:
+      summary: Update an experience belonging to an API User
+      tags:
+      - Update an experience belonging to an APi User
+      description: Note that if successful, you do not recieve the updated content
+        back. You will only recieve a 204
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      - name: experience
+        in: body
+        schema:
+          type: object
+          properties:
+            available_online:
+              type: boolean
+            available_offline:
+              type: boolean
+            qualification:
+              type: string
+            programminglanguage_id:
+              type: integer
+            meetinginterval_id:
+              type: integer
+          required:
+          - qualification
+          - programminglanguage_id
+          - meetinginterval_id
+      responses:
+        '204':
+          description: programming language updated
+        '404':
+          description: user not found
   "/api/v1/meetingintervals/":
     get:
       summary: Displays all Meeting Intervals

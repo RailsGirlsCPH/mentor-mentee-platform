@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Wish, type: :model do
 
   let!(:api_user){
-    #puts "hi"
     create(:api_user, mentee: true)}
   let!(:prog){create(:programminglanguage)}
   let!(:meet){create(:meetinginterval)}
