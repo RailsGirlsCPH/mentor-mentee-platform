@@ -44,7 +44,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
-  gem 'capybara', '~> 3.30'
+  gem 'capybara', '~> 3.31'
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
   gem 'selenium-webdriver'
