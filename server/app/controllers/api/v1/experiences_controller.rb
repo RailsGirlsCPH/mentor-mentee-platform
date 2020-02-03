@@ -5,14 +5,14 @@ class Api::V1::ExperiencesController < ApplicationController
 
   #GET /api_users/:api_user_id/experiences
   def index
-    @experiences = @api_user.experiences.includes(:programminglanguage).includes(:meetinginterval)  if params[:api_user_id]
+    @experiences = @api_user.experiences.includes(:programminglanguage, :meetinginterval)  if params[:api_user_id]
 
 
     # ###Write query like http://localhost:3000/api/v1/api_user/1/wishes/?available_offline=true
-    # @wishes = @wishes.where(available_offline: true) if params[:available_offline] == 'true'
-    # @wishes = @wishes.where(available_offline: false) if params[:available_offline] == 'false'
-    # @wishes = @wishes.where(available_online: true) if params[:available_online] == 'true'
-    # @wishes = @wishes.where(available_online: false) if params[:available_online] == 'false'
+    @experiences = @experiences.where(available_offline: true) if params[:available_offline] == 'true'
+    @experiences = @experiences.where(available_offline: false) if params[:available_offline] == 'false'
+    @experiences = @experiences.where(available_online: true) if params[:available_online] == 'true'
+    @experiences = @experiences.where(available_online: false) if params[:available_online] == 'false'
 
 
     #Explanation regarding includes: not necessary to link programming languages and meeting interval to Wishes, but it means there is only one call to the database during which it pulls all the information linked  by foreign keys in case it needs it in the future. 
