@@ -78,10 +78,7 @@ Go to the new mentor-mentee-platform folder created on your system, there are tw
 ```
 $bundle install
 $bundle exec rails server
-
 ```
-The output from the last command launches a local web page you can interact with. The address is given in the output. 
-
 
 ## Keeping up-to-date: Dependabot
 
@@ -90,6 +87,20 @@ Depandabot has been installed on the Server directory https://dependabot.com/#ho
 This bot reviews the Gem's listed in our Gemfile as well as additional depencies listed in packages.json. If there are out of date or insecure dependencies Dependabot will create a pull request to update each individual dependency. Dependabot provides a backward compatibility score with each proposed update. 
 
 At the moment there is a limit to how many updates the Dependabot will recommend a day, so that we don't get spammed with pull requests. We need to incorporate some kind of testing to this update process. Dependabot just makes us aware the updates are available, we need to test to make sure the update is compatible with our codebase. Please see below. 
+
+## Reviewing and Testing API's
+
+You can use swagger to test the functionality of the currently available API's. 
+You can find more information on the site: https://swagger.io/solutions/api-documentation/
+
+Run the following commands to seed the test database & start the local server: 
+
+```
+rails db:seed
+bundle exec rails server
+```
+
+Then visit the local swagger site http://localhost:3000/api-docs/index.html
 
 ## Running the tests
 
