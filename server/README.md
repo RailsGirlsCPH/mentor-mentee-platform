@@ -91,6 +91,7 @@ At the moment there is a limit to how many updates the Dependabot will recommend
 ## Reviewing and Testing API's
 
 You can use swagger to test the functionality of the currently available API's. 
+You can find more information on the site: https://swagger.io/solutions/api-documentation/
 
 Run the following commands to seed the test database & start the local server: 
 
