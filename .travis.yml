@@ -1,0 +1,5 @@
+language: ruby
+env:
+- TEST_SUITE=server
+
+script: ./.travis.sh $TEST_SUITE
