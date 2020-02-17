@@ -1,5 +1,7 @@
 language: ruby
 env:
-- TEST_SUITE=server
+  - TEST_SUITE=server
+rvm:
+  - "2.6.2"
 
 script: ./.travis.sh $TEST_SUITE
