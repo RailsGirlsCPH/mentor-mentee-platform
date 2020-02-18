@@ -9,6 +9,7 @@
 # Ignore bundler config.
 /.bundle
 
+
 # Ignore the default SQLite database.
 /server/db/*.sqlite3
 /server/db/*.sqlite3-journal

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_28_155500) do
+ActiveRecord::Schema.define(version: 2020_01_27_185634) do
 
   create_table "api_users", force: :cascade do |t|
     t.string "first_name"
@@ -24,6 +24,20 @@ ActiveRecord::Schema.define(version: 2019_12_28_155500) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email", "mentor", "mentee"], name: "index_api_users_on_email_and_mentor_and_mentee"
+  end
+
+  create_table "experiences", force: :cascade do |t|
+    t.boolean "available_offline"
+    t.boolean "available_online"
+    t.string "qualification"
+    t.integer "api_user_id"
+    t.integer "programminglanguage_id"
+    t.integer "meetinginterval_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["api_user_id"], name: "index_experiences_on_api_user_id"
+    t.index ["meetinginterval_id"], name: "index_experiences_on_meetinginterval_id"
+    t.index ["programminglanguage_id"], name: "index_experiences_on_programminglanguage_id"
   end
 
   create_table "meetingintervals", force: :cascade do |t|
@@ -52,5 +66,6 @@ ActiveRecord::Schema.define(version: 2019_12_28_155500) do
     t.index ["programminglanguage_id"], name: "index_wishes_on_programminglanguage_id"
   end
 
+  add_foreign_key "experiences", "api_users"
   add_foreign_key "wishes", "api_users"
 end

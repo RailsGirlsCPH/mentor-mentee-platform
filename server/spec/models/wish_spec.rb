@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Wish, type: :model do
 
   let!(:api_user){
-    #puts "hi"
     create(:api_user, mentee: true)}
   let!(:prog){create(:programminglanguage)}
   let!(:meet){create(:meetinginterval)}
@@ -18,12 +17,12 @@ RSpec.describe Wish, type: :model do
     it {should delegate_method(:language).to(:programminglanguage)}
     it {should delegate_method(:interval).to(:meetinginterval)}
     it "validations custom 1" do
-      wish1 = Wish.new(api_user_id: api_user.id, programminglanguage_id: prog.id, meetinginterval_id: meet.id, available_offline: false, available_online: :false)
+      wish1 = Wish.new(api_user_id: api_user.id, programminglanguage_id: prog.id, meetinginterval_id: meet.id, available_offline: false, available_online: false)
       expect(wish1).to be_invalid
       expect(wish1.errors.full_messages).to include('Api user must be available either online or offline to complete wish')
     end
     it "validations custom 2" do
-      wish2 = Wish.new(api_user_id: api_user.id, programminglanguage_id: prog.id, meetinginterval_id: meet.id, available_offline: false, available_online: :false)
+      wish2 = Wish.new(api_user_id: api_user.id, programminglanguage_id: prog.id, meetinginterval_id: meet.id, available_offline: false, available_online: false)
       wish2.api_user.mentee = false
       expect(wish2).to be_invalid
       expect(wish2.errors.full_messages).to include('Api user if you are creating a wish you must be a mentee')

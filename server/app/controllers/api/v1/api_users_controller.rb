@@ -4,7 +4,7 @@ class Api::V1::ApiUsersController < ApplicationController
   
   #GET /api_users
   def index
-    @api_users = ApiUser.includes(:wishes).includes(wishes: :programminglanguage).includes(wishes: :meetinginterval).all
+    @api_users = ApiUser.includes(wishes: [:programminglanguage, :meetinginterval], experiences: [:programminglanguage,:meetinginterval]).all
     #Explanation regarding includes: not necessary to link programming languages and meeting interval to ApiUser, but it means there is only one call to the database during which it pulls all the information linked  by foreign keys in case it needs it in the future. 
     @api_users = @api_users.where(mentor: true) if params[:mentor] == 'true'
     @api_users = @api_users.where(mentee: true) if params[:mentee] == 'true'
@@ -37,7 +37,7 @@ class Api::V1::ApiUsersController < ApplicationController
 
   def api_user_params
 
-    params.require(:api_user).permit(:first_name, :last_name, :city, :email, :password_digest, :mentor, :mentee)
+    params.require(:api_user).permit(:first_name, :last_name, :city, :email, :password_digest, :username, :mentor, :mentee)
   end
 
   def set_api_user

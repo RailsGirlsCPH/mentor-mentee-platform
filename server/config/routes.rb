@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :meetingintervals
       resources :api_users do
         resources :wishes
+        resources :experiences
     end
   end
   root 'welcome#index'

@@ -4,7 +4,287 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/api_users/":
+    get:
+      summary: Displays all Users
+      tags:
+      - List all Users
+      responses:
+        '200':
+          description: list users
+    post:
+      summary: Create a user
+      tags:
+      - Create an API User
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user
+        in: body
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password_digest:
+              type: string
+            username:
+              type: string
+            mentor:
+              type: boolean
+            mentee:
+              type: boolean
+            first_name:
+              type: string
+            last_name:
+              type: string
+            city:
+              type: string
+          required:
+          - email
+          - password_digest
+          - username
+          - mentor
+          - mentee
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: required field, eg. password, can not be blank
+  "/api/v1/api_users/{id}":
+    get:
+      summary: Retrieves a user
+      tags:
+      - Return a User
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: user found
+          schema:
+            type: object
+            properties:
+              email:
+                type: string
+              password_digest:
+                type: string
+              username:
+                type: string
+              mentor:
+                type: boolean
+              mentee:
+                type: boolean
+            required:
+            - email
+            - password_digest
+            - username
+            - mentor
+            - mentee
+        '404':
+          description: interval not found
+    delete:
+      summary: Deletes a user
+      tags:
+      - Delete User
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '204':
+          description: meeting interval deleted
+        '404':
+          description: interval not found
+    patch:
+      summary: Update an API User
+      tags:
+      - Update an APi User
+      description: Note that if successful, you do not recieve the updated content
+        back. You will only recieve a 204
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      - name: api_user
+        in: body
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password_digest:
+              type: string
+            username:
+              type: string
+            mentor:
+              type: boolean
+            mentee:
+              type: boolean
+            first_name:
+              type: string
+            last_name:
+              type: string
+            city:
+              type: string
+          required: []
+      responses:
+        '204':
+          description: user updated
+        '404':
+          description: user not found
+        '422':
+          description: parameter not unqiue valid
+  "/api/v1/api_users/{api_user_id}/experiences/":
+    get:
+      summary: Displays all Experiences for a user
+      tags:
+      - List all Experiencess for a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: list experiences
+        '404':
+          description: interval not found
+    post:
+      summary: Create an experience
+      tags:
+      - Create an experience for an API User
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: experience
+        in: body
+        schema:
+          type: object
+          properties:
+            available_online:
+              type: boolean
+            available_offline:
+              type: boolean
+            qualification:
+              type: string
+            programminglanguage_id:
+              type: integer
+            meetinginterval_id:
+              type: integer
+          required:
+          - qualification
+          - programminglanguage_id
+          - meetinginterval_id
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: required field, eg. password, can not be blank
+  "/api/v1/api_users/{api_user_id}/experiences/{id}":
+    get:
+      summary: Displays Experience for a user
+      tags:
+      - List Experience for a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: find an experience belonging to a user
+    delete:
+      summary: Deletes  experience from a user
+      tags:
+      - Delete experience from a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '204':
+          description: experience deleted
+        '404':
+          description: experience not found
+    patch:
+      summary: Update an experience belonging to an API User
+      tags:
+      - Update an experience belonging to an APi User
+      description: Note that if successful, you do not recieve the updated content
+        back. You will only recieve a 204
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      - name: experience
+        in: body
+        schema:
+          type: object
+          properties:
+            available_online:
+              type: boolean
+            available_offline:
+              type: boolean
+            qualification:
+              type: string
+            programminglanguage_id:
+              type: integer
+            meetinginterval_id:
+              type: integer
+          required:
+          - qualification
+          - programminglanguage_id
+          - meetinginterval_id
+      responses:
+        '204':
+          description: programming language updated
+        '404':
+          description: user not found
   "/api/v1/meetingintervals/":
+    get:
+      summary: Displays all Meeting Intervals
+      tags:
+      - List all Meeting Intervals
+      responses:
+        '200':
+          description: list meeting intervals
     post:
       summary: Creates a meeting interval
       tags:
@@ -23,16 +303,9 @@ paths:
           - interval
       responses:
         '201':
-          description: meeting interval created
+          description: inspect meeting interval creation
         '422':
           description: invalid request
-    get:
-      summary: Displays all meeting intervals
-      tags:
-      - List all Meeting Intervals
-      responses:
-        '200':
-          description: list meeting intervals
   "/api/v1/meetingintervals/{id}":
     get:
       summary: Retrieves a meeting interval
@@ -71,13 +344,6 @@ paths:
       responses:
         '204':
           description: meeting interval deleted
-          schema:
-            type: object
-            properties:
-              interval:
-                type: string
-            required:
-            - interval
         '404':
           description: interval not found
     patch:
@@ -104,13 +370,234 @@ paths:
           - interval
       responses:
         '204':
-          description: meeting interval updated
+          description: programming interval updated
+        '404':
+          description: interval not found
+  "/api/v1/programminglanguages/":
+    get:
+      summary: Displays all Programming Languages
+      tags:
+      - List all Programming Languages
+      responses:
+        '200':
+          description: list programming languages
+    post:
+      summary: Creates a programming language
+      tags:
+      - Create a  Programming Language
+      consumes:
+      - application/json
+      parameters:
+      - name: programminglanguage
+        in: body
+        schema:
+          type: object
+          properties:
+            language:
+              type: string
+          required:
+          - language
+      responses:
+        '201':
+          description: inspect programming lanaguage creation
+        '422':
+          description: invalid request
+  "/api/v1/programminglanguages/{id}":
+    get:
+      summary: Retrieves a programming language
+      tags:
+      - Return Programming Language
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: programming language found
           schema:
             type: object
             properties:
-              interval:
+              language:
                 type: string
             required:
-            - interval
+            - language
         '404':
           description: interval not found
+    delete:
+      summary: Deletes a programming language
+      tags:
+      - Delete Programmimg Language
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '204':
+          description: pogramming language deleted
+        '404':
+          description: language not found
+    patch:
+      summary: Update a programming language
+      tags:
+      - Update Programming Language
+      description: Note that if successful, you do not recieve the updated content
+        back. You will only recieve a 204
+      consumes:
+      - application/json
+      parameters:
+      - name: id
+        in: path
+        type: string
+        required: true
+      - name: programminglanguage
+        in: body
+        schema:
+          type: object
+          properties:
+            language:
+              type: string
+          required:
+          - language
+      responses:
+        '204':
+          description: programming language updated
+        '404':
+          description: language not found
+  "/api/v1/api_users/{api_user_id}/wishes/":
+    get:
+      summary: Displays all Wishes for a user
+      tags:
+      - List all Wishes for a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: list wishes
+        '404':
+          description: interval not found
+    post:
+      summary: Create a wish
+      tags:
+      - Create a wish for an API User
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: wish
+        in: body
+        schema:
+          type: object
+          properties:
+            available_online:
+              type: boolean
+            available_offline:
+              type: boolean
+            goal:
+              type: string
+            programminglanguage_id:
+              type: integer
+            meetinginterval_id:
+              type: integer
+          required:
+          - goal
+          - programminglanguage_id
+          - meetinginterval_id
+      responses:
+        '201':
+          description: user created
+        '422':
+          description: required field, eg. password, can not be blank
+  "/api/v1/api_users/{api_user_id}/wishes/{id}":
+    get:
+      summary: Displays Wish for a user
+      tags:
+      - List Wish for a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: find a wish belonging to a user
+    delete:
+      summary: Deletes  wish from a user
+      tags:
+      - Delete wish from a user
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '204':
+          description: wish deleted
+        '404':
+          description: wish not found
+    patch:
+      summary: Update a wish belonging to an API User
+      tags:
+      - Update a wish belonging to an APi User
+      description: Note that if successful, you do not recieve the updated content
+        back. You will only recieve a 204
+      consumes:
+      - application/json
+      parameters:
+      - name: api_user_id
+        in: path
+        type: string
+        required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      - name: wish
+        in: body
+        schema:
+          type: object
+          properties:
+            available_online:
+              type: boolean
+            available_offline:
+              type: boolean
+            goal:
+              type: string
+            programminglanguage_id:
+              type: integer
+            meetinginterval_id:
+              type: integer
+          required:
+          - goal
+          - programminglanguage_id
+          - meetinginterval_id
+      responses:
+        '204':
+          description: programming language updated
+        '404':
+          description: user not found

@@ -7,3 +7,6 @@ json.array! @wishes do |wish|
   json.partial! 'wish', wish: wish
 end
 
+json.array! @experiences do |experience|
+  json.partial! 'experience', experience: experience
+end
