@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/RailsGirlsCPH/mentor-mentee-platform.svg?branch=master)](https://travis-ci.com/RailsGirlsCPH/mentor-mentee-platform)
+
 # Mentor Mentee Platform                                                        
  
 Find a mentor-platform: A matchmaking platform where people entering the tech workspace can find mentors already established in the field.
