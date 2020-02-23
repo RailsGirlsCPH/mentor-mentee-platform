@@ -101,6 +101,17 @@ bundle exec rails server
 ```
 
 Then visit the local swagger site http://localhost:3000/api-docs/index.html
+## Database Schema
+
+An overview of the schema can be found by following the link below:
+
+https://www.lucidchart.com/documents/view/164bd2c8-40ed-4797-acd6-e7d0e0a9c0d1#
+
+For the most uptodate view of the database you can view the schema.db file in the db folder.  
+
+To update the chart please follow the link below: 
+
+https://www.lucidchart.com/documents/edit/164bd2c8-40ed-4797-acd6-e7d0e0a9c0d1/0_0?shared=true
 
 ## Running the tests
 
