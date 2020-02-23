@@ -102,6 +102,14 @@ bundle exec rails server
 
 Then visit the local swagger site http://localhost:3000/api-docs/index.html
 
+## Database Schema
+
+See this [overview of the database schema](https://www.lucidchart.com/documents/view/164bd2c8-40ed-4797-acd6-e7d0e0a9c0d1).
+
+For the most up-to-date view of the database, see the db/schema.db file.  
+
+[Update the database schema overview chart](https://www.lucidchart.com/documents/edit/164bd2c8-40ed-4797-acd6-e7d0e0a9c0d1/0_0?shared=true) using this link.
+
 ## Running the tests
 
 You can write tests, to be run using RSpec, which test the behaviour of APIs for various resources. 
