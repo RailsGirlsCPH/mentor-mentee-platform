@@ -1,16 +1,19 @@
 default: &default
-  adapter: <%= ENV['ADAPTER'] %>
   encoding: unicode
-  url:  <%= ENV['DATABASE_URL'] %>
   pool: 5
   timeout: 5000
 
 development:
   <<: *default
+  adapter: <%= ENV['ADAPTER'] %>
+  url:  <%= ENV['DATABASE_URL'] %>
   database: <%= ENV['DB'] %>
 test:
   <<: *default
+  adapter: <%= ENV['ADAPTER_TEST'] %>
   database: <%= ENV['DB_TEST'] %>
 production:
   <<: *default
+  adapter: <%= ENV['ADAPTER'] %>
+  url:  <%= ENV['DATABASE_URL'] %>
   database: <%= ENV['DB'] %>
