@@ -1,0 +1,13 @@
+.skills-block {
+    margin: 0.6em auto;
+    width: 90%;
+}
+
+.skills-block span {
+    display: inline-block;
+    padding: 0.2em;
+}
+
+.skills-block span::before {
+    content: "#";
+  }
