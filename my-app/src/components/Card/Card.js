@@ -6,7 +6,7 @@ import Skill from '../skill/Skill.component';
 
 const Card = ({name, skills}) => {
     return (
-        <div>
+        <div className="card">
            <Avatar />
            <Name name={name} />
            <div className="skills-block">
