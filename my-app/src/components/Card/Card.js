@@ -5,7 +5,7 @@ import Avatar from '../avatar/avatarComponent'
 
 const Card = ({name}) => {
     return (
-        <div>
+        <div className="card">
            <Avatar />
            <Name name={name} />
         </div>
