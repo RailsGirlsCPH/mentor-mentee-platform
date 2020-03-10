@@ -11,9 +11,13 @@ module ExceptionHandler
     rescue_from ActiveRecord::RecordNotFound, with: :four_o_four
     rescue_from ActionController::ParameterMissing, with: :four_two_two
     #Following handlers not required until authentication set up
-    #rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
-    #rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
-    #rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
+    rescue_from ExceptionHandler::AuthenticationError, with: :unauthorized_request
+    rescue_from ExceptionHandler::MissingToken, with: :four_twenty_two
+    rescue_from ExceptionHandler::InvalidToken, with: :four_twenty_two
+
+    rescue_from ActiveRecord::RecordNotFound do |e|
+      json_response({ message: e.message }, :not_found)
+    end
   end
 
   private

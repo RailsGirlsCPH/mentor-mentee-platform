@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
+  post 'auth/login', to: 'authentication#authenticate'
+  post 'signup', to: 'api/v1/api_users#create'
   get 'welcome/index'
 
   namespace :api do

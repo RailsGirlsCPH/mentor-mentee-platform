@@ -1,7 +1,7 @@
 class Api::V1::ApiUsersController < ApplicationController
   before_action :set_api_user, only: [:show, :update, :destroy]
+  skip_before_action :authorize_request, only: :create
 
-  
   #GET /api_users
   def index
     @api_users = ApiUser.includes(wishes: [:programminglanguage, :meetinginterval], experiences: [:programminglanguage,:meetinginterval]).all
@@ -13,11 +13,15 @@ class Api::V1::ApiUsersController < ApplicationController
   # Post /api_users
   def create
     @api_user = ApiUser.create!(api_user_params)
-    json_response(@api_user, :created)
+    auth_token = AuthenticateUser.new(@api_user.email, @api_user.password).call
+    response = { message: Message.account_created, auth_token: auth_token, api_user: @api_user }
+    json_response(response, :created)
+    #json_response(@api_user, :created)
   end
 
   # GET /api_users/:id
   def show
+    #json_response(current_user)
     json_response(@api_user)
   end
 
@@ -37,11 +41,15 @@ class Api::V1::ApiUsersController < ApplicationController
 
   def api_user_params
 
-    params.require(:api_user).permit(:first_name, :last_name, :city, :email, :password_digest, :username, :mentor, :mentee)
+    params.permit(:first_name, :last_name, :city, :email, :username, :mentor, :mentee, :password, :password_confirmation)
   end
 
   def set_api_user
-    @api_user = ApiUser.find(params[:id])
+    if params[:id] == 'myuser'
+      @api_user = current_user
+    else
+      @api_user = ApiUser.find(params[:id])
+    end
   end
 
 end
