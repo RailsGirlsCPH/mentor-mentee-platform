@@ -1,7 +1,7 @@
 default: &default
   adapter: <%= ENV['ADAPTER'] %>
   encoding: unicode
-  #url:  <%= ENV['DATABASE_URL'] %>
+  url:  <%= ENV['DATABASE_URL'] %>
   pool: 5
   timeout: 5000
 
