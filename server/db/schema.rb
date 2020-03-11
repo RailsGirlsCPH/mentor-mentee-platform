@@ -12,6 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2020_01_27_185634) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "api_users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -30,9 +33,9 @@ ActiveRecord::Schema.define(version: 2020_01_27_185634) do
     t.boolean "available_offline"
     t.boolean "available_online"
     t.string "qualification"
-    t.integer "api_user_id"
-    t.integer "programminglanguage_id"
-    t.integer "meetinginterval_id"
+    t.bigint "api_user_id"
+    t.bigint "programminglanguage_id"
+    t.bigint "meetinginterval_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["api_user_id"], name: "index_experiences_on_api_user_id"
@@ -56,9 +59,9 @@ ActiveRecord::Schema.define(version: 2020_01_27_185634) do
     t.boolean "available_offline"
     t.boolean "available_online"
     t.string "goal"
-    t.integer "api_user_id"
-    t.integer "programminglanguage_id"
-    t.integer "meetinginterval_id"
+    t.bigint "api_user_id"
+    t.bigint "programminglanguage_id"
+    t.bigint "meetinginterval_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["api_user_id"], name: "index_wishes_on_api_user_id"
