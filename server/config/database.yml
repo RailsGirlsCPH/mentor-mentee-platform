@@ -8,20 +8,18 @@ default: &default
   timeout: 5000
 
 development:
-  #<<: *default
   adapter: sqlite3
   database: db/development.sqlite3
   pool: 5
   timeout: 5000
-  #database: <%= ENV['POSTGRES_DB'] %>
+
 
 test:
-  #<<: *default
   adapter: sqlite3
   database: db/test.sqlite3
   pool: 5
   timeout: 5000
-  #database: <%= ENV['POSTGRES_TEST_DB'] %>
+
 
 production:
   <<: *default
