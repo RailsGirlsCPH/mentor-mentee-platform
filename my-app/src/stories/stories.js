@@ -7,7 +7,6 @@ import Link from '../components/link/linkComponent';
 import Name from '../components/name/Name';
 import Card from '../components/Card/Card';
 import Skill from '../components/skill/Skill.component';
-import Link from '../components/link/linkComponent.jsx';
 
 
 // Add the stories of your components here
