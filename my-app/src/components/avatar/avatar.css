@@ -1,4 +1,5 @@
 .avatar-img {
-  width: 6rem;
   border-radius: 50%;
+  margin-top: 1em;
+  width: 6rem;
 }
