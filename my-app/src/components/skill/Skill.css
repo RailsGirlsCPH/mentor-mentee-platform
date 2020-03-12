@@ -1,4 +1,5 @@
 .skills-block {
+<<<<<<< HEAD
   margin: 0.6em auto;
   width: 90%;
 }
@@ -12,3 +13,17 @@
   content: "#";
   color: #3B4349;
 }
+=======
+    margin: 0.6em auto;
+    width: 90%;
+}
+
+.skills-block span {
+    display: inline-block;
+    padding: 0.2em;
+}
+
+.skills-block span::before {
+    content: "#";
+  }
+>>>>>>> 3a357b11dc8b8c1e75cd9646d665bf452d3fe8ab
