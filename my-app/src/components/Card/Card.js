@@ -3,8 +3,9 @@ import './Card.css';
 import Name from '../name/Name';
 import Avatar from '../avatar/avatarComponent';
 import Skill from '../skill/Skill.component';
+import Link from '../link/linkComponent.jsx';
 
-const Card = ({name, skills}) => {
+const Card = ({name, skills, link, text}) => {
     return (
         <div className="card">
            <Avatar />
@@ -14,6 +15,7 @@ const Card = ({name, skills}) => {
             ? skills.map(skill => <Skill skills={skill} />)
             : <Skill skills={skills} />}
            </div>
+           <Link link={link} text={text} className='contact-link'/>
         </div>
     )
 }

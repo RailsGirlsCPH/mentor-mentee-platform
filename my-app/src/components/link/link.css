@@ -1,8 +1,11 @@
 .contact-link{
-    color:red;
-    font-family: 'Robot';
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
-    font-size: 20px;
+    font-size: 1em;
     font-weight: 500;
     text-decoration-line: underline;
+}
+
+a {
+    color: #3B4349;
 }

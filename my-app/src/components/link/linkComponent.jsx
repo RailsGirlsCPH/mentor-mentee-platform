@@ -2,10 +2,10 @@ import React from 'react'
 import './link.css'
 
 
-const Link = ({email}) => {
+const Link = ({link, text}) => {
     return (
         <div>
-            <a href={`mailto:${email}`} className='contact-link'>Contact</a>
+            <a href={link}>{text}</a>
         </div>
     )
 }
