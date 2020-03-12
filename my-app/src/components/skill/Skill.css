@@ -10,4 +10,5 @@
 
 .skills-block span::before {
   content: "#";
+  color: #3B4349;
 }

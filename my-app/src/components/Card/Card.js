@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import "./Card.css";
-import Name from "../name/Name";
-import Avatar from "../avatar/avatarComponent";
-import Skill from "../skill/Skill.component";
-import Link from "../link/linkComponent";
+import React from 'react';
+import PropTypes from 'prop-types';
+import './Card.css';
+import Name from '../name/Name';
+import Avatar from '../avatar/avatarComponent';
+import Skill from '../skill/Skill.component';
+import Link from '../link/linkComponent';
 
 const Card = ({ name, skills, contact, more }) => {
   return (
