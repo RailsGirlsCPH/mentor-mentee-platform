@@ -1,5 +1,8 @@
 .contact-link{
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 4cbe854a031e450f7944a89848d6ccb9c3160404
     font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-size: 1em;
@@ -9,6 +12,7 @@
 
 a {
     color: #3B4349;
+<<<<<<< HEAD
 =======
     color:red;
     font-family: 'Robot';
@@ -17,4 +21,6 @@ a {
     font-weight: 500;
     text-decoration-line: underline;
 >>>>>>> 3a357b11dc8b8c1e75cd9646d665bf452d3fe8ab
+=======
+>>>>>>> 4cbe854a031e450f7944a89848d6ccb9c3160404
 }
