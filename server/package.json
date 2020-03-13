@@ -2,4 +2,7 @@
   "name": "mentor-mentee-platform",
   "private": true,
   "dependencies": {}
+  "engines": {
+    "yarn": "1.7.0"
+  },
 }
