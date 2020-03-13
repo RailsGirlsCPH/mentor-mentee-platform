@@ -286,7 +286,7 @@ DEPENDENCIES
   shoulda-matchers (~> 4.3)
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3
+  sqlite3 (~> 1.4.2)
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)
