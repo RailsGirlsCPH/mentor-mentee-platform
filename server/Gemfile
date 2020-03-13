@@ -18,7 +18,6 @@ gem 'puma', '~> 4.3'
 group :production do
   gem 'pg'
 end
-gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0'
 # Use Uglifier as compressor for JavaScript assets
