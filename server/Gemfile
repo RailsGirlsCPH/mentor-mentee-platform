@@ -7,6 +7,7 @@ end
 
 ruby '2.6.2'
 gem 'dotenv-rails', groups: [:development, :test]
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0'
 # Use sqlite3 as the database for Active Record
@@ -50,9 +51,8 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'capybara', '~> 3.31'
   gem 'selenium-webdriver'
-  gem 'rspec-rails', '~> 3.9'
 end
-
+gem 'rspec-rails', '~> 3.9'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
