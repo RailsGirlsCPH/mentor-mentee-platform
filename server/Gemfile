@@ -3,8 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.5'
 
-#gem 'dotenv-rails', groups: [:development, :test]
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0'
 # Use sqlite3 as the database for Active Record
@@ -46,8 +44,6 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
-  gem 'capybara', '~> 3.31'
-  gem 'selenium-webdriver'
 end
 gem 'rspec-rails', '~> 3.9'
 group :development do
