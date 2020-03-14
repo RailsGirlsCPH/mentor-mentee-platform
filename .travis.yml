@@ -1,7 +1,10 @@
-language: ruby
-env:
-  - TEST_SUITE=server
-rvm:
-  - "2.6.2"
+os: linux
+dist: bionic
 
-script: ./.travis.sh $TEST_SUITE
+language: ruby
+cache: bundler
+gemfile: server/Gemfile
+
+script:
+  - cd server
+  - bin/rails spec
