@@ -1,3 +1,7 @@
+
+##These two lines prevented deployment to heroku, need to look into affect later
+#require 'dotenv'
+#Dotenv.load
 require_relative 'boot'
 
 require 'rails/all'
