@@ -105,7 +105,7 @@ Then visit the local swagger site http://localhost:3000/api-docs/index.html
 
 For Front End Users: 
 
-For those on the front end, swagger docs for the api can be found at https://mentor-mentee-platform.herokuapp.com/api-docs/index.html
+For those on the front end, consult the [published Swagger API docs](https://mentor-mentee-platform.herokuapp.com/api-docs/index.html).
 
 ## Database Schema
 
