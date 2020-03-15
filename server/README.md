@@ -228,7 +228,7 @@ The key commands to be executed in route directory of sub-project (in my case /s
 
 ```
 heroku buildpacks:add --index 1 https://github.com/techgaun/heroku-buildpack-subdir-to-root.git --app mentor-mentee-platform
-heroku config:set PROJECT_RELATIVE_PATH=packages/adminWeb --app mentor-mentee-pkatform
+heroku config:set PROJECT_RELATIVE_PATH=packages/adminWeb --app mentor-mentee-platform
 ```
 
 After you deploy the app, you need to seed the database in order for swagger docs to work. 
