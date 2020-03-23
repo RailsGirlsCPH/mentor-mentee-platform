@@ -1,6 +1,6 @@
 class Api::V1::ApiUsersController < ApplicationController
   before_action :set_api_user, only: [:show, :update, :destroy]
-  skip_before_action :authorize_request, only: :create
+  skip_before_action :authorize_request, only: [:create, :show, :index]
 
   #GET /api_users
   def index
@@ -14,27 +14,23 @@ class Api::V1::ApiUsersController < ApplicationController
   def create
     @api_user = ApiUser.create!(api_user_params)
     auth_token = AuthenticateUser.new(@api_user.email, @api_user.password).call
-    response = { message: Message.account_created, auth_token: auth_token, api_user: @api_user }
+    response = { message: Message.account_created, auth_token: auth_token}#, api_user: @api_user }
     json_response(response, :created)
-    #json_response(@api_user, :created)
   end
 
   # GET /api_users/:id
   def show
-    #json_response(current_user)
-    json_response(@api_user)
+    @api_user = ApiUser.find(params[:id])
   end
 
   # PUT /api_users/:id
   def update
-    @api_user.update!(api_user_params)
-    head :no_content
+    @current_user.update!(api_user_params)
   end
 
   # DELETE /api_users/:id
   def destroy
-    @api_user.destroy
-    head :no_content
+    @current_user.destroy
   end
 
   private
@@ -45,11 +41,7 @@ class Api::V1::ApiUsersController < ApplicationController
   end
 
   def set_api_user
-    if params[:id] == 'myuser'
-      @api_user = current_user
-    else
-      @api_user = ApiUser.find(params[:id])
-    end
+
   end
 
 end
