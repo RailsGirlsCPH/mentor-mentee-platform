@@ -65,7 +65,7 @@ gem install bundler
 gem install rails
 ```
 
-Check your bundler version and gem version using
+Check your bundler version and Ruby gem version using
 ```
 bundler --version
 gem -v
