@@ -66,8 +66,9 @@ gem install rails
 ```
 
 Install libpq-dev package using
-```
-$sudo apt-get install libpq-dev
+
+```bash
+sudo apt-get install libpq-dev
 ```
 
 ### Project codebase.
