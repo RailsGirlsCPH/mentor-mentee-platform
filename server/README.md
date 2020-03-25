@@ -8,7 +8,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-In order to install this app it is necessary to have - Ruby Version 2.6.2 and Rails 5.2
+In order to install this app it is necessary to have - Ruby Version 2.6.5 and Rails 5.2
 
 To check what versions you have on your local system you can run the following commands. 
 
@@ -27,7 +27,7 @@ If you are using ruby which comes installed on the system this can be a problem.
 If you are using a version of ruby controlled by a ruby version manager you will get output which mentions the ruby manager in the path as seen below. 
 
 ```
-~/.rvm/rubies/ruby-2.6.2/bin/ruby
+~/.rvm/rubies/ruby-2.6.5/bin/ruby
 ```
 
 If you do not have the required versions of rails and ruby, or do not have a ruby version manger you can follow the steps below.  
@@ -40,22 +40,22 @@ Below are links detailing how to set up a version manager in terminal.
 After installing version manager you can use the version manager to install the version of ruby you need. Use the command below for the manager you are using. 
 
 ```
-rvm install 2.6.2
+rvm install 2.6.5
 ```
 or 
 ```
-rbenv install 2.6.2
+rbenv install 2.6.5
 ```
 
-Note you may need to specify which version of ruby you want to use the next time you log into your machine. You always check which ruby is being used currently, and instruct a particular version to be used for your session if it does not automatically point to the right one (2.6.2).  
+Note you may need to specify which version of ruby you want to use the next time you log into your machine. You always check which ruby is being used currently, and instruct a particular version to be used for your session if it does not automatically point to the right one (2.6.5).
 
 ```
-rvm use ruby-2.6.2
+rvm use ruby-2.6.5
 ```
 or 
 
 ```
-rbenv local 2.6.2
+rbenv local 2.6.5
 ```
 
 Now you can install rails and bundler. 
