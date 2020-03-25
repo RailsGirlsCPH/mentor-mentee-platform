@@ -8,7 +8,9 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
+
 In order to install this app it is necessary to have - Ruby Version 2.6.5 and Rails 6.0.2.2
+
 
 To check what versions you have on your local system you can run the following commands. 
 
@@ -47,7 +49,7 @@ or
 rbenv install 2.6.5
 ```
 
-Note you may need to specify which version of ruby you want to use the next time you log into your machine. You always check which ruby is being used currently, and instruct a particular version to be used for your session if it does not automatically point to the right one (2.6.2).  
+Note you may need to specify which version of ruby you want to use the next time you log into your machine. You always check which ruby is being used currently, and instruct a particular version to be used for your session if it does not automatically point to the right one (2.6.5).
 
 ```
 rvm use ruby-2.6.5
