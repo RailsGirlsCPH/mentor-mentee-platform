@@ -108,7 +108,10 @@ For Front End Users:
 For those on the front end, consult the [published Swagger API docs](https://mentor-mentee-platform.herokuapp.com/api-docs/index.html).
 
 For Back End Users:
-
+Update your database using
+```
+rails db:migrate
+```
 Run the following commands to seed the test database & start the local server: 
 
 ```
