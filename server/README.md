@@ -65,6 +65,11 @@ gem install bundler
 gem install rails
 ```
 
+Install libpq-dev package using
+```
+$sudo apt-get install libpq-dev
+```
+
 ### Project codebase.
 
 Download the mentor-mentee-platform code held in the GitHub Repository. 
