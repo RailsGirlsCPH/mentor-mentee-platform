@@ -65,6 +65,12 @@ gem install bundler
 gem install rails
 ```
 
+(If you are using Ubuntu or Debian Linux:) Install the development package for the PostgreSQL database `libpq-dev` package using
+
+```bash
+sudo apt-get install libpq-dev
+```
+
 ### Project codebase.
 
 Download the mentor-mentee-platform code held in the GitHub Repository. 
