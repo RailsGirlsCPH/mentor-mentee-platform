@@ -72,10 +72,19 @@ bundler --version
 gem -v
 ```
 
+
 If you want to update every gem in the Gemfile to the latest possible versions, run:
 ```
 bundle update
 ```
+
+(If you are using Ubuntu or Debian Linux:) Install the development package for the PostgreSQL database `libpq-dev` package using
+
+```
+sudo apt-get install libpq-dev
+```
+
+
 ### Project codebase.
 
 Download the mentor-mentee-platform code held in the GitHub Repository. 
