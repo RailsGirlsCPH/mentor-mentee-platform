@@ -65,7 +65,7 @@ gem install bundler
 gem install rails
 ```
 
-Install libpq-dev package using
+(If you are using Ubuntu or Debian Linux:) Install the development package for the PostgreSQL database `libpq-dev` package using
 
 ```bash
 sudo apt-get install libpq-dev
