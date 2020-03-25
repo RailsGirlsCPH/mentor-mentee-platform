@@ -66,13 +66,15 @@ Now you can install rails and bundler.
 gem install bundler 
 gem install rails
 ```
-Check your bundler version using
+Check your bundler and Ruby gems version using
 ```
 bundler --version
+gem -v
 ```
-If you bundler version is not 2.1.4 , then install it using the following command
+
+If you want to update every gem in the Gemfile to the latest possible versions, run:
 ```
-gem install bundler -v 2.1.4
+bundle update
 ```
 ### Project codebase.
 
