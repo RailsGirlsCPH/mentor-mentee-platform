@@ -64,14 +64,17 @@ Now you can install rails and bundler.
 gem install bundler 
 gem install rails
 ```
-Check your bundler version using
+
+Check your bundler version and gem version using
 ```
 bundler --version
+gem -v
 ```
-If you bundler version is not 2.1.4 , then install it using the following command
-```
-gem install bundler -v 2.1.4
-```
+ you can upgrade ruby gem using
+ ```
+ gem update--system
+ ```
+ 
 ### Project codebase.
 
 Download the mentor-mentee-platform code held in the GitHub Repository. 
