@@ -45,7 +45,7 @@ group :development, :test do
   gem 'pry-rescue'
   gem 'pry-stack_explorer'
 end
-gem 'rspec-rails', '~> 3.9'
+gem 'rspec-rails', '~> 4.0'
 group :development do
   gem 'listen', '>= 3.0.5', '< 3.3'
 
