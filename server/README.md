@@ -91,8 +91,8 @@ git clone https://github.com/RailsGirlsCPH/mentor-mentee-platform.git
 Go to the new mentor-mentee-platform folder created on your system, there are two folders within there, one for the server, and another for the client. To work on the server go to the server folder and from within there run the following commands. 
 
 ```
-$bundle install
-$bundle exec rails server
+bundle install
+bundle exec rails server
 ```
 
 ## Keeping up-to-date: Dependabot
