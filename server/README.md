@@ -6,6 +6,15 @@ A simple web app looking for mentor who shares knowledge and skills to help ment
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+If you are a front end developer you can simply access the version of the API deployed on Heroku, rather than installing Ruby and running a version of the server locally. APIs provided below.  
+
+[Published Swagger API docs](https://mentor-mentee-platform.herokuapp.com/api-docs/index.html).
+
+[Access to current version of API](https://mentor-mentee-platform.herokuapp.com/api/v1/api_users/) 
+There is no authorisation on this API yet so only use mock data. This URL is publically available. 
+
+If you would like to develop the backend then the information provided below is for you. 
+
 ### Prerequisites
 
 In order to install this app it is necessary to have - Ruby Version 2.6.5 and Rails 5.2
