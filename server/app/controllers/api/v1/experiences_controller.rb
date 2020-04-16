@@ -1,5 +1,7 @@
 require 'uri'
+require 'pry'
 class Api::V1::ExperiencesController < ApplicationController
+  # skip_before_action :authorize_request, only: [:show, :index]
   before_action :set_api_user
   before_action :set_api_user_experience, only: [:show, :update, :destroy]
 
@@ -47,7 +49,12 @@ class Api::V1::ExperiencesController < ApplicationController
   end
 
   def set_api_user
-    @api_user = ApiUser.find(params[:api_user_id])
+    if !params[:api_user_id].nil?
+      @api_user = ApiUser.find(params[:api_user_id])
+    else
+      authorize_request
+      @api_user = current_user
+    end
   end
 
   def set_api_user_experience

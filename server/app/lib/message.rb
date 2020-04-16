@@ -30,4 +30,8 @@ class Message
   def self.expired_token
     'Sorry, your token has expired. Please login to continue.'
   end
+
+  def self.account_deleted
+    'Account deleted sucessfully'
+  end
 end
