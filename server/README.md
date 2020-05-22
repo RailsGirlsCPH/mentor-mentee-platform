@@ -120,6 +120,10 @@ Run the following commands to seed the test database & start the local server:
 rails db:seed
 bundle exec rails server
 ```
+Once you have changed the spec files, you can update the swagger yaml by running
+```
+rake rswag:specs:swaggerize
+```
 Then visit the local swagger site http://localhost:3000/api-docs/index.html
 
 ## Database Schema
