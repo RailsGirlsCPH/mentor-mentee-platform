@@ -200,6 +200,22 @@ Note if you make changes to your files you need to reload the rails console for 
 
 </details>
 
+<details>
+<summary>Inspect in console</summary>
+<br>
+ 
+To inspect behaviour you can insert 
+```
+require 'pry'
+```
+at the top of the file you want to inspect, and then insert
+```
+binding.pry
+```
+into whatever section of code you want to understand. When you call the file rails will open an interactive console where you can inspect what objects exist, what values they hold, and what methods are availalbe. 
+</details>
+
+
 ## Coding Style
 
 ### Quote Style
