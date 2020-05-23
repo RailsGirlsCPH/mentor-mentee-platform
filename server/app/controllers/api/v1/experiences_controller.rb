@@ -1,13 +1,13 @@
 require 'uri'
 require 'pry'
 class Api::V1::ExperiencesController < ApplicationController
-  # skip_before_action :authorize_request, only: [:show, :index]
+  skip_before_action :authorize_request, only: [:show, :index]
   before_action :set_api_user
   before_action :set_api_user_experience, only: [:show, :update, :destroy]
 
   #GET /api_users/:api_user_id/experiences
   def index
-    @experiences = @api_user.experiences.includes(:programminglanguage, :meetinginterval)  if params[:api_user_id]
+    @experiences = @api_user.experiences.includes(:programminglanguage, :meetinginterval)  # if params[:api_user_id]
 
 
     # ###Write query like http://localhost:3000/api/v1/api_user/1/wishes/?available_offline=true
@@ -22,8 +22,8 @@ class Api::V1::ExperiencesController < ApplicationController
 
   # Post /api_users/:api_user_id/experiences
   def create
-    @experience = @api_user.experiences.create!(experience_params)
-    json_response(@experience, :created)
+    @experience1 = @api_user.experiences.create!(experience_params)
+    json_response(@experience1, :created)
   end
 
   #GET /api_users/:api_user_id/experiences/:experience_id

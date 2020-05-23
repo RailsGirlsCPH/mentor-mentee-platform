@@ -1,4 +1,5 @@
 class Api::V1::ProgramminglanguagesController < ApplicationController
+  skip_before_action :authorize_request, only: [:show, :index, :create, :update, :destroy] 
   before_action :set_programminglanguage, only: [:show, :update, :destroy]
 
   #GET /programminglanguages
