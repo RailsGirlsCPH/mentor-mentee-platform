@@ -213,7 +213,9 @@ To inspect behaviour you can insert
 ```
 require 'pry'
 ```
+
 at the top of the file you want to inspect, and then insert
+
 ```
 binding.pry
 ```
