@@ -6,6 +6,15 @@ A simple web app looking for mentor who shares knowledge and skills to help ment
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
+If you are a front end developer you can simply access the version of the API deployed on Heroku, rather than installing Ruby and running a version of the server locally. APIs provided below.  
+
+[Published Swagger API docs](https://mentor-mentee-platform.herokuapp.com/api-docs/index.html).
+
+[Access to current version of API](https://mentor-mentee-platform.herokuapp.com/api/v1/api_users/) 
+There is no authorisation on this API yet so only use mock data. This URL is publically available. 
+
+If you would like to develop the backend then the information provided below is for you. 
+
 ### Prerequisites
 
 In order to install this app it is necessary to have - Ruby Version 2.6.5 and Rails 5.2
@@ -82,8 +91,8 @@ git clone https://github.com/RailsGirlsCPH/mentor-mentee-platform.git
 Go to the new mentor-mentee-platform folder created on your system, there are two folders within there, one for the server, and another for the client. To work on the server go to the server folder and from within there run the following commands. 
 
 ```
-$bundle install
-$bundle exec rails server
+bundle install
+bundle exec rails server
 ```
 
 ## Keeping up-to-date: Dependabot
@@ -110,6 +119,11 @@ Run the following commands to seed the test database & start the local server:
 ```
 rails db:seed
 bundle exec rails server
+```
+
+Once you have changed the spec files, you can update the swagger yaml by running
+```
+rake rswag:specs:swaggerize
 ```
 Then visit the local swagger site http://localhost:3000/api-docs/index.html
 
@@ -190,6 +204,25 @@ user_list.first.wishes.first
 Note if you make changes to your files you need to reload the rails console for them to take effect. 
 
 </details>
+
+<details>
+<summary>Inspect in console</summary>
+<br>
+ 
+To inspect behaviour you can insert 
+```
+require 'pry'
+```
+
+at the top of the file you want to inspect, and then insert
+
+```
+binding.pry
+```
+
+into whatever section of code you want to understand. When you call the file rails will open an interactive console where you can inspect what objects exist, what values they hold, and what methods are availalbe. 
+</details>
+
 
 ## Coding Style
 
