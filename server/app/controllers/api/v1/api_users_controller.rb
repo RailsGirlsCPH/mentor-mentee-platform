@@ -15,8 +15,6 @@ class Api::V1::ApiUsersController < ApplicationController
   def create
     @api_user = ApiUser.create!(api_user_params)
     @auth_token = AuthenticateUser.new(@api_user.email, @api_user.password).call
-    # response = { message: Message.account_created, auth_token: auth_token, api_user: @api_user }
-    # json_response(response, :created)
   end
 
   # GET /api_users/:id

@@ -1,6 +1,5 @@
 require 'swagger_helper'
 require 'rails_helper'
-require 'pry'
 RSpec.describe Api::V1::ExperiencesController, type: :request do
 
 
@@ -109,7 +108,6 @@ RSpec.describe Api::V1::ExperiencesController, type: :request do
         end
       end
     end
-    
 
     path '/api/v1/profile/experiences/{id}/' do
       get 'Display a experience of user you are logged in as' do
@@ -117,12 +115,12 @@ RSpec.describe Api::V1::ExperiencesController, type: :request do
         consumes 'application/json'
         parameter name: :authorization, :in => :header, :type => :string 
         parameter name: :id, :in => :path, :type => :string
-        
+
         response '404', 'Experience not found' do
-            let(:id){'invalid'}
-            run_test!
+          let(:id){'invalid'}
+          run_test!
         end
-        
+
         response '200', 'Display experience current user logged in' do
           run_test! do
             expect(json["qualification"]).not_to eq(nil)
@@ -159,9 +157,6 @@ RSpec.describe Api::V1::ExperiencesController, type: :request do
           end
         end
       end
-
-
-
 
       patch 'Update an experience belonging to an API User' do
         tags 'Update an experience belonging to an APi User'
@@ -209,8 +204,3 @@ RSpec.describe Api::V1::ExperiencesController, type: :request do
     end
   end
 end
-
-
-
-
-

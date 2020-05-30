@@ -1,6 +1,3 @@
-
-
-#json.partial! 'profile', profile: @current_user
 json.message Message.account_created
 json.auth_token @auth_token
 json.id @api_user.id

@@ -1,6 +1,5 @@
 require 'swagger_helper'
 require 'rails_helper'
-require 'pry'
 
 # # Decided not to use mocking, but this could be changed in the future. Mocking could allow test to be independent of functionality of authorisation behaviour.
 # # example
@@ -10,7 +9,6 @@ require 'pry'
 # example for authorisation
 #          allow(AuthorizeApiRequest).to receive_message_chain(:new, :call).and_return(current_user)}
 
-# eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjozOCwiZXhwIjoxNTkwMzE5MjczfQ.w4GVn4xkxyuhqaXsFM70v5HkMZHHM8i-wVWjDcxgrBA
 RSpec.describe Api::V1::ProfilesController, type: :request do
   let!(:user_list) {create_list(:api_user, 5)}
   let!(:current_user) {user_list.first}
@@ -33,7 +31,6 @@ RSpec.describe Api::V1::ProfilesController, type: :request do
 
         response '200', 'Display current user logged in' do
           run_test! do
-            # binding.pry
             expect(json["id"]).to eq(current_user.id)
           end
         end
@@ -54,7 +51,6 @@ RSpec.describe Api::V1::ProfilesController, type: :request do
 
         response '200', 'Delete user currently logged in' do
           run_test! do
-            # binding.pry
             expect(json["message"]).to eq("Account deleted sucessfully")
           end
         end
@@ -115,9 +111,7 @@ RSpec.describe Api::V1::ProfilesController, type: :request do
             expect(json["message"]).to eq("Validation failed: Email has already been taken")
           end
         end
-
       end
     end
   end
 end
-
