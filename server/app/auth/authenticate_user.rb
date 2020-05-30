@@ -1,4 +1,4 @@
-# app/auth/authenticate_user.rb
+
 class AuthenticateUser
   def initialize(email, password)
     @email = email
@@ -18,7 +18,8 @@ class AuthenticateUser
   def user
     user = ApiUser.find_by(email: email)
     return user if user && user.authenticate(password)
-    # raise Authentication error if credentials are invalid
+    # raise Authentication error if credentials are invalid or if user cannot be found
     raise(ExceptionHandler::AuthenticationError, Message.invalid_credentials)
   end
 end
+

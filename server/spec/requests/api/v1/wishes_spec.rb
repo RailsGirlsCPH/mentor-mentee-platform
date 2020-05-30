@@ -1,6 +1,6 @@
 require 'swagger_helper'
 require 'rails_helper'
-require 'pry'
+
 RSpec.describe Api::V1::WishesController, type: :request do
 
 
@@ -20,7 +20,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
       get 'Displays all Wishes for a particular user' do
         tags 'List all Wishes for a particular user'
         consumes 'application/json'
-        parameter name: :api_user_id, :in => :path, :type => :string
+        parameter name: :api_user_id, in: :path, type: :string
 
         response '200', 'list wishes' do
           run_test! do
@@ -41,8 +41,8 @@ RSpec.describe Api::V1::WishesController, type: :request do
       get 'Displays a Wish for a particular user' do
         tags 'List a Wish for a particular user'
         consumes 'application/json'
-        parameter name: :api_user_id, :in => :path, :type => :string
-        parameter name: :id, :in => :path, :type => :string
+        parameter name: :api_user_id, in: :path, type: :string
+        parameter name: :id, in: :path, type: :string
 
         response '200', 'list wish' do
           run_test! do
@@ -52,7 +52,6 @@ RSpec.describe Api::V1::WishesController, type: :request do
         response '404', 'Wish not found' do
           let(:id) { 'invalid' }
           run_test! do
-            # expect(json['message']).to match(/Couldn't find Wish with 'id'=#{id}/)
           end
         end
       end
@@ -64,7 +63,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
       get 'Display all  wishes of user you are logged in as' do
         tags 'Display all wishes of a user you are logged in as'
         consumes 'application/json'
-        parameter name: :authorization, :in => :header, :type => :string 
+        parameter name: :authorization, in: :header, type: :string 
 
         response '422', 'no token' do
           let(:authorization){nil}
@@ -84,7 +83,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
       post 'Create a wish for user you are logged in as' do
         tags 'Create a wish for user you are logged in as'
         consumes 'application/json'
-        parameter name: :authorization, :in => :header, :type => :string      
+        parameter name: :authorization, in: :header, type: :string      
         parameter name: :wish, in: :body,schema: {
                     type: :object,
                     properties: {
@@ -120,8 +119,8 @@ RSpec.describe Api::V1::WishesController, type: :request do
       get 'Display a wish of user you are logged in as' do
         tags 'Display a wish of a user you are logged in as'
         consumes 'application/json'
-        parameter name: :authorization, :in => :header, :type => :string 
-        parameter name: :id, :in => :path, :type => :string
+        parameter name: :authorization, in: :header, type: :string 
+        parameter name: :id, in: :path, type: :string
 
         response '404', 'Wish not found' do
           let(:id){'invalid'}
@@ -138,8 +137,8 @@ RSpec.describe Api::V1::WishesController, type: :request do
       delete 'Deletes  wish from user you are logged in as' do
         tags 'Delete wish from user you are logged in as'
         consumes 'application/json'
-        parameter name: :authorization, :in => :header, :type => :string 
-        parameter name: :id,  :in => :path, :type => :string
+        parameter name: :authorization, in: :header, type: :string 
+        parameter name: :id,  in: :path, type: :string
 
         response '204', 'wish deleted' do
           run_test!
@@ -167,8 +166,8 @@ RSpec.describe Api::V1::WishesController, type: :request do
       patch 'Update a wish belonging to user you are logged in as' do
         tags 'Update a wish belonging to user you are logged in as'
         consumes 'application/json'
-        parameter name: :authorization, :in => :header, :type => :string 
-        parameter name: :id,  :in => :path, :type => :string
+        parameter name: :authorization, in: :header, type: :string 
+        parameter name: :id,  in: :path, type: :string
         parameter name: :wish, in: :body,schema: {
                     type: :object,
                     properties: {
@@ -205,11 +204,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
             expect([json["goal"], json["meetinginterval_id"], json["programminglanguage_id"]]).to eq([ "Simply the best",  newinterval.id, newlang.id])
           end
         end
-        
       end
     end
   end
 end
-  
-
-

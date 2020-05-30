@@ -1,5 +1,5 @@
 class Api::V1::ApiUsersController < ApplicationController
-  #before_action :set_api_user, only: [:show, :update, :destroy]
+
   skip_before_action :authorize_request, only: [:create, :show, :index]
 
   #GET /api_users
