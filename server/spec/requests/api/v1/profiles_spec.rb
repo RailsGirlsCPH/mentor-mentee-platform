@@ -1,6 +1,3 @@
-require 'swagger_helper'
-require 'rails_helper'
-
 # # Decided not to use mocking, but this could be changed in the future. Mocking could allow test to be independent of functionality of authorisation behaviour.
 # # example
 # allow(feed).to receive(:fetch).and_return("imagine I'm a JSON string")

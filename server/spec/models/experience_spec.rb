@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Experience, type: :model do
   let!(:api_user){
     create(:api_user, mentee: true)}

@@ -1,6 +1,3 @@
-# spec/auth/authenticate_user_spec.rb
-require 'rails_helper'
-
 RSpec.describe AuthenticateUser do
   # create test user
   let(:user) { create(:api_user) }

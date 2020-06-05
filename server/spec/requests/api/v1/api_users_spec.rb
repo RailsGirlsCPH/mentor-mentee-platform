@@ -1,6 +1,3 @@
-require 'swagger_helper'
-require 'rails_helper'
-
 RSpec.describe Api::V1::ApiUsersController, type: :request do
 
 

@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe ApiUser, type: :model do
   # Association test
   # ensure an item record has 1:m relationship with the *** model

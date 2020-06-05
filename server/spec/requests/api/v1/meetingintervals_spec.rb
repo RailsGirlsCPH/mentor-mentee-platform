@@ -1,5 +1,3 @@
-require 'swagger_helper'
-require 'rails_helper'
 RSpec.describe Api::V1::MeetingintervalsController, type: :request do
 
   # initialize test data

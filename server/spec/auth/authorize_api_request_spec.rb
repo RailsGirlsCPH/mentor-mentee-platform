@@ -1,6 +1,3 @@
-# spec/auth/authorize_api_request_spec.rb
-require 'rails_helper'
-
 RSpec.describe AuthorizeApiRequest do
   # Create test user
   let(:user) { create(:api_user) }
