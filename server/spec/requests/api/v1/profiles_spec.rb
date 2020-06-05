@@ -55,7 +55,7 @@ RSpec.describe Api::V1::ProfilesController, type: :request do
         context 'Check that user no longer exists after delete' do
           before do
             delete "/api/v1/profile/", headers: {Authorization: "Bearer: #{authorization}"}
-            get "/api/v1/api_users/#{current_user.id}/"
+            get "/api/v1/api_users/#{current_user.id}/", headers: {Authorization: "Bearer: #{authorization}"}
           end
           it 'returns error saying user cannot be found' do
             expect(json['message']).to match(/Couldn't find ApiUser with 'id'=#{current_user.id}/)

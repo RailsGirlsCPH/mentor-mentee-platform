@@ -1,6 +1,6 @@
 class Api::V1::ApiUsersController < ApplicationController
 
-  skip_before_action :authorize_request, only: [:create, :show, :index]
+  skip_before_action :authorize_request, only: [:create]
 
   #GET /api_users
   def index

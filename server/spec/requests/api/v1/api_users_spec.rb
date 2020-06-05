@@ -4,12 +4,14 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
   # initialize test data
   let!(:api_user_list){create_list(:api_user, 2)}
   let!(:api_user_id) {api_user_list.first.id}
+  let!(:authorization){token_generator(api_user_id)}
 
   describe 'ApiUsers API', capture_examples: true do
     path '/api/v1/signup/' do
       post 'Create a new user' do
         tags 'redirects to api#create, allows creation of user'
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string 
         parameter name: :api_user, in: :body,schema: {
                     type: :object,
                     properties: {
@@ -63,6 +65,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
 
       get 'Displays all Users' do
         tags 'List all Users'
+        parameter name: :authorization, :in => :header, :type => :string 
 
         response '200', 'list users' do
           run_test! do
@@ -77,6 +80,7 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
       get 'Retrieves a user' do
         tags 'Return a User'
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string 
         parameter name: :id, :in => :path, :type => :string
 
         response '200', 'user found' do

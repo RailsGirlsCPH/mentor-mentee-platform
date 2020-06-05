@@ -1,5 +1,4 @@
 class Api::V1::MeetingintervalsController < ApplicationController
-  skip_before_action :authorize_request, only: [:show, :index, :create, :update, :destroy] 
   before_action :set_meetinginterval, only: [:show, :update, :destroy]
 
   #GET /meetingintervals

@@ -17,6 +17,7 @@ RSpec.describe Api::V1::ExperiencesController, type: :request do
       get 'Displays all Experiences for a user' do
         tags 'List all Experiencess for a user'
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string 
         parameter name: :api_user_id, :in => :path, :type => :string
 
         response '200', 'list experiences' do
@@ -39,7 +40,7 @@ RSpec.describe Api::V1::ExperiencesController, type: :request do
         consumes 'application/json'
         parameter name: :api_user_id, :in => :path, :type => :string
         parameter name: :id, :in => :path, :type => :string
-
+        parameter name: :authorization, :in => :header, :type => :string 
         response '200', 'find an experience belonging to a user' do
           run_test! do
             expect(json["qualification"]).not_to eq(nil)

@@ -17,6 +17,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
       get 'Displays all Wishes for a particular user' do
         tags 'List all Wishes for a particular user'
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string
         parameter name: :api_user_id, in: :path, type: :string
 
         response '200', 'list wishes' do
@@ -38,6 +39,7 @@ RSpec.describe Api::V1::WishesController, type: :request do
       get 'Displays a Wish for a particular user' do
         tags 'List a Wish for a particular user'
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string
         parameter name: :api_user_id, in: :path, type: :string
         parameter name: :id, in: :path, type: :string
 

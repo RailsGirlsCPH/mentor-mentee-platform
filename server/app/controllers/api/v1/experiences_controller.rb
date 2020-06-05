@@ -1,7 +1,6 @@
 require 'uri'
 
 class Api::V1::ExperiencesController < ApplicationController
-  skip_before_action :authorize_request, only: [:show, :index]
   before_action :set_api_user
   before_action :set_api_user_experience, only: [:show, :update, :destroy]
 

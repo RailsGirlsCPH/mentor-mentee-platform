@@ -1,7 +1,6 @@
 require 'uri'
 require 'pry'
 class Api::V1::WishesController < ApplicationController
-  skip_before_action :authorize_request, only: [:show, :index] 
   before_action :set_api_user
   before_action :set_api_user_wish, only: [:show, :update, :destroy]
 
