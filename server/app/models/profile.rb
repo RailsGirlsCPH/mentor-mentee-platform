@@ -1,8 +1,7 @@
-class ApiUser < ApplicationRecord
+class Profile < ApplicationRecord
   # encrypt password
   has_secure_password
   
-
   # Can write model association here for example
   has_many :wishes, dependent: :destroy
   has_many :experiences, dependent: :destroy
@@ -15,11 +14,9 @@ class ApiUser < ApplicationRecord
 
 
   def mentor_or_mentee
-    unless mentor || mentee
-      errors.add(:api_user, "must either want to be a mentor or mentee or both")
-    end
+   unless mentor || mentee
+     errors.add(:api_user, "must either want to be a mentor or mentee or both")
+   end
   end
 
 end
-
-

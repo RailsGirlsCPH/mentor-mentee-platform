@@ -4,18 +4,11 @@ info:
   title: API V1
   version: v1
 paths:
-  "/api/v1/api_users/":
-    get:
-      summary: Displays all Users
-      tags:
-      - List all Users
-      responses:
-        '200':
-          description: list users
+  "/api/v1/signup/":
     post:
-      summary: Create a user
+      summary: Create a new user
       tags:
-      - Create an API User
+      - redirects to api#create, allows creation of user
       consumes:
       - application/json
       parameters:
@@ -26,7 +19,9 @@ paths:
           properties:
             email:
               type: string
-            password_digest:
+            password:
+              type: string
+            password_confirmation:
               type: string
             username:
               type: string
@@ -47,10 +42,18 @@ paths:
           - mentor
           - mentee
       responses:
-        '201':
+        '200':
           description: user created
         '422':
-          description: required field, eg. password, can not be blank
+          description: user created
+  "/api/v1/api_users/":
+    get:
+      summary: Displays all Users
+      tags:
+      - List all Users
+      responses:
+        '200':
+          description: list users
   "/api/v1/api_users/{id}":
     get:
       summary: Retrieves a user
@@ -71,8 +74,6 @@ paths:
             properties:
               email:
                 type: string
-              password_digest:
-                type: string
               username:
                 type: string
               mentor:
@@ -81,70 +82,11 @@ paths:
                 type: boolean
             required:
             - email
-            - password_digest
             - username
             - mentor
             - mentee
         '404':
           description: interval not found
-    delete:
-      summary: Deletes a user
-      tags:
-      - Delete User
-      consumes:
-      - application/json
-      parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-      responses:
-        '204':
-          description: meeting interval deleted
-        '404':
-          description: interval not found
-    patch:
-      summary: Update an API User
-      tags:
-      - Update an APi User
-      description: Note that if successful, you do not recieve the updated content
-        back. You will only recieve a 204
-      consumes:
-      - application/json
-      parameters:
-      - name: id
-        in: path
-        type: string
-        required: true
-      - name: api_user
-        in: body
-        schema:
-          type: object
-          properties:
-            email:
-              type: string
-            password_digest:
-              type: string
-            username:
-              type: string
-            mentor:
-              type: boolean
-            mentee:
-              type: boolean
-            first_name:
-              type: string
-            last_name:
-              type: string
-            city:
-              type: string
-          required: []
-      responses:
-        '204':
-          description: user updated
-        '404':
-          description: user not found
-        '422':
-          description: parameter not unqiue valid
   "/api/v1/api_users/{api_user_id}/experiences/":
     get:
       summary: Displays all Experiences for a user
@@ -162,10 +104,11 @@ paths:
           description: list experiences
         '404':
           description: interval not found
-    post:
-      summary: Create an experience
+  "/api/v1/api_users/{api_user_id}/experiences/{id}":
+    get:
+      summary: Displays Experience for a user
       tags:
-      - Create an experience for an API User
+      - List Experience for a user
       consumes:
       - application/json
       parameters:
@@ -173,6 +116,41 @@ paths:
         in: path
         type: string
         required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: find an experience belonging to a user
+        '404':
+          description: experience not found
+  "/api/v1/profile/experiences/":
+    get:
+      summary: Display all experiences of user you are logged in as
+      tags:
+      - Display all experiences of a user you are logged in as
+      consumes:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+      responses:
+        '422':
+          description: no token
+        '200':
+          description: Display experiences current user logged in
+    post:
+      summary: Create an experience
+      tags:
+      - Create an experience for an API User
+      consumes:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        type: string
       - name: experience
         in: body
         schema:
@@ -194,39 +172,39 @@ paths:
           - meetinginterval_id
       responses:
         '201':
-          description: user created
+          description: Experience created
         '422':
-          description: required field, eg. password, can not be blank
-  "/api/v1/api_users/{api_user_id}/experiences/{id}":
+          description: invalid request
+  "/api/v1/profile/experiences/{id}/":
     get:
-      summary: Displays Experience for a user
+      summary: Display a experience of user you are logged in as
       tags:
-      - List Experience for a user
+      - Display a experience of a user you are logged in as
       consumes:
       - application/json
       parameters:
-      - name: api_user_id
-        in: path
+      - name: authorization
+        in: header
         type: string
-        required: true
       - name: id
         in: path
         type: string
         required: true
       responses:
+        '404':
+          description: Experience not found
         '200':
-          description: find an experience belonging to a user
+          description: Display experience current user logged in
     delete:
-      summary: Deletes  experience from a user
+      summary: Deletes  experience from user you are logged in as
       tags:
-      - Delete experience from a user
+      - Delete experience from user you are logged in as
       consumes:
       - application/json
       parameters:
-      - name: api_user_id
-        in: path
+      - name: authorization
+        in: header
         type: string
-        required: true
       - name: id
         in: path
         type: string
@@ -245,10 +223,9 @@ paths:
       consumes:
       - application/json
       parameters:
-      - name: api_user_id
-        in: path
+      - name: authorization
+        in: header
         type: string
-        required: true
       - name: id
         in: path
         type: string
@@ -373,6 +350,74 @@ paths:
           description: programming interval updated
         '404':
           description: interval not found
+  "/api/v1/profile/":
+    get:
+      summary: Display user you are logged in as
+      tags:
+      - Display user you are logged in as
+      consumes:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+      responses:
+        '422':
+          description: no token
+        '200':
+          description: Display current user logged in
+    delete:
+      summary: You can only delete a user that you are logged in as
+      tags:
+      - Delete user you are logged in as
+      consumes:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+      responses:
+        '422':
+          description: no token
+        '200':
+          description: Delete user currently logged in
+    patch:
+      summary: You can only update the user you are logged in as
+      tags:
+      - Update the user you are logged in as
+      consumes:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+      - name: api_user
+        in: body
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password_digest:
+              type: string
+            username:
+              type: string
+            mentor:
+              type: boolean
+            mentee:
+              type: boolean
+            first_name:
+              type: string
+            last_name:
+              type: string
+            city:
+              type: string
+          required: []
+      responses:
+        '200':
+          description: User updated
+        '422':
+          description: no token
   "/api/v1/programminglanguages/":
     get:
       summary: Displays all Programming Languages
@@ -471,9 +516,9 @@ paths:
           description: language not found
   "/api/v1/api_users/{api_user_id}/wishes/":
     get:
-      summary: Displays all Wishes for a user
+      summary: Displays all Wishes for a particular user
       tags:
-      - List all Wishes for a user
+      - List all Wishes for a particular user
       consumes:
       - application/json
       parameters:
@@ -485,11 +530,12 @@ paths:
         '200':
           description: list wishes
         '404':
-          description: interval not found
-    post:
-      summary: Create a wish
+          description: User not found
+  "/api/v1/api_users/{api_user_id}/wishes/{id}":
+    get:
+      summary: Displays a Wish for a particular user
       tags:
-      - Create a wish for an API User
+      - List a Wish for a particular user
       consumes:
       - application/json
       parameters:
@@ -497,6 +543,41 @@ paths:
         in: path
         type: string
         required: true
+      - name: id
+        in: path
+        type: string
+        required: true
+      responses:
+        '200':
+          description: list wish
+        '404':
+          description: Wish not found
+  "/api/v1/profile/wishes/":
+    get:
+      summary: Display all  wishes of user you are logged in as
+      tags:
+      - Display all wishes of a user you are logged in as
+      consumes:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+      responses:
+        '422':
+          description: no token
+        '200':
+          description: Display wishes current user logged in
+    post:
+      summary: Create a wish for user you are logged in as
+      tags:
+      - Create a wish for user you are logged in as
+      consumes:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        type: string
       - name: wish
         in: body
         schema:
@@ -518,39 +599,39 @@ paths:
           - meetinginterval_id
       responses:
         '201':
-          description: user created
+          description: Wish created
         '422':
-          description: required field, eg. password, can not be blank
-  "/api/v1/api_users/{api_user_id}/wishes/{id}":
+          description: invalid request
+  "/api/v1/profile/wishes/{id}/":
     get:
-      summary: Displays Wish for a user
+      summary: Display a wish of user you are logged in as
       tags:
-      - List Wish for a user
+      - Display a wish of a user you are logged in as
       consumes:
       - application/json
       parameters:
-      - name: api_user_id
-        in: path
+      - name: authorization
+        in: header
         type: string
-        required: true
       - name: id
         in: path
         type: string
         required: true
       responses:
+        '404':
+          description: Wish not found
         '200':
-          description: find a wish belonging to a user
+          description: Display wishes current user logged in
     delete:
-      summary: Deletes  wish from a user
+      summary: Deletes  wish from user you are logged in as
       tags:
-      - Delete wish from a user
+      - Delete wish from user you are logged in as
       consumes:
       - application/json
       parameters:
-      - name: api_user_id
-        in: path
+      - name: authorization
+        in: header
         type: string
-        required: true
       - name: id
         in: path
         type: string
@@ -561,18 +642,15 @@ paths:
         '404':
           description: wish not found
     patch:
-      summary: Update a wish belonging to an API User
+      summary: Update a wish belonging to user you are logged in as
       tags:
-      - Update a wish belonging to an APi User
-      description: Note that if successful, you do not recieve the updated content
-        back. You will only recieve a 204
+      - Update a wish belonging to user you are logged in as
       consumes:
       - application/json
       parameters:
-      - name: api_user_id
-        in: path
+      - name: authorization
+        in: header
         type: string
-        required: true
       - name: id
         in: path
         type: string

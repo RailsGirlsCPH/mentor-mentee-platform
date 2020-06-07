@@ -1,14 +1,12 @@
 require 'uri'
+require 'pry'
 class Api::V1::WishesController < ApplicationController
   before_action :set_api_user
   before_action :set_api_user_wish, only: [:show, :update, :destroy]
 
-
   #GET /api_users/:api_user_id/wishes
   def index
-    @wishes = @api_user.wishes.includes(:programminglanguage, :meetinginterval)  if params[:api_user_id]
-
-    ###Write query like http://localhost:3000/api/v1/api_user/1/wishes/?available_offline=true
+    @wishes = @api_user.wishes.includes(:programminglanguage, :meetinginterval) 
     @wishes = @wishes.where(available_offline: true) if params[:available_offline] == 'true'
     @wishes = @wishes.where(available_offline: false) if params[:available_offline] == 'false'
     @wishes = @wishes.where(available_online: true) if params[:available_online] == 'true'
@@ -46,11 +44,15 @@ class Api::V1::WishesController < ApplicationController
   end
 
   def set_api_user
-    @api_user = ApiUser.find(params[:api_user_id])
+    if params[:api_user_id].present?
+      @api_user = ApiUser.find(params[:api_user_id])
+    else
+      authorize_request
+      @api_user = current_user
+    end
   end
 
   def set_api_user_wish
     @wish = @api_user.wishes.find_by!(id: params[:id]) if @api_user
   end
-
 end

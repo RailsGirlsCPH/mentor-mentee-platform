@@ -1,8 +1,8 @@
-require 'swagger_helper'
-require 'rails_helper'
 RSpec.describe Api::V1::MeetingintervalsController, type: :request do
 
   # initialize test data
+  let!(:api_user){create(:api_user)}
+  let(:authorization){token_generator(api_user.id)}
   let!(:meetingintervals){create_list(:meetinginterval, 10)}
   let(:meetinginterval_id) {meetingintervals.first.id}
 
@@ -12,7 +12,7 @@ RSpec.describe Api::V1::MeetingintervalsController, type: :request do
 
       get 'Displays all Meeting Intervals' do
         tags 'List all Meeting Intervals'
-
+        parameter name: :authorization, :in => :header, :type => :string
         response '200', 'list meeting intervals' do
           run_test!
         end
@@ -21,6 +21,7 @@ RSpec.describe Api::V1::MeetingintervalsController, type: :request do
       post 'Creates a meeting interval' do
         tags 'Create a  Meeting Interval'
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string
         parameter name: :meetinginterval, in: :body, schema: {
                     type: :object,
                     properties: {
@@ -62,6 +63,7 @@ RSpec.describe Api::V1::MeetingintervalsController, type: :request do
       get 'Retrieves a meeting interval' do
         tags 'Return Meeting Interval'
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string
         parameter name: :id,  :in => :path, :type => :string
 
         response '200', 'programming interval found' do
@@ -106,7 +108,7 @@ RSpec.describe Api::V1::MeetingintervalsController, type: :request do
 
         consumes 'application/json'
         parameter name: :id,  :in => :path, :type => :string
-
+        parameter name: :authorization, :in => :header, :type => :string
         response '204', 'meeting interval deleted' do
           let(:id) {Meetinginterval.create(interval: 'annually').id }
           run_test!
@@ -130,6 +132,7 @@ RSpec.describe Api::V1::MeetingintervalsController, type: :request do
         tags 'Update Meeting Interval'
         description "Note that if successful, you do not recieve the updated content back. You will only recieve a 204"
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string
         parameter name: :id,  :in => :path, :type => :string
         parameter name: :meetinginterval, in: :body, schema: {
                     type: :object,
@@ -148,8 +151,8 @@ RSpec.describe Api::V1::MeetingintervalsController, type: :request do
         context 'Check Update Worked' do
           #Remember the response does to patch does not give a response. 
           let(:id) { Meetinginterval.create(interval: 'hourly').id }
-          before { patch "/api/v1/meetingintervals/#{id}/", params: {interval: "bihourly"}, as: :json }
-          before { get "/api/v1/meetingintervals/#{id}/"}
+          before { patch "/api/v1/meetingintervals/#{id}/",headers: {Authorization: "Bearer: #{authorization}"}, params: {interval: "bihourly"}, as: :json }
+          before { get "/api/v1/meetingintervals/#{id}/", headers: {Authorization: "Bearer: #{authorization}"}}
 
           it 'returns same params as entered' do
             expect(json['interval']).to eq('bihourly')

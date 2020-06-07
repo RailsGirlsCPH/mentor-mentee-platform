@@ -1,8 +1,8 @@
-require 'swagger_helper'
-require 'rails_helper'
 RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
 
   # initialize test data
+  let!(:api_user){create(:api_user)}
+  let(:authorization){token_generator(api_user.id)}
   let!(:programminglanguages){create_list(:programminglanguage, 10)}
   let(:programminglanguage_id) {programminglanguages.first.id}
 
@@ -12,6 +12,7 @@ RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
 
       get 'Displays all Programming Languages' do
         tags 'List all Programming Languages'
+        parameter name: :authorization, :in => :header, :type => :string
 
         response '200', 'list programming languages' do
           run_test!
@@ -21,6 +22,7 @@ RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
       post 'Creates a programming language' do
         tags 'Create a  Programming Language'
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string
         parameter name: :programminglanguage, in: :body, schema: {
                     type: :object,
                     properties: {
@@ -62,6 +64,7 @@ RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
       get 'Retrieves a programming language' do
         tags 'Return Programming Language'
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string
         parameter name: :id,  :in => :path, :type => :string
 
         response '200', 'programming language found' do
@@ -105,6 +108,7 @@ RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
         tags 'Delete Programmimg Language'
 
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string
         parameter name: :id,  :in => :path, :type => :string
 
         response '204', 'pogramming language deleted' do
@@ -130,6 +134,7 @@ RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
         tags 'Update Programming Language'
         description "Note that if successful, you do not recieve the updated content back. You will only recieve a 204"
         consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string
         parameter name: :id,  :in => :path, :type => :string
         parameter name: :programminglanguage, in: :body, schema: {
                     type: :object,
@@ -148,8 +153,8 @@ RSpec.describe Api::V1::ProgramminglanguagesController, type: :request do
         context 'Check Update Worked' do
           #Remember the response does to patch does not give a response. 
           let(:id) { Programminglanguage.create(language: 'SQL').id }
-          before { patch "/api/v1/programminglanguages/#{id}/", params: {language: "SQLite"}, as: :json }
-          before { get "/api/v1/programminglanguages/#{id}/"}
+          before { patch "/api/v1/programminglanguages/#{id}/", headers: {Authorization: "Bearer: #{authorization}}"}, params: {language: "SQLite"}, as: :json }
+          before { get "/api/v1/programminglanguages/#{id}/", headers: {Authorization: "Bearer: #{authorization}}"}}
 
           it 'returns same params as entered' do
             expect(json['language']).to eq('SQLite')

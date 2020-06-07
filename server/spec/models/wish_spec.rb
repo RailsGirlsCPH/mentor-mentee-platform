@@ -1,5 +1,3 @@
-require 'rails_helper'
-
 RSpec.describe Wish, type: :model do
 
   let!(:api_user){
