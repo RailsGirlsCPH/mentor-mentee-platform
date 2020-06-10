@@ -1,5 +1,5 @@
 require 'uri'
-require 'pry'
+#require 'pry'
 class Api::V1::WishesController < ApplicationController
   before_action :set_api_user
   before_action :set_api_user_wish, only: [:show, :update, :destroy]
