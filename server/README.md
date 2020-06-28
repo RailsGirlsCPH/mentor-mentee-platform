@@ -139,11 +139,11 @@ Some useful commands for handling databases.
 
 Roll back one db migration:
 ```
-rake db:rollback STEP=1
+rails db:rollback STEP=1
 ```
 Roll back a particular db migration
 ```
-rake db:migrate:down VERSION=20100905201547
+rails db:migrate:down VERSION=20100905201547
 ```
 
 
