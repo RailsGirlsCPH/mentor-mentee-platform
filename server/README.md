@@ -135,6 +135,18 @@ For the most up-to-date view of the database, see the db/schema.db file.
 
 [Update the database schema overview chart](https://www.lucidchart.com/documents/edit/164bd2c8-40ed-4797-acd6-e7d0e0a9c0d1/0_0?shared=true) using this link.
 
+Some useful commands for handling databases. 
+
+Roll back one db migration:
+```
+rails db:rollback STEP=1
+```
+Roll back a particular db migration
+```
+rails db:migrate:down VERSION=20100905201547
+```
+
+
 ## Running the tests
 
 You can write tests, to be run using RSpec, which test the behaviour of APIs for various resources. 
