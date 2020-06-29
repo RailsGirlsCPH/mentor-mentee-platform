@@ -1,6 +1,3 @@
-h3 {
-    color: #333;
-    font-size: 1.5em;
-    font-weight: 500;
-    padding: 0.5em 0 0.2em;
+.name h5 {
+  padding: 0.8em 0 0;
 }

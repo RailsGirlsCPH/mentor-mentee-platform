@@ -1,13 +1,59 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
+
+* {
+  box-sizing: border-box;
+  font-family: "DM Mono", monospace, Arial, Helvetica, sans-serif;
+  font-size: 16px;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  padding: 0;
+}
+
+body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #000;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h1 {
+  font-size: 3.75em;
+  font-weight: 500;
+}
+
+h2 {
+  font-size: 3.125em;
+  font-weight: 500;
+}
+
+h3 {
+  font-size: 2.5em;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 1.875em;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 1.5em;
+  font-weight: 500;
+}
+
+h6 {
+  font-size: 1.25em;
+  font-weight: 500;
+}
+
+p {
+  font-size: 1em;
+  font-weight: 300;
+}
+
+label {
+  font-size: 0.75em;
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import './Skill.css';
+import React from "react";
+import "./skill.css";
 
 const Skill = ({ skills }) => {
   return <span>{skills}</span>;

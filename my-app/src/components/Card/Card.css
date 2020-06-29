@@ -1,28 +1,47 @@
-* {
-  padding: 0;
-  margin: 0;
-  font-family: 'Roboto', sans-serif;
-}
-
 .card {
   align-items: center;
-  background-color: #EBECF0;
-  color: #3B4349;
+  background-color: #fea594;
+  color: #3b4349;
   display: flex;
-  font-family: 'Roboto';
   flex-direction: column;
-  height: 30%;
-  margin: 1em;
-  padding: 0 1em 0.5em;
-  width: 15%;
+  margin: 4em;
+  padding: 0.8em;
+  text-align: left;
+  width: 20em;
 }
 
-.right {
-  margin-top: 1em;
-  text-align: right;
-  width: 100%;
+.card.mentee {
+  background-color: #e32c6a;
 }
 
-.right a {
-  text-decoration: none;
+.card.mentor-mentee {
+  background: linear-gradient(
+    135deg,
+    rgba(227, 43, 105, 1) 0%,
+    rgba(248, 194, 161, 1) 100%
+  );
+}
+
+.card .content {
+  background-color: #fff;
+  margin: 0 1em;
+  padding: 0.8em 1.5em 0.2em;
+  position: relative;
+  width: 18.5em;
+}
+
+.card .avatar {
+  position: absolute;
+  left: 40%;
+  margin-top: -2.5em;
+  top: 0;
+}
+
+.card .extended .name,
+.card .extended .role {
+  text-align: center;
+}
+
+.card .extended .role + .card-section {
+  border-top: none;
 }
