@@ -117,7 +117,7 @@ GEM
     pry (0.13.1)
       coderay (~> 1.1)
       method_source (~> 1.0)
-    pry-rescue (1.5.1)
+    pry-rescue (1.5.2)
       interception (>= 0.5)
       pry (>= 0.12.0)
     pry-stack_explorer (0.5.1)
