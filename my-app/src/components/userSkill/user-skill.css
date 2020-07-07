@@ -1,14 +1,14 @@
 .skills-block {
-  margin: 0 auto 0.3em;
+  margin: 0 auto 0.3rem;
   width: 90%;
 }
 
 .skills-block span {
   display: inline-block;
-  padding: 0.2em;
+  padding: 0.2rem;
 }
 
 .skills-block span::before {
   content: "#";
-  color: #3B4349;
+  color: #3b4349;
 }

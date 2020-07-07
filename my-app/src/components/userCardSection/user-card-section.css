@@ -1,0 +1,9 @@
+.user-card {
+  border-top: 1px solid rgba(253, 73, 39, 0.5);
+  margin: 0.8rem 0;
+  padding-top: 0.8rem;
+}
+
+.user-card h6 {
+  margin-bottom: 0.2rem;
+}

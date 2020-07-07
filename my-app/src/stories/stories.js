@@ -6,8 +6,8 @@ import Input from "../components/input/input.component";
 import SampleButton from "../components/sampleButton/sample-button.component";
 import Link from "../components/link/link.component";
 import Name from "../components/name/name.component";
-import Card from "../components/card/card.component";
-import Skill from "../components/skill/skill.component";
+import UserCard from "../components/userCard/user-card.component";
+import Skill from "../components/userSkill/user-skill.component";
 import Role from "../components/role/role.component";
 
 // Add the stories of your components here
@@ -37,34 +37,34 @@ storiesOf("Role", module).add("mentor/mentee", () => (
   <Role role="" mentor={true} mentee={true} />
 ));
 
-storiesOf("Card", module).add("card mentor", () => (
-  <Card
+storiesOf("User Card", module).add("card mentor", () => (
+  <UserCard
     name="MaryAnn Salvato"
     mentor={true}
     mentee={false}
-    section={[
+    sections={[
       { title: "Looking to", text: "Help other women to get into tech" }
     ]}
   />
 ));
 
-storiesOf("Card", module).add("card mentee", () => (
-  <Card
+storiesOf("User Card", module).add("card mentee", () => (
+  <UserCard
     name="MaryAnn Salvato"
     mentor={false}
     mentee={true}
-    section={[
-      { title: "Looking for", text: "Sparing and helping with React code" }
+    sections={[
+      { title: "Looking for", text: "Sparring and helping with React code" }
     ]}
   />
 ));
 
-storiesOf("Card", module).add("card extended", () => (
-  <Card
+storiesOf("User Card", module).add("card extended", () => (
+  <UserCard
     name="MaryAnn Salvato"
     mentor={true}
     mentee={true}
-    section={[
+    sections={[
       { title: "Looking to", text: "Help other women to get into tech" },
       {
         title: "Looking for",

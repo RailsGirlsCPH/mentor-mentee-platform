@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import "./card.css";
+import "./user-card.css";
 import Name from "../name/name.component";
 import Avatar from "../avatar/avatar.component";
 import Role from "../role/role.component";
-import CardSection from "../cardSection/card-section.component";
+import UserCardSection from "../userCardSection/user-card-section.component";
 
-const Card = ({ name, mentor, mentee, section }) => {
+const UserCard = ({ name, mentor, mentee, sections }) => {
   return (
     <div
       className={
@@ -17,25 +17,22 @@ const Card = ({ name, mentor, mentee, section }) => {
           : "card"
       }
     >
-      <div className={section.length > 1 ? "extended content" : "content"}>
+      <div className={sections.length > 1 ? "extended content" : "content"}>
         <Avatar />
         <Name name={name} />
         <Role mentor={mentor} mentee={mentee} />
-        {section.length > 1 ? (
-          section.map((article, index) => (
-            <CardSection key={index} section={article} />
-          ))
-        ) : (
-          <CardSection section={section[0]} />
-        )}
+        {sections.length > 0 &&
+          sections.map((article, index) => (
+            <UserCardSection key={index} sections={article} />
+          ))}
       </div>
     </div>
   );
 };
 
-Card.propTypes = {
+UserCard.propTypes = {
   mentor: PropTypes.bool.isRequired,
   mentee: PropTypes.bool.isRequired
 };
 
-export default Card;
+export default UserCard;

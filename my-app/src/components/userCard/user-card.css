@@ -4,10 +4,10 @@
   color: #3b4349;
   display: flex;
   flex-direction: column;
-  margin: 4em;
-  padding: 0.8em;
+  margin: 4rem;
+  padding: 0.8rem;
   text-align: left;
-  width: 20em;
+  width: 20rem;
 }
 
 .card.mentee {
@@ -24,16 +24,17 @@
 
 .card .content {
   background-color: #fff;
-  margin: 0 1em;
-  padding: 0.8em 1.5em 0.2em;
+  margin: 0 1rem;
+  padding: 0.8rem 1.5rem 0.2rem;
   position: relative;
-  width: 18.5em;
+  width: 18.5rem;
 }
 
 .card .avatar {
   position: absolute;
   left: 40%;
-  margin-top: -2.5em;
+  transform: translateX(-40%);
+  transform: translateY(-60%);
   top: 0;
 }
 
