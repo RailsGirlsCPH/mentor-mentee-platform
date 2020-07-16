@@ -27,7 +27,15 @@ gem 'jbuilder', '~> 2.10'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'jwt'
+<<<<<<< Updated upstream
 gem 'devise'
+=======
+<<<<<<< Updated upstream
+=======
+gem 'devise'
+gem 'simple_token_authentication'
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.1.0', require: false

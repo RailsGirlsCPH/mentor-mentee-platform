@@ -3,6 +3,21 @@ class Message
     "Sorry, #{record} not found."
   end
 
+  def self.valid_login
+    'Successfully signed in, token issued'
+  end
+
+  def self.valid_logout
+    'Succesfully logged out'
+  end
+
+  def self.user_not_found
+    'Unable to find user matching email provided'
+  end
+
+  def self.incorrect_password
+    'Password incorrect'
+  end
   def self.invalid_credentials
     'Invalid credentials'
   end
