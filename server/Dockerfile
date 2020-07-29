@@ -1,8 +1,6 @@
 
 FROM ruby:2.6.5
 
-EXPOSE 3000
-
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends nodejs \
@@ -15,4 +13,6 @@ COPY Gemfile* ./
 RUN bundle install
 COPY . .
 
-CMD ["rails", "server"]
+CMD ["rails", "server", "-b=0.0.0.0"]
+
+

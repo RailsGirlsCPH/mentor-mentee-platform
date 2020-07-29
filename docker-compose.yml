@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  server:
+    container_name: server 
+    build: ./server
+    image: customserver
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./server/:/usr/src/app
+  web:
+    container_name: my-app
+    build: ./my-app
+    image: customweb
+    environment:
+      - CI=true
+    ports:
+      - '80:3000'
+    volumes:
+      - ./my-app:/app
+
+#docker-compose run server /bin/bash
+#docker-compose run web /bin/sh
+
+
+#

@@ -1,8 +1,6 @@
 
 FROM node:current-alpine
 
-EXPOSE 3000
-
 RUN apk add --update tini \
     && mkdir -p /usr/src/app
 
