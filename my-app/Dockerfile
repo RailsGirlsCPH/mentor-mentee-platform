@@ -6,10 +6,12 @@ RUN apk add --update tini \
 
 COPY package.json .
 
-COPY . .
 
 RUN rm package-lock.json \
     && npm install \
     && npm cache clean --force
 
+COPY . .
+
 CMD ["npm", "start"]
+
