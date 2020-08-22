@@ -5,6 +5,8 @@ services:
     container_name: server 
     build: ./server
     image: customserver
+    environment:
+      - POSTGRES_HOST=postgres
     ports:
       - '3000:3000'
     volumes:
@@ -20,19 +22,14 @@ services:
     volumes:
       - ./my-app:/app
   postgres:
-    container_name: pg_db
+    container_name: postgres
     image: postgres
     environment:
-      - POSTGRES_PASSWORD=mypassword
-      - POSTGRES_USER=myuser
+      - POSTGRES_DB=mentormentee
+      - POSTGRES_PASSWORD=I3M5GDF8!
+      - POSTGRES_USER=mentoruser
     volumes:
       - app-data:/var/lib/postgresql/data
 
 volumes:
   app-data:
-#docker-compose run server /bin/bash
-#docker-compose run web /bin/sh
-#or use exec eg.
-#docker container exec pg_db bash
-#then you type psql -U myuser
-#then get \l to get databases
