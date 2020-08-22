@@ -121,6 +121,38 @@ rails db:seed
 bundle exec rails server
 ```
 
+<details>
+<summary>Problems shutting down server</summary>
+<br>
+ Occasionally CTRL-C fails to shut down the local server correctly. 
+ In these cases if you run 
+ 
+ ```
+ ps
+ ```
+ 
+ You can see that no server is running, but if you attemtp to restart the server with: 
+ 
+ ```
+ rails server
+ ```
+ 
+ you get the following message: 
+ 
+```
+=> Booting Puma
+=> Rails 6.0.2.2 application starting in development 
+=> Run `rails server --help` for more startup options
+A server is already running. Check ~/mentor-mentee-platform/server/tmp/pids/server.pid.
+Exiting
+```
+
+In this case delete the file server.pid
+This is a temporary file and the server is unable to restart because the shut down process failed to remove this temporary file. 
+After removal of server.pid it should be possible to restart the server .
+
+</details>
+
 Once you have changed the spec files, you can update the swagger yaml by running
 ```
 rake rswag:specs:swaggerize
