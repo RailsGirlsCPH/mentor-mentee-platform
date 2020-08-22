@@ -4,7 +4,8 @@ dist: bionic
 language: ruby
 cache: bundler
 gemfile: server/Gemfile
-
+addons: # ensure that Travis-CI provisions a DB for our test:
+  postgresql: '9.5'
 script:
   - cd server
   - bin/rails spec
