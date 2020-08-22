@@ -1,12 +1,12 @@
 os: linux
 dist: bionic
-
 language: ruby
 cache: bundler
 gemfile: server/Gemfile
 addons: # ensure that Travis-CI provisions a DB for our test:
   postgresql: '9.5'
 script:
-  - cd server
-  - bin/rails db:environment:set RAILS_ENV=test
-  - bin/bundle exec rspec spec 
+  - docker-compose up -d
+  - docker exec -it server /bin/bash
+  - rails db:environment:set RAILS_ENV=test
+  - bundle exec rspec spec 
