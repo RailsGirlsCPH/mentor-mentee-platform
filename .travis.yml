@@ -5,5 +5,5 @@ cache: bundler
 gemfile: server/Gemfile
 
 script:
-    - cd server
+  - cd server
   - bin/rails spec
