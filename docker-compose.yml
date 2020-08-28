@@ -7,6 +7,9 @@ services:
     image: customserver
     environment:
       - POSTGRES_HOST=postgres
+      - POSTGRES_PASSWORD=I3M5GDF8!
+      - POSTGRES_USER=mentoruser
+      - POSTGRES_DB=mentormentee
     ports:
       - '3000:3000'
     volumes:
