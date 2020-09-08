@@ -4,7 +4,7 @@ services:
   server:
     container_name: server 
     build: ./server
-    image: customserver
+    image: mentor-mentor-platform-server
     environment:
       - POSTGRES_HOST=postgres
     ports:
@@ -14,7 +14,7 @@ services:
   my-app:
     container_name: my-app
     build: ./my-app
-    image: customweb
+    image: mentor-mentee-platform-web
     environment:
       - CI=true
     ports:

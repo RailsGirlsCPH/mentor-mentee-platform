@@ -79,5 +79,5 @@ chmod u+x init_script.sh
 
 You can view the websites of the front end and back end on 
 Front: localhost:80
-Back: localhost:300
+Back: localhost:3000
 Swagger Docs: http://localhost:3000/api-docs/index.html
