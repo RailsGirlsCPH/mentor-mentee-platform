@@ -4,15 +4,22 @@ default: &default
   username: <%= ENV['POSTGRES_USER'] %>
   password: <%= ENV['POSTGRES_PASSWORD'] %>
   host: <%= ENV['POSTGRES_HOST'] %>
+  database: <%= ENV['POSTGRES_DB'] %>
   pool: 5
   timeout: 5000
 
-development:
-  adapter: sqlite3
-  database: db/development.sqlite3
-  pool: 5
-  timeout: 5000
 
+# production:
+#   adapter: sqlite3
+#   database: db/production.sqlite3
+#   pool: 5
+#   timeout: 5000
+
+# development:
+#   adapter: sqlite3
+#   database: db/development.sqlite3
+#   pool: 5
+#   timeout: 5000
 
 test:
   adapter: sqlite3
@@ -21,6 +28,11 @@ test:
   timeout: 5000
 
 
+development:
+  <<: *default
+
+# test:
+#   <<: *default
+
 production:
   <<: *default
-  database: <%= ENV['POSTGRES_DB'] %>

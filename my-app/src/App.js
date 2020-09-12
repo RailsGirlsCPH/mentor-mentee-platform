@@ -4,7 +4,7 @@ import './App.css';
 function App() {
   return (
     <div>
-      RailsGirls Mentor mentee platform
+          RailsGirls Mentor mentee platform, we can update on our machine
     </div>
   );
 }

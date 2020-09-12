@@ -1,0 +1,41 @@
+version: '3'
+
+services:
+  server:
+    container_name: server 
+    build: ./server
+    image: mentor-mentor-platform-server
+    environment:
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=mentormentee
+      - POSTGRES_PASSWORD=${MY_SECRET_KEY}
+      - POSTGRES_USER=mentoruser
+
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./server/:/app
+    tmpfs:
+      - /app/tmp
+  my-app:
+    container_name: my-app
+    build: ./my-app
+    image: mentor-mentee-platform-web
+    environment:
+      - CI=true
+    ports:
+      - '80:3000'
+    volumes:
+      - ./my-app:/app
+  postgres:
+    container_name: postgres
+    image: postgres
+    environment:
+      - POSTGRES_DB=mentormentee
+      - POSTGRES_PASSWORD=${MY_SECRET_KEY}
+      - POSTGRES_USER=mentoruser
+    volumes:
+      - app-data:/var/lib/postgresql/data
+
+volumes:
+  app-data:
