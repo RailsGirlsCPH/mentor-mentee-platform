@@ -15,9 +15,11 @@ module MentorMenteePlatform
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 
+    #Handle temporary files in docker, want to avoid storing them as root on home machine.
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
+    # -- all .rbls files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
   end
 end

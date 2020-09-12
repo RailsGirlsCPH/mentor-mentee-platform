@@ -10,7 +10,9 @@ services:
     ports:
       - '3000:3000'
     volumes:
-      - ./server/:/usr/src/app
+      - ./server/:/app
+    tmpfs:
+      - /app/tmp
   my-app:
     container_name: my-app
     build: ./my-app

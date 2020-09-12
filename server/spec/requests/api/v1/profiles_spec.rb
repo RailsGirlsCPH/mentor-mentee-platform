@@ -15,7 +15,7 @@ RSpec.describe Api::V1::ProfilesController, type: :request do
     path '/api/v1/profile/' do
 
       get 'Display user you are logged in as' do
-        tags 'Display user you are logged in as'
+        tags 'Display userr you are logged in as'
         consumes 'application/json'
         parameter name: :authorization, :in => :header, :type => :string 
 

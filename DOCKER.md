@@ -43,8 +43,13 @@ docker-compose run server /bin/sh
 Say you just used the standard docker-compose up command, you can use the following commands to enter into the command line of each of the three containers which are now runing. 
 
 ```
+docker container exec -it my-app bin/sh
+
 ```
+
 ```
+docker container exec -it server bash
+
 ```
 Allow you to view command line of postgres container. 
 ```
