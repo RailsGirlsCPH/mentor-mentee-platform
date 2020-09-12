@@ -7,6 +7,10 @@ services:
     image: mentor-mentor-platform-server
     environment:
       - POSTGRES_HOST=postgres
+      - POSTGRES_DB=mentormentee
+      - POSTGRES_PASSWORD=${MY_SECRET_KEY}
+      - POSTGRES_USER=mentoruser
+
     ports:
       - '3000:3000'
     volumes:
@@ -28,7 +32,7 @@ services:
     image: postgres
     environment:
       - POSTGRES_DB=mentormentee
-      - POSTGRES_PASSWORD=I3M5GDF8!
+      - POSTGRES_PASSWORD=${MY_SECRET_KEY}
       - POSTGRES_USER=mentoruser
     volumes:
       - app-data:/var/lib/postgresql/data
