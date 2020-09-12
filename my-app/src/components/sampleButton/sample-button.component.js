@@ -3,6 +3,7 @@
 
 // Import react, css and other files if needed
 import React from "react";
+import "./button.css";
 
 const SampleButton = () => {
   return <button>Sample button</button>;

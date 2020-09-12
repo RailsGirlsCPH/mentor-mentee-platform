@@ -1,11 +1,11 @@
 import React from "react";
 import "./user-card-section.css";
 
-const UserCardSection = ({ sections }) => {
+const UserCardSection = ({ title, text }) => {
   return (
     <section className="user-card">
-      <h6>{sections.title}</h6>
-      <p>{sections.text}</p>
+      <h6>{title}</h6>
+      <p>{text}</p>
     </section>
   );
 };

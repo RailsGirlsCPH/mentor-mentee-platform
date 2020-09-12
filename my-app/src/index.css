@@ -3,7 +3,7 @@
 * {
   box-sizing: border-box;
   font-family: "DM Mono", monospace, Arial, Helvetica, sans-serif;
-  font-size: 16px;
+  font-size: 62.5%;
   margin: 0;
   padding: 0;
 }
@@ -20,40 +20,40 @@ code {
 }
 
 h1 {
-  font-size: 3.75em;
+  font-size: 6rem;
   font-weight: 500;
 }
 
 h2 {
-  font-size: 3.125em;
+  font-size: 5rem;
   font-weight: 500;
 }
 
 h3 {
-  font-size: 2.5em;
+  font-size: 4rem;
   font-weight: 500;
 }
 
 h4 {
-  font-size: 1.875em;
+  font-size: 3rem;
   font-weight: 500;
 }
 
 h5 {
-  font-size: 1.5em;
+  font-size: 2.5rem;
   font-weight: 500;
 }
 
 h6 {
-  font-size: 1.25em;
+  font-size: 2rem;
   font-weight: 500;
 }
 
 p {
-  font-size: 1em;
+  font-size: 1.6rem;
   font-weight: 300;
 }
 
 label {
-  font-size: 0.75em;
+  font-size: 1.2rem;
 }
