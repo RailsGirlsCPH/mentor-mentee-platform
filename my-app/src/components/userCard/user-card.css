@@ -1,0 +1,64 @@
+.card {
+  align-items: center;
+  background-color: #fea594;
+  color: #3b4349;
+  display: flex;
+  flex-direction: column;
+  margin: 6rem;
+  padding: 1.3rem;
+  text-align: left;
+  width: 32rem;
+}
+
+.card.mentee {
+  background-color: #e32c6a;
+}
+
+.card.mentor-mentee {
+  background: linear-gradient(
+    135deg,
+    rgba(227, 43, 105, 1) 0%,
+    rgba(248, 194, 161, 1) 100%
+  );
+}
+
+.card .content {
+  background-color: #fff;
+  margin: 0 1.6rem;
+  padding: 1.2rem 2.4rem 0.4rem;
+  position: relative;
+  width: 29.2rem;
+}
+
+.card .avatar {
+  position: absolute;
+  left: 40%;
+  transform: translateX(-40%);
+  transform: translateY(-60%);
+  top: 0;
+}
+
+.card .extended .name,
+.card .extended .role {
+  text-align: center;
+}
+
+.card .extended .role + .card-section {
+  border-top: none;
+}
+
+.card .name h5 {
+  padding: 1.2rem 0 0;
+}
+
+.card .role h6 {
+  color: #fd4927;
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin: 0.8rem 0;
+  text-transform: uppercase;
+}
+
+.card .role h6 span {
+  font-size: 1.6rem;
+}
