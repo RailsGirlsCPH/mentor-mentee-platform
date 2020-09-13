@@ -23,3 +23,5 @@ We're always happy to invite new contributors, particularly people new to progam
 
 ```Server``` will take you to the backend repository.                           
 ```my-app``` will take you to the frontend repository.    
+
+Information about using docker to spin up app can be found in DOCKER.md file.
