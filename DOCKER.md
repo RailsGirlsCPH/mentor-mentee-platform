@@ -34,7 +34,7 @@ docker-compose down -v
 Say you just used the standard docker-compose up command, you can use the following commands to enter into the command line of each of the three containers which are now runing. 
 
 ```
-docker container exec -it my-app bin/sh
+docker container exec -it my-app /bin/sh
 
 docker container exec -it server bash
 
@@ -60,6 +60,7 @@ If *&lt;problem>* | I can run *&lt;command>* | So that I can *&lt;achieve someth
 -------------- | --------------- | ----
 there is an issue in only one of the apps | `docker-compose up -d server` | start only the problematic app and debug and fix it in isolation
 I don't know what the issue is | `docker-compose logs server` | view the logs of a particular container
+I don't know what effects my changes are making | `docker-compose -f logs server` | view the logs of a particular container in real time
 your changes are not taking affect | `docker-compose up --build server` | rebuild the image
 &nbsp; | `docker-compose build --no-cache server` | get rid of the image cache and start from scratch when building the image
 a container is failing at some point, or exiting randomly | `docker-compose run server /bin/sh` | bring up the command line of this newly created container
