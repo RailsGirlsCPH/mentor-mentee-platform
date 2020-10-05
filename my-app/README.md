@@ -12,6 +12,14 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
+### `npm run pretty-quick`
+
+Runs Prettier on your changed files.
+
+You can also run pretty-quick as a pre-commit hook, and only staged files will be formatted, and they will be re-staged after formatting.
+
+Partially staged files will not be re-staged after formatting and pretty-quick will exit with a non-zero exit code. The intent is to abort the git commit and allow the user to amend their selective staging to include formatting fixes.
+
 ### `npm test`
 
 Launches the test runner in the interactive watch mode.<br />

@@ -34,7 +34,7 @@ docker-compose down -v
 Say you just used the standard docker-compose up command, you can use the following commands to enter into the command line of each of the three containers which are now runing. 
 
 ```
-docker container exec -it my-app bin/sh
+docker container exec -it my-app /bin/sh
 
 docker container exec -it server bash
 
@@ -60,6 +60,7 @@ If *&lt;problem>* | I can run *&lt;command>* | So that I can *&lt;achieve someth
 -------------- | --------------- | ----
 there is an issue in only one of the apps | `docker-compose up -d server` | start only the problematic app and debug and fix it in isolation
 I don't know what the issue is | `docker-compose logs server` | view the logs of a particular container
+I don't know what effects my changes are making | `docker-compose -f logs server` | view the logs of a particular container in real time
 your changes are not taking affect | `docker-compose up --build server` | rebuild the image
 &nbsp; | `docker-compose build --no-cache server` | get rid of the image cache and start from scratch when building the image
 a container is failing at some point, or exiting randomly | `docker-compose run server /bin/sh` | bring up the command line of this newly created container
@@ -72,4 +73,13 @@ I made `init_script.sh` executable by running. This is part of the repo and you 
     ```
     chmod u+x init_script.sh
     ```
+## Known Issues 
 
+1. It should be possible to edit files on your local machine, and see the changes replicated in the docker containers straight away. Unfortunately if you are using EMACS, the creation of temporary files eg. #App.js will cause the React App (my-app) to error and exit. You then have to restart the container that crashed to see the effects of the changes you made. 
+If you would like to use EMACS to edit the files for the React App (my-app) you should disable temporarily the creation of these files using 
+```
+M-X Eval Expression
+(setq create-lockfiles nil)
+```
+If you are using another editor, for example VS code, you are not affected by this issue. 
+Link to bug: https://github.com/facebook/create-react-app/issues/9056
