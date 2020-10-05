@@ -56,10 +56,40 @@ RSpec.describe Api::V1::ApiUsersController, type: :request do
             expect(json['message']).to match(/Validation failed: Email has already been taken, Username has already been taken/)
           end
         end
-
-
       end
     end
+
+#####
+    path '/auth/login/' do
+      post 'Login with password for existing users' do
+        tags 'redirects to post /auth/login allows user to log in'
+        consumes 'application/json'
+        parameter name: :authorization, :in => :header, :type => :string 
+        parameter name: :api_user, in: :body,schema: {
+                    type: :object,
+                    properties: {
+                      email: {type: :string},
+                      password: {type: :string},
+                      username: {type: :string}
+                    },
+                    required: ['email',  'username', 'password']
+                  }
+        response '200', 'user created' do
+          let(:api_user) {{email: api_user_list.first.email, password: api_user_list.first.password, username: api_user_list.first.username}}
+          run_test! do
+            expect(json['auth_token']).not_to be_nil
+          end
+        end
+
+        response '401', 'invalid password' do
+          let(:api_user) {{email: api_user_list.first.email, password: '', username: api_user_list.first.username}}
+            run_test! do
+              expect(json['message']).to match(/Invalid credentials/)
+              expect(json['auth_token']).to be_nil
+            end
+          end
+        end 
+      end
 
     path '/api/v1/api_users/' do
 
