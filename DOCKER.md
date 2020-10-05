@@ -72,4 +72,13 @@ I made `init_script.sh` executable by running. This is part of the repo and you 
     ```
     chmod u+x init_script.sh
     ```
+## Known Issues 
 
+1. It should be possible to edit files on your local machine, and see the changes replicated in the docker containers straight away. Unfortunately if you are using EMACS, the creation of temporary files eg. #App.js will cause the React App (my-app) to error and exit. You then have to restart the container that crashed to see the effects of the changes you made. 
+If you would like to use EMACS to edit the files for the React App (my-app) you should disable temporarily the creation of these files using 
+```
+M-X Eval Expression
+(setq create-lockfiles nil)
+```
+If you are using another editor, for example VS code, you are not affected by this issue. 
+Link to bug: https://github.com/facebook/create-react-app/issues/9056
