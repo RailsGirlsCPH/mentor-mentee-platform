@@ -17,7 +17,7 @@ module MentorMenteePlatform
     config.load_defaults 5.1
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'http://localhost:80'
+        origins ['http://localhost', 'http://localhost:3000']
         resource '*', :headers => :any, :methods => [:get, :post, :options]
       end
     end
