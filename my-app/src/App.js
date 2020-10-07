@@ -3,8 +3,6 @@ import './App.css';
 
 function App() {
 
-   // const [user, setUser] = useState({});
-
     useEffect(() => {
         const requestOptions = {
             method: 'POST',
