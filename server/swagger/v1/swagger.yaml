@@ -49,6 +49,37 @@ paths:
           description: user created
         '422':
           description: user created
+  "/auth/login/":
+    post:
+      summary: Login with password for existing users
+      tags:
+      - redirects to post /auth/login allows user to log in
+      consumes:
+      - application/json
+      parameters:
+      - name: authorization
+        in: header
+        type: string
+      - name: api_user
+        in: body
+        schema:
+          type: object
+          properties:
+            email:
+              type: string
+            password:
+              type: string
+            username:
+              type: string
+          required:
+          - email
+          - username
+          - password
+      responses:
+        '200':
+          description: user created
+        '401':
+          description: invalid password
   "/api/v1/api_users/":
     get:
       summary: Displays all Users

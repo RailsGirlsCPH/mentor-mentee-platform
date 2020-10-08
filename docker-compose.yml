@@ -26,7 +26,9 @@ services:
     ports:
       - '80:3000'
     volumes:
-      - ./my-app:/app
+      - ./my-app/:/app
+    tmpfs:
+      - /app/tmp
   postgres:
     container_name: postgres
     image: postgres
