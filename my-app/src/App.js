@@ -1,31 +1,35 @@
-import React from "react";
-//{ useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
+import Header from "./components/Header/Header";
+import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
+
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
-    // useEffect(() => {
-    //     const requestOptions = {
-    //         method: "POST",
-    //         mode: "cors",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify({
-    //             username: "ashley8",
-    //             email: "ashley8@email.com",
-    //             password: "foobar",
-    //             mentor: "true",
-    //             mentee: "true",
-    //         }),
-    //     };
-    //     fetch("http://localhost:3000/api/v1/signup", requestOptions)
-    //         .then((response) => response.json())
-    //         .then((data) => console.log(data))
-    //         .catch((error) => console.log(error));
-    // });
+    const [title, updateTitle] = useState(null);
+    const [errorMessage, updateErrorMessage] = useState(null);
     return (
-        <div>
-            RailsGirls Mentor mentee platform, we can update on our machine in
-            October. we can make changes boo yah! Or can we though
-        </div>
+        <Router>
+            <div className="App">
+                <Header title={title} />
+                <div className="container d-flex align-items-center flex-column">
+                    <Switch>
+                        <Route path="/" exact={true}>
+                            <RegistrationForm
+                                showError={updateErrorMessage}
+                                updateTitle={updateTitle}
+                            />
+                        </Route>
+                        <Route path="/register">
+                            <RegistrationForm
+                                showError={updateErrorMessage}
+                                updateTitle={updateTitle}
+                            />
+                        </Route>
+                    </Switch>
+                </div>
+            </div>
+        </Router>
     );
 }
 
