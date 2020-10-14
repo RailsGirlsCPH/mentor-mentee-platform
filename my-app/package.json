@@ -4,10 +4,12 @@
     "private": true,
     "dependencies": {
         "@storybook/addon-knobs": "^5.2.5",
+        "axios": "^0.20.0",
         "i": "^0.3.6",
         "prop-types": "^15.7.2",
         "react": "^16.11.0",
         "react-dom": "^16.11.0",
+        "react-router-dom": "^5.1.2",
         "react-scripts": "^3.4.3"
     },
     "scripts": {
@@ -36,7 +38,7 @@
     "devDependencies": {
         "@babel/core": "^7.7.0",
         "@storybook/react": "^5.2.5",
-        "babel-loader": "^8.0.6",
+        "babel-loader": "^8.1.0",
         "husky": "^4.3.0",
         "prettier": "^2.1.1",
         "pretty-quick": "^3.0.2"
