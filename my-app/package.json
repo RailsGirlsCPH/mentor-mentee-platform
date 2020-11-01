@@ -38,7 +38,6 @@
         "@storybook/addon-knobs": "^6.0.28",
         "@storybook/addons": "^6.0.28",
         "@storybook/react": "^6.0.28",
-        "babel-loader": "^8.0.6",
         "husky": "^4.3.0",
         "prettier": "^2.1.1",
         "pretty-quick": "^3.0.2"
