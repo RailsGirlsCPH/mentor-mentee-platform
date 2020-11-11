@@ -1,5 +1,5 @@
 import React from "react";
-import Input from "../input/input.component";
+import Input from "../inputs/input.component";
 import "./signup-form.css";
 
 const SignupForm = ({ name, email, password, onSubmit }) => {
