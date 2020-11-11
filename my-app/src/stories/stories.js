@@ -6,7 +6,7 @@ import { action } from "@storybook/addon-actions";
 console.log(withKnobs);
 // Import your component file here
 import Avatar from "../components/avatar/avatar.component";
-import Input from "../components/inputs/input.component";
+import Input from "../components/input/input.component";
 import Button from "../components/button/button.component";
 import Link from "../components/link/link.component";
 import UserCard from "../components/userCard/user-card.component";
