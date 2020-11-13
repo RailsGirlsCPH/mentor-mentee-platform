@@ -1,0 +1,20 @@
+button {
+    background-color: #fd4927;
+    border: none;
+    border-radius: 1rem;
+    box-shadow: 2px 4px 10px rgba(186, 186, 186, 0.25);
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.6rem;
+    outline: none;
+    padding: 1rem;
+    width: 100%;
+}
+
+button.white {
+    background-color: #fff;
+    border: 0.5px solid #fd4927;
+    border-radius: 1.5rem;
+    box-shadow: 2px 4px 10px #fd4927;
+    color: #000;
+}
