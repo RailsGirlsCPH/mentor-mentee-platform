@@ -1,0 +1,41 @@
+.signup-form {
+    background: #fff;
+    border: 1.2rem solid #fd4927;
+    border-radius: 1rem;
+    box-shadow: 0.9px 1rem 4.3rem rgba(253, 73, 39, 0.83);
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 3.5rem 3.5rem 4rem;
+    width: 32rem;
+}
+
+.signup-form p {
+    font-size: 1.4rem;
+}
+
+.signup-form .inputs {
+    border: 2px solid #fd4927;
+    margin: 2rem 0 0;
+    min-height: 6rem;
+    padding: 0.5rem 0.7rem;
+}
+
+.signup-form .inputs input {
+    margin-top: 0.3rem;
+    width: 100%;
+}
+
+.signup-form .inputs:hover,
+.signup-form .inputs:focus-within {
+    box-shadow: 1px 3px 6px 1px rgba(255, 76, 42, 0.58);
+}
+
+.signup-form .inputs label {
+    color: #000;
+    font-weight: 500;
+}
+
+.signup-form button {
+    margin: 2rem 0 0;
+}
