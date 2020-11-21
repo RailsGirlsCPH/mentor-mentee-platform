@@ -1,9 +1,49 @@
-import React from "react";
-import Input from "../input/input.component";
-import Button from "../button/button.component";
-import "./signup-form.css";
+import React, { useState } from "react";
+import axios from "axios";
+import Input from "../../components/input/input.component";
+import Button from "../../components/button/button.component";
+import "../../components/signupForm/signup-form.css";
+import { withRouter, useHistory } from "react-router-dom";
 
-const SignupForm = ({ name, email, password, mentor, mentee, error }) => {
+function SignupForm({ setToken }) {
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [mentor, setMentor] = useState(false);
+    const [mentee, setMentee] = useState(false);
+    const [errorCheckbox, setErrorCheckbox] = useState("");
+    const [error, setError] = useState("");
+    let history = useHistory();
+
+    const sendDetailsToServer = () => {
+        const payload = {
+            username: name,
+            email,
+            password,
+            mentor,
+            mentee,
+        };
+        axios
+            .post("http://localhost:3000/api/v1/signup", payload)
+            .then((response) => {
+                console.log(response);
+                if (response.status === 200) {
+                    setToken(response.data.auth_token);
+                    history.push("/");
+                }
+            })
+            .catch((error) => {
+                setError(error.response.data.message);
+            });
+    };
+    const handleSubmitClick = (input) => {
+        input.preventDefault();
+        if (!mentor && !mentee) {
+            setErrorCheckbox("Please choose either mentor or mentee");
+            return;
+        }
+        if (error === "") sendDetailsToServer(input);
+    };
     return (
         <div className="signup-form">
             {error ? (
@@ -16,15 +56,8 @@ const SignupForm = ({ name, email, password, mentor, mentee, error }) => {
             <h5>Sign up</h5>
             <p>You need to create an account</p>
             <form
-                onSubmit={() =>
-                    onSubmit({
-                        name,
-                        email,
-                        password,
-                        mentor,
-                        mentee,
-                    })
-                }
+                onSubmit={(input) => handleSubmitClick(input)}
+                onChange={() => setError("")}
             >
                 <div className="inputs">
                     <label>Name</label>
@@ -59,14 +92,17 @@ const SignupForm = ({ name, email, password, mentor, mentee, error }) => {
                 </div>
                 <div className="checkboxes">
                     <p>Looking to be a:</p>
+                    <p>{errorCheckbox}</p>
                     <div className="flex">
                         <div className="container">
                             <Input
                                 type="checkbox"
                                 name="Mentor"
-                                value="Mentor"
-                                checked={mentor && "checked"}
-                                onChange={() => setMentor(!mentor)}
+                                value={mentor}
+                                onChange={() => {
+                                    setMentor(!mentor);
+                                    setErrorCheckbox("");
+                                }}
                             />
                             <label>Mentor</label>
                         </div>
@@ -74,9 +110,11 @@ const SignupForm = ({ name, email, password, mentor, mentee, error }) => {
                             <Input
                                 type="checkbox"
                                 name="Mentee"
-                                value="Mentee"
-                                checked={mentee && "checked"}
-                                onChange={() => setMentee(!mentee)}
+                                value={mentee}
+                                onChange={() => {
+                                    setMentee(!mentee);
+                                    setErrorCheckbox("");
+                                }}
                             />
                             <label>Mentee</label>
                         </div>
@@ -86,6 +124,6 @@ const SignupForm = ({ name, email, password, mentor, mentee, error }) => {
             </form>
         </div>
     );
-};
+}
 
-export default SignupForm;
+export default withRouter(SignupForm);

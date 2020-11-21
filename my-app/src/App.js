@@ -1,30 +1,21 @@
 import React, { useState } from "react";
-import "./App.css";
-import Header from "./components/Header/Header";
-import RegistrationForm from "./components/RegistrationForm/RegistrationForm";
-
+import "./index.css";
+import SignupForm from "./containers/signup/signup-form";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Homepage from "./containers/homepage/homepage";
 
 function App() {
-    const [title, updateTitle] = useState(null);
-    const [errorMessage, updateErrorMessage] = useState(null);
+    const [token, setToken] = useState(null);
     return (
         <Router>
-            <div className="App">
-                <Header title={title} />
-                <div className="container d-flex align-items-center flex-column">
+            <div className="app">
+                <div className="main">
                     <Switch>
                         <Route path="/" exact={true}>
-                            <RegistrationForm
-                                showError={updateErrorMessage}
-                                updateTitle={updateTitle}
-                            />
+                            <Homepage token={token} />
                         </Route>
-                        <Route path="/register">
-                            <RegistrationForm
-                                showError={updateErrorMessage}
-                                updateTitle={updateTitle}
-                            />
+                        <Route path="/signup">
+                            <SignupForm setToken={setToken} />
                         </Route>
                     </Switch>
                 </div>

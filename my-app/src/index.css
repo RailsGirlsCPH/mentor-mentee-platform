@@ -1,59 +1,64 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap");
 
 * {
-  box-sizing: border-box;
-  font-family: "DM Mono", monospace, Arial, Helvetica, sans-serif;
-  font-size: 62.5%;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    font-family: "DM Mono", monospace, Arial, Helvetica, sans-serif;
+    font-size: 62.5%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  color: #000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #000;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+        monospace;
 }
 
 h1 {
-  font-size: 6rem;
-  font-weight: 500;
+    font-size: 6rem;
+    font-weight: 500;
 }
 
 h2 {
-  font-size: 5rem;
-  font-weight: 500;
+    font-size: 5rem;
+    font-weight: 500;
 }
 
 h3 {
-  font-size: 4rem;
-  font-weight: 500;
+    font-size: 4rem;
+    font-weight: 500;
 }
 
 h4 {
-  font-size: 3rem;
-  font-weight: 500;
+    font-size: 3rem;
+    font-weight: 500;
 }
 
 h5 {
-  font-size: 2.5rem;
-  font-weight: 500;
+    font-size: 2.5rem;
+    font-weight: 500;
 }
 
 h6 {
-  font-size: 2rem;
-  font-weight: 500;
+    font-size: 2rem;
+    font-weight: 500;
 }
 
 p {
-  font-size: 1.6rem;
-  font-weight: 300;
+    font-size: 1.6rem;
+    font-weight: 300;
 }
 
 label {
-  font-size: 1.2rem;
+    font-size: 1.2rem;
+}
+
+.main {
+    height: 100vh;
+    padding-top: 5rem;
 }
