@@ -1,31 +1,26 @@
-import React from "react";
-//{ useState, useEffect } from "react";
-import "./App.css";
+import React, { useState } from "react";
+import "./index.css";
+import SignupForm from "./containers/signup/signup-form";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Homepage from "./containers/homepage/homepage";
 
 function App() {
-    // useEffect(() => {
-    //     const requestOptions = {
-    //         method: "POST",
-    //         mode: "cors",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify({
-    //             username: "ashley8",
-    //             email: "ashley8@email.com",
-    //             password: "foobar",
-    //             mentor: "true",
-    //             mentee: "true",
-    //         }),
-    //     };
-    //     fetch("http://localhost:3000/api/v1/signup", requestOptions)
-    //         .then((response) => response.json())
-    //         .then((data) => console.log(data))
-    //         .catch((error) => console.log(error));
-    // });
+    const [token, setToken] = useState(null);
     return (
-        <div>
-            RailsGirls Mentor mentee platform, we can update on our machine in
-            October. we can make changes boo yah! Or can we though
-        </div>
+        <Router>
+            <div className="app">
+                <div className="main">
+                    <Switch>
+                        <Route path="/" exact={true}>
+                            <Homepage token={token} />
+                        </Route>
+                        <Route path="/signup">
+                            <SignupForm setToken={setToken} />
+                        </Route>
+                    </Switch>
+                </div>
+            </div>
+        </Router>
     );
 }
 

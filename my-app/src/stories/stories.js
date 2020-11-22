@@ -1,9 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import { withKnobs, text } from "@storybook/addon-knobs";
+import { withKnobs, text, boolean } from "@storybook/addon-knobs";
 import { action } from "@storybook/addon-actions";
-console.log(withKnobs);
+
 // Import your component file here
 import Avatar from "../components/avatar/avatar.component";
 import Input from "../components/input/input.component";
@@ -90,6 +90,9 @@ storiesOf("Signup Form", module)
             name={text("Name", "Maryann Salvato")}
             email={text("Email", "")}
             password={text("Password", "")}
+            mentor={boolean("isMentor", true)}
+            mentee={boolean("isMentee", false)}
+            error={text("Error", "")}
             onSubmit={action("Form submit")}
         />
     ));
