@@ -17,10 +17,10 @@ services:
       - ./server/:/app
     tmpfs:
       - /app/tmp
-  my-app:
-    container_name: my-app
+  ui:
+    container_name: ui
     build: ./my-app
-    image: railsgirlscph/mentormenteeplatform-server-my-app
+    image: railsgirlscph/mentormenteeplatform-ui
     environment:
       - CI=true
     ports:
