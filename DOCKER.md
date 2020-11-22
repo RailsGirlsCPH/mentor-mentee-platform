@@ -34,7 +34,7 @@ docker-compose down -v
 Say you just used the standard docker-compose up command, you can use the following commands to enter into the command line of each of the three containers which are now runing. 
 
 ```
-docker container exec -it my-app /bin/sh
+docker container exec -it ui /bin/sh
 
 docker container exec -it server bash
 
@@ -62,9 +62,28 @@ there is an issue in only one of the apps | `docker-compose up -d server` | star
 I don't know what the issue is | `docker-compose logs server` | view the logs of a particular container
 I don't know what effects my changes are making | `docker-compose -f logs server` | view the logs of a particular container in real time
 your changes are not taking affect | `docker-compose up --build server` | rebuild the image
-&nbsp; | `docker-compose build --no-cache server` | get rid of the image cache and start from scratch when building the image
+I have made changes to a dockerfile but they haven't taken effect | `docker-compose build --no-cache server` | get rid of the image cache and start from scratch when building the image
 a container is failing at some point, or exiting randomly | `docker-compose run server /bin/sh` | bring up the command line of this newly created container
 
+## Pulling image from dockerhub
+
+The images for our repo are on dockerhub. 
+
+https://hub.docker.com/r/railsgirlscph/mentormenteeplatform-ui
+
+https://hub.docker.com/r/railsgirlscph/mentormenteeplatform-server
+
+When you run `docker-compose up` this command will trigger a pull from railsgirlscph on dockerhub. 
+
+If for some reason an image is not work correctly when you run `docker-compose up` you can pull them with the following commands. 
+
+`docker pull railsgirlscph/mentormenteeplatform-ui`
+
+`docker pull railsgirlscph/mentormenteeplatform-server`
+
+postgres is not included here as we haven't defined a postgres Dockerfile, we just use the standard postgres image.
+
+You only want to build the docker images locally if you think you have made some local changes which may affect the docker image. 
 
 ## Reminders
 
