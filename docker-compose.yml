@@ -19,14 +19,14 @@ services:
       - /app/tmp
   ui:
     container_name: ui
-    build: ./my-app
+    build: ./ui
     image: railsgirlscph/mentormenteeplatform-ui
     environment:
       - CI=true
     ports:
       - "80:3000"
     volumes:
-      - ./my-app/:/app
+      - ./ui/:/app
     tmpfs:
       - /app/tmp
   postgres:
