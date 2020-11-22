@@ -26,7 +26,6 @@ function SignupForm({ setToken }) {
         axios
             .post("http://localhost:3000/api/v1/signup", payload)
             .then((response) => {
-                console.log(response);
                 if (response.status === 200) {
                     setToken(response.data.auth_token);
                     history.push("/");

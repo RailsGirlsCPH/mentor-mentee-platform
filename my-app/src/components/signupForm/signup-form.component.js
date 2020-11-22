@@ -3,7 +3,15 @@ import Input from "../input/input.component";
 import Button from "../button/button.component";
 import "./signup-form.css";
 
-const SignupForm = ({ name, email, password, mentor, mentee, error }) => {
+const SignupForm = ({
+    name,
+    email,
+    password,
+    mentor,
+    mentee,
+    error,
+    onSubmit,
+}) => {
     return (
         <div className="signup-form">
             {error ? (
@@ -16,15 +24,16 @@ const SignupForm = ({ name, email, password, mentor, mentee, error }) => {
             <h5>Sign up</h5>
             <p>You need to create an account</p>
             <form
-                onSubmit={() =>
+                onSubmit={(e) => {
+                    e.preventDefault();
                     onSubmit({
                         name,
                         email,
                         password,
                         mentor,
                         mentee,
-                    })
-                }
+                    });
+                }}
             >
                 <div className="inputs">
                     <label>Name</label>
