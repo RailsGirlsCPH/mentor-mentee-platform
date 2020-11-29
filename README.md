@@ -21,7 +21,7 @@ So far, the groups have laid out a lot of the groundwork, have created a fair am
 ### Contribute
 We're always happy to invite new contributors, particularly people new to progamming and who belongs to a group that is not already so well-represented in tech. We also very enthusiastically welcome more seasoned folks who wants to mentor and help our beginner-contributors out. Check out our issues to see which tasks we have ahead. Feel free to join our [Rails Girls cph slack channel](https://join.slack.com/t/railsgirlscopenhagen/shared_invite/enQtMzczNDA3NzMwMDA3LWI3YjVkMDE0MjU1NzllOGIxNGE3YTUyZmIxOWEzNTFlMTg2ZDE2YzUwMDE1YjZjMTQ4ZTYwNTc2MWRkMTNmMmM) for a social space to talk about the project and raise any questions you may have.
 
-```Server``` will take you to the backend repository.                           
-```my-app``` will take you to the frontend repository.    
+```server``` will take you to the backend repository.                           
+```ui``` will take you to the frontend repository.    
 
 Information about using docker to spin up app can be found in DOCKER.md file.
