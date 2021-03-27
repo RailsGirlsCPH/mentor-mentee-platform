@@ -1,5 +1,6 @@
-class ApplicationController < ActionController::API 
-  #protect_from_forgery with: :exception
+# This class defines class to control application
+class ApplicationController < ActionController::API
+  # protect_from_forgery with: :exception
   include Response
   include ExceptionHandler
 
@@ -18,4 +19,3 @@ class ApplicationController < ActionController::API
     @current_user = (AuthorizeApiRequest.new(request.headers).call)[:user]
   end
 end
-

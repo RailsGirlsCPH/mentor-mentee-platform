@@ -1,3 +1,4 @@
+# This migration creates wishes table in database
 class CreateWishes < ActiveRecord::Migration[6.0]
   def change
     create_table :wishes do |t|
