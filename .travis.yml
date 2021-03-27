@@ -4,6 +4,10 @@ language: ruby
 cache: bundler
 gemfile: server/Gemfile
 
+before_script:
+  - bundle install
+
 script:
   - cd server
   - bin/rails spec
+  - bundle exec rubocop
