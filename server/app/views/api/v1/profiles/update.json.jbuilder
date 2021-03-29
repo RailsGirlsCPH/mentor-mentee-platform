@@ -5,3 +5,5 @@ json.last_name  @current_user.last_name
 json.email @current_user.email
 json.mentor @current_user.mentor
 json.mentee @current_user.mentee
+json.work_status @current_user.work_status
+json.extra_notes @current_user.extra_notes
