@@ -1,8 +1,8 @@
-#To get the list of files rubocop will examine rune
+#To get the list of files rubocop will examine run
 #$ rubocop -L
 #Notice no yml or jbuilder files are included.
-#If you run rubocop on a partiuclar directory it
-#will review everything, even non .rb files.
+#If you run rubocop on a particular directory it
+#will review everything, even non .rb files,
 #so remember to ignore these rubocop results. 
 
 AllCops:
@@ -15,9 +15,6 @@ AllCops:
 
 Metrics/BlockLength:
   Exclude:
-    # - 'spec/requests/api/v1/*.rb'
-    # - 'spec/models/*.rb'
-    # - 'spec/auth/*.rb'
     - 'spec/**/*.rb'
     - 'spec/*.rb'
     - 'db/*.rb'
@@ -39,8 +36,6 @@ Layout/LineLength:
 Style/SafeNavigation:
   Exclude:
     - 'app/auth/authenticate_user.rb'
-    # Rubocop encourages &. although 
-    # && and &. are functionally equivalent
 
 Style/ClassAndModuleChildren:
   EnforcedStyle: compact
