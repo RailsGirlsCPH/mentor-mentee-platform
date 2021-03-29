@@ -2,9 +2,9 @@ require 'uri'
 
 class Api::V1::ExperiencesController < ApplicationController
   before_action :set_api_user
-  before_action :set_api_user_experience, only: [:show, :update, :destroy]
+  before_action :set_api_user_experience, only: %i[show update destroy]
 
-  #GET /api_users/:api_user_id/experiences
+  # GET /api_users/:api_user_id/experiences
   def index
     @experiences = @api_user.experiences.includes(:programminglanguage, :meetinginterval)
     @experiences = @experiences.where(available_offline: true) if params[:available_offline] == 'true'
@@ -12,7 +12,10 @@ class Api::V1::ExperiencesController < ApplicationController
     @experiences = @experiences.where(available_online: true) if params[:available_online] == 'true'
     @experiences = @experiences.where(available_online: false) if params[:available_online] == 'false'
 
-    #Explanation regarding includes: not necessary to link programming languages and meeting interval to Wishes, but it means there is only one call to the database during which it pulls all the information linked  by foreign keys in case it needs it in the future. 
+    # Explanation regarding includes: not necessary to link programming languages
+    # and meeting interval to Wishes, but it means there is only one call to the database
+    # during which it pulls all the information linked  by foreign keys in case it needs
+    # it in the future.
   end
 
   # Post /api_users/:api_user_id/experiences
@@ -21,14 +24,14 @@ class Api::V1::ExperiencesController < ApplicationController
     json_response(@experience1, :created)
   end
 
-  #GET /api_users/:api_user_id/experiences/:experience_id
+  # GET /api_users/:api_user_id/experiences/:experience_id
   def show
     json_response(@experience)
   end
 
   # PUT /wishes/:id
   def update
-    @experience.update!(experience_params) 
+    @experience.update!(experience_params)
     head :no_content
   end
 
@@ -37,10 +40,17 @@ class Api::V1::ExperiencesController < ApplicationController
     @experience.destroy!
     head :no_content
   end
+
   private
 
   def experience_params
-    params.permit(:available_offline, :available_online, :qualification, :api_user_id, :id, :programminglanguage_id, :meetinginterval_id, :mentee)
+    params.permit(:available_offline,
+                  :available_online,
+                  :qualification,
+                  :api_user_id, :id,
+                  :programminglanguage_id,
+                  :meetinginterval_id,
+                  :mentee)
   end
 
   def set_api_user
@@ -55,6 +65,4 @@ class Api::V1::ExperiencesController < ApplicationController
   def set_api_user_experience
     @experience = @api_user.experiences.find_by!(id: params[:id]) if @api_user
   end
-
 end
-

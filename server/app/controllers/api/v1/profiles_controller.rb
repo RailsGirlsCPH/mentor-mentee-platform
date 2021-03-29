@@ -1,9 +1,9 @@
 class Api::V1::ProfilesController < ApplicationController
-  #application_controller.rb contains before action for all controllers
-  #these are :authorize_request, and defines current user.
+  # application_controller.rb contains before action for all controllers
+  # these are :authorize_request, and defines current user.
 
-  #GET /profile/
-  def show # index
+  # GET /profile/
+  def show
     @current_user = current_user
   end
 
@@ -19,8 +19,16 @@ class Api::V1::ProfilesController < ApplicationController
   end
 
   private
-  def api_user_params
-    params.permit(:first_name, :last_name, :city, :email, :username, :mentor, :mentee, :password, :password_confirmation)
-  end
 
+  def api_user_params
+    params.permit(:first_name,
+                  :last_name,
+                  :city,
+                  :email,
+                  :username,
+                  :mentor,
+                  :mentee,
+                  :password,
+                  :password_confirmation)
+  end
 end

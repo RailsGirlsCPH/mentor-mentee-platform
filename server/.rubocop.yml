@@ -1,0 +1,43 @@
+#To get the list of files rubocop will examine run
+#$ rubocop -L
+#Notice no yml or jbuilder files are included.
+#If you run rubocop on a particular directory it
+#will review everything, even non .rb files,
+#so remember to ignore these rubocop results. 
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/*'
+    - 'config/**/*.rb'
+    - 'vendor/bundle/**/*'
+    - 'db/schema.rb'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - 'spec/*.rb'
+    - 'db/*.rb'
+
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*.rb'
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Layout/LineLength:
+  Exclude:
+    - 'spec/requests/api/v1/*.rb'
+
+Style/SafeNavigation:
+  Exclude:
+    - 'app/auth/authenticate_user.rb'
+
+Style/ClassAndModuleChildren:
+  EnforcedStyle: compact
+  Exclude:
+    - 'app/channels/*/*.rb'
