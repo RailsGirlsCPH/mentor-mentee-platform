@@ -6,6 +6,7 @@
 #so remember to ignore these rubocop results. 
 
 AllCops:
+  DisplayStyleGuide: true
   NewCops: enable
   Exclude:
     - 'bin/*'
