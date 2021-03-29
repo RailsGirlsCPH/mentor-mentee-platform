@@ -21,6 +21,7 @@ class Api::V1::ProfilesController < ApplicationController
   private
 
   def api_user_params
-    params.permit(:first_name, :last_name, :city, :email, :username, :mentor, :mentee, :password, :password_confirmation, :work_status, :extra_notes)
+    params.permit(:first_name, :last_name, :city, :email, :username, :mentor, :mentee, :password,
+                  :password_confirmation, :work_status, :extra_notes)
   end
 end

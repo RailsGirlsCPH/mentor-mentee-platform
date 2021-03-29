@@ -9,4 +9,3 @@ json.mentor @api_user.mentor
 json.mentee @api_user.mentee
 json.work_status @api_user.work_status
 json.extra_notes @api_user.extra_notes
-
