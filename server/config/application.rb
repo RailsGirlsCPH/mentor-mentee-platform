@@ -1,7 +1,6 @@
-
-##These two lines prevented deployment to heroku, need to look into affect later
-#require 'dotenv'
-#Dotenv.load
+# #These two lines prevented deployment to heroku, need to look into affect later
+# require 'dotenv'
+# Dotenv.load
 require_relative 'boot'
 
 require 'rails/all'
@@ -18,10 +17,10 @@ module MentorMenteePlatform
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins ['http://localhost', 'http://localhost:3000']
-        resource '*', :headers => :any, :methods => [:get, :post, :options]
+        resource '*', headers: :any, methods: %i[get post options]
       end
     end
-    #Handle temporary files in docker, want to avoid storing them as root on home machine.
+    # Handle temporary files in docker, want to avoid storing them as root on home machine.
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

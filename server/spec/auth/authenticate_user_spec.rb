@@ -20,9 +20,9 @@ RSpec.describe AuthenticateUser do
       it 'raises an authentication error' do
         expect { invalid_request_auth_obj.call }
           .to raise_error(
-                ExceptionHandler::AuthenticationError,
-                /Invalid credentials/
-              )
+            ExceptionHandler::AuthenticationError,
+            /Invalid credentials/
+          )
       end
     end
   end
