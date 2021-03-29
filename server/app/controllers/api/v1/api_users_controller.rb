@@ -27,15 +27,6 @@ class Api::V1::ApiUsersController < ApplicationController
   private
 
   def api_user_params
-    params.permit(:first_name,
-                  :last_name,
-                  :city,
-                  :email,
-                  :username,
-                  :mentor,
-                  :mentee,
-                  :password_digest,
-                  :password,
-                  :password_confirmation)
+    params.permit(:first_name, :last_name, :city, :email, :username, :mentor, :mentee, :password_digest, :password, :password_confirmation, :work_status, :extra_notes)
   end
 end

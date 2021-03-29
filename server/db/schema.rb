@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_14_184044) do
+ActiveRecord::Schema.define(version: 2020_11_15_195132) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,8 @@ ActiveRecord::Schema.define(version: 2020_03_14_184044) do
     t.boolean "mentee", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "work_status"
+    t.string "extra_notes"
     t.index ["email", "mentor", "mentee"], name: "index_api_users_on_email_and_mentor_and_mentee"
   end
 
