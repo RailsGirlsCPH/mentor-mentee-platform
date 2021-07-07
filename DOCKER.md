@@ -64,6 +64,14 @@ I don't know what effects my changes are making | `docker-compose -f logs server
 your changes are not taking affect | `docker-compose up --build server` | rebuild the image
 I have made changes to a dockerfile but they haven't taken effect | `docker-compose build --no-cache server` | get rid of the image cache and start from scratch when building the image
 a container is failing at some point, or exiting randomly | `docker-compose run server /bin/sh` | bring up the command line of this newly created container
+container build failing but intermmediate container existed before fail. Output from build like the following: 
+`Step 4/7 : COPY Gemfile* ./`
+` ---> f154e1a4d43c`
+`Step 5/7 : RUN bundle install`
+` ---> Running in 75dedd4a52fa`
+`some failure message` | `docker run --rm -it f154e1a4d43c /bin/bash` | Start interactive session in container which existed before failure. Allows user to run commands to investigate problem and try solutions. 
+
+
 
 ## Pulling image from dockerhub
 
