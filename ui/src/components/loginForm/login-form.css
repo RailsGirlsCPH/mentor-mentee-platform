@@ -1,0 +1,108 @@
+.login-form {
+    align-items: center;
+    background: #fff;
+    border: 1.2rem solid #fd4927;
+    border-radius: 1rem;
+    box-shadow: 0.9px 1rem 4.3rem rgba(253, 73, 39, 0.83);
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 3.5rem 3.5rem 4rem;
+    width: 32rem;
+}
+
+.login-form h5 {
+    width: 100%;
+}
+
+.login-form p {
+    font-size: 1.4rem;
+}
+
+.login-form .inputs {
+    border: 2px solid #fd4927;
+    margin: 2rem 0 0;
+    min-height: 6rem;
+    padding: 0.5rem 0.7rem;
+}
+
+.login-form .inputs input {
+    margin-top: 0.3rem;
+    width: 100%;
+}
+
+.login-form .inputs:hover,
+.login-form .inputs:focus-within {
+    box-shadow: 1px 3px 6px 1px rgba(255, 76, 42, 0.58);
+}
+
+.login-form .inputs label {
+    color: #000;
+    font-weight: 500;
+}
+
+.login-form .checkboxes {
+    margin: 1.5rem 0 0;
+    min-height: 6rem;
+}
+
+.login-form .flex {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.login-form .checkboxes .container {
+    align-items: center;
+    color: #000;
+    display: flex;
+    font-weight: 500;
+    margin: 1rem 2rem 1rem 0;
+}
+
+.login-form .checkboxes input {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: 2px solid #fd4927;
+    height: 4rem;
+    padding: 0.2rem;
+    width: 4rem;
+}
+
+.login-form .checkboxes input:checked::after {
+    background-color: #fd4927;
+    content: "";
+    display: inline-block;
+    height: 2.5rem;
+    left: -0.5rem;
+    margin: 0.8rem;
+    padding: 0;
+    position: relative;
+    top: -0.5rem;
+    width: 2.5rem;
+}
+
+.login-form .checkboxes label {
+    margin-left: 1rem;
+}
+
+.login-form .checkboxes input:hover {
+    box-shadow: 1px 3px 6px 1px rgba(255, 76, 42, 0.58);
+}
+
+.login-form button {
+    margin: 2rem 0 0;
+}
+
+.login-form .error {
+    background-color: #fd4927;
+    color: #fff;
+    padding: 1rem;
+    margin: 0 0 2rem;
+    width: 100%;
+}
+
+.login-form .error p {
+    font-weight: bold;
+}

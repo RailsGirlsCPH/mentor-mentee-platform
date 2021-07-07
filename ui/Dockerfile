@@ -2,7 +2,7 @@
 FROM node:current-alpine
 
 RUN apk add --update tini 
-WORKDIR /app
+WORKDIR /ui
 
 COPY package.json package-lock.json ./
 
