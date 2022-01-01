@@ -5,7 +5,7 @@
     "dependencies": {
         "@storybook/addon-knobs": "^5.2.5",
         "axios": "^0.21.1",
-        "i": "^0.3.6",
+        "i": "^0.3.7",
         "prop-types": "^15.7.2",
         "react": "^16.11.0",
         "react-dom": "^16.11.0",
