@@ -225,7 +225,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    shoulda-matchers (5.0.0)
+    shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
@@ -274,7 +274,7 @@ DEPENDENCIES
   rswag
   rubocop
   sass-rails (~> 6.0)
-  shoulda-matchers (~> 5.0)
+  shoulda-matchers (~> 5.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4.2)
