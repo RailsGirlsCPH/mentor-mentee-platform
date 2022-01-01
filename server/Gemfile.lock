@@ -94,7 +94,8 @@ GEM
     i18n (1.8.11)
       concurrent-ruby (~> 1.0)
     interception (0.5)
-    jbuilder (2.11.3)
+    jbuilder (2.11.5)
+      actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     json-schema (2.8.1)
       addressable (>= 2.4)
@@ -111,7 +112,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     mini_portile2 (2.6.1)
-    minitest (5.14.4)
+    minitest (5.15.0)
     msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.5)
@@ -248,7 +249,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.3)
 
 PLATFORMS
   ruby
