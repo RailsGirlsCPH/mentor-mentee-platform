@@ -111,7 +111,7 @@ GEM
     method_source (1.0.0)
     mini_mime (1.1.2)
     mini_portile2 (2.6.1)
-    minitest (5.14.4)
+    minitest (5.15.0)
     msgpack (1.4.2)
     nio4r (2.5.8)
     nokogiri (1.12.5)
@@ -224,7 +224,7 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    shoulda-matchers (5.0.0)
+    shoulda-matchers (5.1.0)
       activesupport (>= 5.2.0)
     spring (2.1.1)
     spring-watcher-listen (2.0.1)
@@ -248,7 +248,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.3)
 
 PLATFORMS
   ruby
@@ -273,7 +273,7 @@ DEPENDENCIES
   rswag
   rubocop
   sass-rails (~> 6.0)
-  shoulda-matchers (~> 5.0)
+  shoulda-matchers (~> 5.1)
   spring
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4.2)
