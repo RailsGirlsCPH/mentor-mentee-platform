@@ -417,7 +417,7 @@ paths:
     get:
       summary: Display user you are logged in as
       tags:
-      - Display userr you are logged in as
+      - Display user you are logged in as
       consumes:
       - application/json
       parameters:
