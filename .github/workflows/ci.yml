@@ -14,7 +14,8 @@ defaults:
 jobs:
   test:
     runs-on: ubuntu-latest
-
+    env:
+      BUNDLE_GEMFILE: ./Gemfile
     strategy:
       matrix:
         ruby-version: [ 2.6.5 ]
