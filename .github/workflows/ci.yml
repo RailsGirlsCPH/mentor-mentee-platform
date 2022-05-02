@@ -6,16 +6,9 @@ on:
   pull_request:
     branches: [ master ]
 
-# Ensure that the "Run test" and "Run RuboCop" steps are run within the 
-defaults:
-  run:
-    working-directory: ./server
-
 jobs:
   test:
     runs-on: ubuntu-latest
-    env:
-      BUNDLE_GEMFILE: ./Gemfile
     strategy:
       matrix:
         ruby-version: [ 2.6.5 ]
@@ -27,8 +20,14 @@ jobs:
         with:
           ruby-version: ${{ matrix.ruby-version }}
           bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+        env:
+          BUNDLE_GEMFILE: ./server/Gemfile
 
       - name: Run tests
-        run: bin/rails spec
+        run: |
+          cd server
+          bin/rails spec
       - name: Linting
-        run: bundle exec rubocop
+        run: |
+          cd server
+          bundle exec rubocop
