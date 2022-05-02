@@ -1,0 +1,36 @@
+name: Ruby CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+# Ensure that the "Run test" and "Run RuboCop" steps are run within the 
+defaults:
+  run:
+    working-directory: ./server
+
+jobs:
+  test:
+    env:
+      BUNDLE_GEMFILE: ./server/Gemfile
+
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        ruby-version: [ 2.7 ]
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Ruby ${{ matrix.ruby-version }}
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true # runs 'bundle install' and caches installed gems automatically
+
+      - name: Run tests
+        run: bin/rails spec
+      - name: Linting
+        run: bundle exec rubocop
