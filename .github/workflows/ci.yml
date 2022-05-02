@@ -6,6 +6,10 @@ on:
   pull_request:
     branches: [ master ]
 
+defaults:
+  run:
+    working-directory: ./server
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -24,10 +28,6 @@ jobs:
           BUNDLE_GEMFILE: ./server/Gemfile
 
       - name: Run tests
-        run: |
-          cd server
-          bin/rails spec
-      - name: Linting
-        run: |
-          cd server
-          bundle exec rubocop
+        run: bin/rails spec
+      - name: Run rubocop
+        run: bundle exec rubocop
