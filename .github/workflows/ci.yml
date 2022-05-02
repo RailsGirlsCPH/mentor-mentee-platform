@@ -13,9 +13,6 @@ defaults:
 
 jobs:
   test:
-    env:
-      BUNDLE_GEMFILE: ./server/Gemfile
-
     runs-on: ubuntu-latest
 
     strategy:
