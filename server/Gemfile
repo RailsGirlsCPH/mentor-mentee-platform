@@ -28,7 +28,7 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jbuilder', '~> 2.11'
 
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.17'
+gem 'bcrypt', '~> 3.1.18'
 gem 'jwt'
 
 # Reduces boot times through caching; required in config/boot.rb
