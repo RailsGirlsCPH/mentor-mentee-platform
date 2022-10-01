@@ -10,7 +10,7 @@ gem 'rails', '~> 6.1.5'
 # Use sqlite3 as the database for Active Record
 group :development, :test do
   gem 'rubocop'
-  gem 'sqlite3', '~> 1.4.2'
+  gem 'sqlite3', '~> 1.5.1'
 end
 # Use Puma as the app server
 gem 'puma', '~> 5.6'
